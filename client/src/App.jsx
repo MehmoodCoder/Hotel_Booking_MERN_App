@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 function App() {
 
-  const isOwnerPath = useLocation().pathname.include("owner")
+  const isOwnerPath = useLocation().pathname.includes("owner")
 
   return (
     <>
