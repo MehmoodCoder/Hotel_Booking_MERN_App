@@ -8,16 +8,14 @@ const Navbar = () => {
     { name: "About", path: "/" },
   ];
 
-  const ref = React.useRef(null);
-
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(ref.current.scrollTop > 10);
+      setIsScrolled(window.scrollTop > 10);
     };
-    ref.current.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
