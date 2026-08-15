@@ -3,4 +3,13 @@
 
 ---
 
+## 👤 Author
+
+**MehmoodCoder**
+
+- 🔗 GitHub: [https://github.com/MehmoodCoder](https://github.com/MehmoodCoder)
+- 🌐 Portfolio: [My Portfolio Link](https://mh56-portfolio.vercel.app)
+
+---
+
 ### ***Happy coding without chai ! ☕***
