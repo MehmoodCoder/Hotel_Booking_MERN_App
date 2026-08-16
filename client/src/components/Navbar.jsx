@@ -74,7 +74,7 @@ const Navbar = () => {
       <div className="flex items-center gap-3 md:hidden">
         <svg
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className={`h-6 w-6 cursor-pointer ${isScrolled ? "invert" : ""}`}
+          className={`h-6 w-6 cursor-pointer ${isScrolled && "invert"}`}
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
@@ -112,7 +112,7 @@ const Navbar = () => {
         ))}
 
         <button className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all">
-          New Launch
+          Dashboard
         </button>
 
         <button className="bg-black text-white px-8 py-2.5 rounded-full transition-all duration-500">
