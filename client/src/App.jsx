@@ -1,9 +1,9 @@
-import Navbar from "./components/Navbar"
+import Navbar from "./components/Navbar";
 import { useLocation } from "react-router-dom";
 
 function App() {
 
-  const isOwnerPath = useLocation().pathname.includes("owner")
+  const isOwnerPath = useLocation().pathname.includes("owner");
 
   return (
     <>
@@ -12,4 +12,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
