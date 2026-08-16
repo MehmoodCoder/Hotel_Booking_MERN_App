@@ -55,7 +55,7 @@ const Navbar = () => {
 
       <div className="hidden md:flex items-center gap-4">
         <svg
-          className={`h-6 w-6 text-white transition-all duration-500 ${isScrolled ? "invert" : ""}`}
+          className={`h-6 w-6 text-white transition-all duration-500 ${isScrolled && "invert"}`}
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
