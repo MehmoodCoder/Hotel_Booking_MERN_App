@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 45" width="100%" height="100%" fill="none">
+  <g transform="translate(4, 2)">
+    <path d="M 6 34 V 14 C 6 8.47715 10.4772 4 16 4 C 21.5228 4 26 8.47715 26 14 V 34" 
+          stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/>
+    
+    <path d="M 2 18 V 34" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+    <path d="M 30 18 V 34" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+
+    <path d="M 12 34 V 23 C 12 20.7909 13.7909 19 16 19 C 18.2091 19 20 20.7909 20 23 V 34" 
+          stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"/>
+
+    <circle cx="16" cy="11" r="2" stroke="#FFFFFF" stroke-width="1.8" fill="none"/>
+
+    <path d="M 0 34 H 32" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <g fill="#FFFFFF" transform="translate(46, 29)">
+    <text font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" 
+          font-weight="900" 
+          font-size="22" 
+          letter-spacing="-0.5">Hotel<tspan font-weight="900" opacity="0.85">Hub</tspan></text>
+  </g>
+</svg>
