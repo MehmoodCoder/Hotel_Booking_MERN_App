@@ -15,11 +15,11 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const { openSignIn } = useClerk();
-  const { user } = useClerk();
+  const { user } = useUser();
 
   React.useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollTop > 10);
+      setIsScrolled(window.scrollY > 10);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
