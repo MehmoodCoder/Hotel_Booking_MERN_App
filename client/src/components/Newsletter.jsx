@@ -1,13 +1,11 @@
 import React from "react";
- 
+
 const Newsletter = () => {
-    return(
-        <>
-            <div className="">
+  return (
+    <>
+      <div className=""></div>
+    </>
+  );
+};
 
-            </div>
-        </>
-    )
-}
-
-export default Newsletter
+export default Newsletter;
