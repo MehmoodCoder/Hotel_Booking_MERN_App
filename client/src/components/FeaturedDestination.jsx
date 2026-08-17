@@ -51,8 +51,8 @@ const HotelData = [
 const FeaturedDestination = () => {
   return (
     <>
-      <div className="w-full flex flex-col items-center bg-slate-50 py-12 px-2 sm:px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+      <div className="flex flex-col items-center w-full px-6 md:px-14 lg:px-20 bg-slate-50 py-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full px-4 py-8">
           {HotelData.map((room, index) => (
             <HotelCard key={room._id} room={room} index={index} />
           ))}
