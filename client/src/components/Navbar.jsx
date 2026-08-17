@@ -49,31 +49,41 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const isHome = location.pathname === "/";
+
   React.useEffect(() => {
-    if (location.pathname !== "/") {
-      setIsScrolled(true)
-    }else{
-      setIsScrolled(false)
+    if (!isHome) {
+      setIsScrolled(false);
+      return;
     }
-    setIsScrolled(prev => location.pathname !== "/" ? true : prev)
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [location.pathname]);
+  }, [isHome]);
+
+  // Dynamic Background Styles:
+  // Home Page: Scrolled -> Transparent | Not Scrolled -> Transparent (or dark overlay if needed)
+  // Other Pages: Always Solid Black
+  const getNavBackground = () => {
+    if (isHome) {
+      return isScrolled
+        ? "bg-transparent backdrop-blur-md py-3 md:py-4"
+        : "bg-transparent py-4 md:py-6";
+    }
+    return "bg-black shadow-md text-white py-3 md:py-4";
+  };
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 ${isScrolled ? "bg-white/80 shadow-md text-gray-700 backdrop-blur-lg py-3 md:py-4" : "py-4 md:py-6"}`}
+      className={`fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 ${getNavBackground()}`}
     >
       <Link to="/" className="flex items-center gap-2">
-        <img
-          src={logo}
-          alt="HotelHub Logo"
-          className={`h-9 w-auto ${isScrolled && "invert opacity-80"}`}
-        />
+        <img src={logo} alt="HotelHub Logo" className="h-9 w-auto" />
       </Link>
 
       <div className="hidden md:flex items-center gap-4 lg:gap-8">
@@ -81,17 +91,17 @@ const Navbar = () => {
           <a
             key={i}
             href={link.path}
-            className={`group flex flex-col gap-0.5 ${isScrolled ? "text-gray-700" : "text-white"}`}
+            className={`group flex flex-col gap-0.5 ${
+              isHome && isScrolled ? "text-gray-200" : "text-white"
+            }`}
           >
             {link.name}
-            <div
-              className={`${isScrolled ? "bg-gray-700" : "bg-white"} h-0.5 w-0 group-hover:w-full transition-all duration-300`}
-            />
+            <div className="bg-white h-0.5 w-0 group-hover:w-full transition-all duration-300" />
           </a>
         ))}
         <button
           onClick={() => navigate("/owner")}
-          className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer ${isScrolled ? "text-black" : "text-white"} transition-all`}
+          className="border border-white/30 px-4 py-1 text-sm font-light rounded-full cursor-pointer text-white hover:bg-white/10 transition-all"
         >
           Dashboard
         </button>
@@ -99,7 +109,7 @@ const Navbar = () => {
 
       <div className="hidden md:flex items-center gap-4">
         <svg
-          className={`h-6 w-6 text-white transition-all duration-500 ${isScrolled && "invert"}`}
+          className="h-6 w-6 text-white transition-all duration-500"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
@@ -123,7 +133,7 @@ const Navbar = () => {
         ) : (
           <button
             onClick={openSignIn}
-            className={`px-8 py-2.5 rounded-full ml-4 transition-all duration-500 ${isScrolled ? "text-white bg-black" : "bg-white text-black"}`}
+            className="px-8 py-2.5 rounded-full ml-4 transition-all duration-500 bg-white text-black hover:bg-gray-200"
           >
             Login
           </button>
@@ -146,7 +156,7 @@ const Navbar = () => {
         )}
         <svg
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className={`h-6 w-6 cursor-pointer ${isScrolled && "invert"}`}
+          className="h-6 w-6 cursor-pointer text-white"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
@@ -159,7 +169,9 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`fixed top-0 left-0 w-full h-screen bg-white text-base flex flex-col md:hidden items-center justify-center gap-6 font-medium text-gray-800 transition-all duration-500 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"}`}
+        className={`fixed top-0 left-0 w-full h-screen bg-black text-white text-base flex flex-col md:hidden items-center justify-center gap-6 font-medium transition-all duration-500 ${
+          isMenuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
       >
         <button
           className="absolute top-4 right-4"
@@ -186,7 +198,7 @@ const Navbar = () => {
         {user && (
           <button
             onClick={() => navigate("/owner")}
-            className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all"
+            className="border border-white/30 px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all"
           >
             Dashboard
           </button>
@@ -195,7 +207,7 @@ const Navbar = () => {
         {!user && (
           <button
             onClick={openSignIn}
-            className="bg-black text-white px-8 py-2.5 rounded-full transition-all duration-500"
+            className="bg-white text-black px-8 py-2.5 rounded-full transition-all duration-500"
           >
             Login
           </button>
