@@ -105,6 +105,44 @@ npm i @tailwindcss/vite
 
 ---
 
+### Installing Tailwind CSS v4 (Vite)
+
+```bash
+npm install tailwindcss @tailwindcss/vite
+```
+
+Add plugin to `vite.config.js`:
+```js
+import tailwindcss from '@tailwindcss/vite'
+
+export default {
+  plugins: [tailwindcss()],
+}
+```
+
+Add to `index.css`:
+```css
+@import "tailwindcss";
+```
+
+### Setting Up React Router v7 (via `create-react-router`)
+
+Installed using the official React Router CLI as per [reactrouter.com](https://reactrouter.com):
+
+```bash
+npx create-react-router@latest
+cd my-project
+npm run dev
+```
+
+Or add to an existing Vite project:
+
+```bash
+npm install react-router-dom
+```
+
+---
+
 ## 👤 Author
 
 **MehmoodCoder**
