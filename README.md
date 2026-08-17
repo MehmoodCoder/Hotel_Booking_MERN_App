@@ -141,6 +141,8 @@ Or add to an existing Vite project:
 npm install react-router-dom
 ```
 
+### Will add guide how to install and configure clerk
+
 ---
 
 ## 👤 Author
