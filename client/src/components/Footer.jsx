@@ -130,7 +130,7 @@ const Footer = () => {
       </div>
 
       <div className="pt-8 border-t border-gray-900 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500 gap-4">
-        <p>© 2026 QuickStay. All rights reserved.</p>
+        <p>© 2026 HotelHub. All rights reserved.</p>
         <div className="flex items-center gap-6">
           <a href="#" className="hover:text-gray-400 transition-colors">
             Privacy
