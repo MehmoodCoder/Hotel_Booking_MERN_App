@@ -51,13 +51,11 @@ const HotelData = [
 const FeaturedDestination = () => {
   return (
     <>
-      <div className="flex flex-col items-center px-6 md:px-16 lg:px-24 bg-slate-50 py-20">
-        <div className="flex flex-wrap items-center justify-center gap-6 mt-20">
-          {
-          HotelData.map((room, index) => (
-            <HotelCard key={room._id} index={room.index} room={room} />
-          ))
-          }
+      <div className="w-full flex flex-col items-center bg-slate-50 py-12 px-2 sm:px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+          {HotelData.map((room, index) => (
+            <HotelCard key={room._id} room={room} index={index} />
+          ))}
         </div>
       </div>
     </>
