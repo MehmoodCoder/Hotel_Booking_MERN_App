@@ -26,8 +26,8 @@ const BookIcon = ({ className = "w-8 h-8" }) => (
         y2="19.253"
         gradientUnits="userSpaceOnUse"
       >
-        <stop stopColor="#6366F1" /> {/* Indigo / Blue */}
-        <stop offset="1" stopColor="#A855F7" /> {/* Purple */}
+        <stop stopColor="#6366F1" />
+        <stop offset="1" stopColor="#A855F7" />
       </linearGradient>
     </defs>
   </svg>
