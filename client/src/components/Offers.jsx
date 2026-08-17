@@ -13,7 +13,7 @@ const Offers = () => {
       description:
         "Enjoy a luxury stay with daily breakfast and free spa access.",
       expiry: "Aug 31",
-      img: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=80",
+      img: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80",
     },
     {
       _id: "offer_2",
