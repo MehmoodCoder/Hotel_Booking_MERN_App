@@ -6,9 +6,7 @@ const Hero = () => {
   return (
     <>
       <div className="relative min-h-screen w-full flex flex-col justify-center px-6 md:px-16 lg:px-24 xl:px-32 text-white bg-[url(https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-no-repeat bg-cover bg-center py-12 md:py-20">
-        
         <div className="relative z-10 flex flex-col items-start w-full max-w-7xl">
-          
           <p className="bg-transparent text-[#00F0FF] mt-20 border border-[#00F0FF] px-4 py-1.5 rounded-full text-xs md:text-sm font-bold tracking-wide shadow-[0_0_15px_rgba(0,240,255,0.8)]">
             Luxury Stay Awaits You
           </p>
@@ -23,7 +21,6 @@ const Hero = () => {
           </p>
 
           <form className="bg-white text-gray-800 rounded-2xl p-4 sm:p-5 mt-8 shadow-2xl w-full border border-gray-100 grid grid-cols-1 sm:grid-cols-2 xl:flex xl:flex-row items-end gap-4">
-            
             <div className="flex-1 w-full min-w-0">
               <div className="flex items-center gap-1.5 mb-1.5">
                 <svg
@@ -50,7 +47,10 @@ const Hero = () => {
                     d="M17.8 13.907C17.292 17.717 12 21 12 21s-5.292-3.283-5.8-7.093C5.7 10.1 8.5 7 12 7s6.3 3.1 5.8 6.907Z"
                   />
                 </svg>
-                <label htmlFor="destinationInput" className="text-xs font-bold uppercase tracking-wider text-gray-600">
+                <label
+                  htmlFor="destinationInput"
+                  className="text-xs font-bold uppercase tracking-wider text-gray-600"
+                >
                   Destination
                 </label>
               </div>
@@ -88,7 +88,10 @@ const Hero = () => {
                     d="M4 10h16M8 14h8m-4-7V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"
                   />
                 </svg>
-                <label htmlFor="checkIn" className="text-xs font-bold uppercase tracking-wider text-gray-600">
+                <label
+                  htmlFor="checkIn"
+                  className="text-xs font-bold uppercase tracking-wider text-gray-600"
+                >
                   Check in
                 </label>
               </div>
@@ -118,7 +121,10 @@ const Hero = () => {
                     d="M4 10h16M8 14h8m-4-7V4M7 7V4m10 3V4M5 20h14a1 1 0 0 0 1-1V7a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"
                   />
                 </svg>
-                <label htmlFor="checkOut" className="text-xs font-bold uppercase tracking-wider text-gray-600">
+                <label
+                  htmlFor="checkOut"
+                  className="text-xs font-bold uppercase tracking-wider text-gray-600"
+                >
                   Check out
                 </label>
               </div>
@@ -147,7 +153,10 @@ const Hero = () => {
                     d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                   />
                 </svg>
-                <label htmlFor="guests" className="text-xs font-bold uppercase tracking-wider text-gray-600">
+                <label
+                  htmlFor="guests"
+                  className="text-xs font-bold uppercase tracking-wider text-gray-600"
+                >
                   Guests
                 </label>
               </div>
@@ -181,7 +190,6 @@ const Hero = () => {
               <span>Search</span>
             </button>
           </form>
-
         </div>
       </div>
     </>
