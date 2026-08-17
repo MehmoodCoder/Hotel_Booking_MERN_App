@@ -1,7 +1,37 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useClerk, useUser, UserButton } from "@clerk/react";
 import logo from "../assets/logo.svg";
+
+const BookIcon = ({ className = "w-8 h-8" }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+      stroke="url(#book-grad)"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <defs>
+      <linearGradient
+        id="book-grad"
+        x1="3"
+        y1="5"
+        x2="21"
+        y2="19.253"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stopColor="#6366F1" /> {/* Indigo / Blue */}
+        <stop offset="1" stopColor="#A855F7" /> {/* Purple */}
+      </linearGradient>
+    </defs>
+  </svg>
+);
 
 const Navbar = () => {
   const navLinks = [
@@ -16,6 +46,8 @@ const Navbar = () => {
 
   const { openSignIn } = useClerk();
   const { user } = useUser();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -68,12 +100,26 @@ const Navbar = () => {
           <circle cx="11" cy="11" r="8" />
           <line x1="21" y1="21" x2="16.65" y2="16.65" />
         </svg>
-        <button
-          onClick={openSignIn}
-          className={`px-8 py-2.5 rounded-full ml-4 transition-all duration-500 ${isScrolled ? "text-white bg-black" : "bg-white text-black"}`}
-        >
-          Login
-        </button>
+        {user ? (
+          <UserButton>
+            <UserButton.MenuItems>
+              <UserButton.Action
+                label="My Bookings"
+                labelIcon={<BookIcon />}
+                onClick={() => {
+                  navigate("/my-bookings");
+                }}
+              />
+            </UserButton.MenuItems>
+          </UserButton>
+        ) : (
+          <button
+            onClick={openSignIn}
+            className={`px-8 py-2.5 rounded-full ml-4 transition-all duration-500 ${isScrolled ? "text-white bg-black" : "bg-white text-black"}`}
+          >
+            Login
+          </button>
+        )}
       </div>
 
       <div className="flex items-center gap-3 md:hidden">
