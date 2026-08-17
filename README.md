@@ -11,6 +11,100 @@
 
 ---
 
+# 📦 MERN Stack: Frontend Architecture Setup Guide
+
+This documentation provides a step-by-step guide to setting up a production-ready **Frontend Workspace** for a MERN stack application using **React + Vite**. It covers project initialization, dependency configuration, and local setup—preparing the UI layer to seamlessly connect with an Express/Node.js backend.
+
+
+## 1. Initialize Vite Project
+Run the following command in your terminal:
+```bash
+npm init vite
+```
+
+### During the prompt configuration, fill out the selections exactly like this:
+
+Proceed? y 
+
+Project Name: name 
+
+Package Name: name 
+
+Select a framework: React 
+
+Select a variant: JavaScript 
+
+Select oxlintrc? Yes 
+
+Install with npm? Yes 
+
+---
+
+### 💻 How to Run the frontend of the MERN Project Locally  
+
+If you want to pull this project and run it again locally, simply execute these commands:
+
+```bash
+# Navigate to the project folder
+cd Project_dir
+
+# create node_modules folder by running this command  
+npm i
+
+# Start the local development server
+npm run dev
+```
+
+---
+
+## 2. Installing Core Dependencies for MERN Stack Backend
+Run this command inside your project directory to install npm pakages in pakages.json file:
+```bash
+npm i @clerk/react
+npm i react-router-dom
+npm i @tailwindcss/vite
+```
+
+**It automatically Create package.json if not exists. Like**
+
+```json
+{
+  "name": "client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@clerk/react": "^6.14.3",
+    "@tailwindcss/vite": "^4.3.3",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.2",
+    "tailwindcss": "^4.3.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.4",
+    "eslint": "^10.8.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.3",
+    "globals": "^17.7.0",
+    "vite": "^8.2.0"
+  }
+}
+```
+
+**Note:**  Install packages when needed
+
+---
+
 ## 👤 Author
 
 **MehmoodCoder**
