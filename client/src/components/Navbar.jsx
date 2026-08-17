@@ -83,6 +83,7 @@ const Navbar = () => {
           </a>
         ))}
         <button
+          onClick={() => navigate("/owner")}
           className={`border px-4 py-1 text-sm font-light rounded-full cursor-pointer ${isScrolled ? "text-black" : "text-white"} transition-all`}
         >
           Dashboard
@@ -121,6 +122,20 @@ const Navbar = () => {
           </button>
         )}
       </div>
+
+      {user && (
+        <UserButton>
+          <UserButton.MenuItems>
+            <UserButton.Action
+              label="My Bookings"
+              labelIcon={<BookIcon />}
+              onClick={() => {
+                navigate("/my-bookings");
+              }}
+            />
+          </UserButton.MenuItems>
+        </UserButton>
+      )}
 
       <div className="flex items-center gap-3 md:hidden">
         <svg
@@ -162,16 +177,23 @@ const Navbar = () => {
           </a>
         ))}
 
-        <button className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all">
-          Dashboard
-        </button>
+        {user && (
+          <button
+            onClick={() => navigate("/owner")}
+            className="border px-4 py-1 text-sm font-light rounded-full cursor-pointer transition-all"
+          >
+            Dashboard
+          </button>
+        )}
 
-        <button
-          onClick={openSignIn}
-          className="bg-black text-white px-8 py-2.5 rounded-full transition-all duration-500"
-        >
-          Login
-        </button>
+        {!user && (
+          <button
+            onClick={openSignIn}
+            className="bg-black text-white px-8 py-2.5 rounded-full transition-all duration-500"
+          >
+            Login
+          </button>
+        )}
       </div>
     </nav>
   );
