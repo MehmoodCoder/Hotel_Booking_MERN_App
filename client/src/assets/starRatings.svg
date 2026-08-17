@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
+  <defs>
+    <!-- Perfectly Balanced 70% Fill Gradient -->
+    <linearGradient id="centered70Grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="70%" stop-color="#FFD700" />
+      <stop offset="70%" stop-color="#E5E7EB" stop-opacity="0.3" />
+    </linearGradient>
+  </defs>
+
+  <!-- Centered Geometric Star Coordinates -->
+  <path 
+    fill="url(#centered70Grad)" 
+    stroke="#FFD700" 
+    stroke-width="1.2"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+    d="M12 2.5l2.85 5.77 6.37.93-4.61 4.5 1.09 6.35L12 17.05l-5.7 3 1.09-6.35-4.61-4.5 6.37-.93L12 2.5z"
+  />
+</svg>
