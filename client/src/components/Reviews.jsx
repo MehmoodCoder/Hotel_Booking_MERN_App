@@ -6,7 +6,8 @@ const testimonialsData = [
     _id: "1",
     name: "Emma Rodriguez",
     location: "Barcelona, Spain",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
     rating: 4,
     review:
       "I've used many booking platforms before, but none compare to the personalized experience and attention to detail that QuickStay provides.",
@@ -15,7 +16,8 @@ const testimonialsData = [
     _id: "2",
     name: "Sarah Jenkins",
     location: "London, UK",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
     rating: 5,
     review:
       "The seamless booking process and verified luxury properties made our family vacation truly unforgettable. Highly recommended!",
@@ -24,7 +26,8 @@ const testimonialsData = [
     _id: "3",
     name: "Michael Chen",
     location: "Singapore",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
     rating: 5,
     review:
       "Outstanding customer service and top-tier hotel selections. Booking our anniversary trip through this platform was the best decision.",
@@ -35,8 +38,8 @@ const Testimonials = () => {
   return (
     <div className="flex flex-col items-center w-full px-6 md:px-16 lg:px-24 xl:px-32 py-20 bg-gray-950 text-white">
       <Title
-        title="What Our Guests Say"
-        description="Discover why discerning travelers choose QuickStay for their luxury accommodations around the world."
+        title="Guest Reviews & Feedback"
+        description="Discover why thousands of happy travelers trust us for their perfect getaway."
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mt-12 justify-items-center">
