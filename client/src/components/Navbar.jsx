@@ -123,21 +123,20 @@ const Navbar = () => {
         )}
       </div>
 
-      {user && (
-        <UserButton>
-          <UserButton.MenuItems>
-            <UserButton.Action
-              label="My Bookings"
-              labelIcon={<BookIcon />}
-              onClick={() => {
-                navigate("/my-bookings");
-              }}
-            />
-          </UserButton.MenuItems>
-        </UserButton>
-      )}
-
       <div className="flex items-center gap-3 md:hidden">
+        {user && (
+          <UserButton>
+            <UserButton.MenuItems>
+              <UserButton.Action
+                label="My Bookings"
+                labelIcon={<BookIcon />}
+                onClick={() => {
+                  navigate("/my-bookings");
+                }}
+              />
+            </UserButton.MenuItems>
+          </UserButton>
+        )}
         <svg
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className={`h-6 w-6 cursor-pointer ${isScrolled && "invert"}`}
