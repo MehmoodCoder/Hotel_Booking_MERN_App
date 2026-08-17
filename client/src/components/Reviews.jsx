@@ -7,7 +7,7 @@ const testimonialsData = [
     name: "Emma Rodriguez",
     location: "Barcelona, Spain",
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
-    rating: 5,
+    rating: 4,
     review:
       "I've used many booking platforms before, but none compare to the personalized experience and attention to detail that QuickStay provides.",
   },
