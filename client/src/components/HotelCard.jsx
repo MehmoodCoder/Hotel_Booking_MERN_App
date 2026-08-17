@@ -9,7 +9,7 @@ const HotelCard = ({ room, index }) => {
       onClick={() => window.scrollTo(0, 0)}
       className="group relative w-full max-w-sm rounded-2xl overflow-hidden bg-gray-900 border border-gray-800 text-white shadow-[0px_4px_12px_rgba(255,255,255,0.15)] hover:shadow-[0px_6px_20px_rgba(255,255,255,0.25)] transition-all duration-300 flex flex-col justify-between"
     >
-      <div className="relative w-full aspect-[4/3] overflow-hidden bg-gray-800">
+      <div title={room.title} className="relative w-full aspect-[4/3] overflow-hidden bg-gray-800">
         <img
           src={room.img?.[0]}
           alt={room.hotel?.name || "Room Image"}
