@@ -3,6 +3,14 @@
 
 ---
 
+## Prerequisites
+
+- **Node.js** (v16 or higher)
+- **npm** package manager
+- Basic knowledge of JavaScript
+
+---
+
 ## 👤 Author
 
 **MehmoodCoder**
