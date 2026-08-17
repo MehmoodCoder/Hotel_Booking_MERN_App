@@ -20,7 +20,7 @@ const HotelCard = ({ room, index }) => {
                         </div>
                     </div>
                     <div className="flex items-center gap-1 text-sm">
-                        <img src={ } alt="location icon" />
+                        <img src="https://api.iconify.design/lucide:map-pin.svg?color=white" alt="location icon" />
                         <span>{room.hotel.address}</span>
                     </div>
                     <div className="flex items-center justify-between mt-4">
