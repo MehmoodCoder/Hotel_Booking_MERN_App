@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import starRating from '../assets/starRatings.svg'
 
 const HotelCard = ({ room, index }) => {
     return (
@@ -15,7 +16,7 @@ const HotelCard = ({ room, index }) => {
                     <div className="flex items-center justify-between">
                         <p className="font-playfair text-xl font-medium text-white">{room.hotel.name}</p>
                         <div className="flex items-center gap-1">
-                            <img src={ } alt="star icon" /> 4.5
+                            <img src={ starRating } alt="star icon" /> 4.5
                         </div>
                     </div>
                     <div className="flex items-center gap-1 text-sm">
