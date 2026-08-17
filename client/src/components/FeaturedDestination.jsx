@@ -59,7 +59,7 @@ const FeaturedDestination = () => {
       <div className="flex flex-col items-center justify-center w-full px-6 md:px-13 lg:px-18 bg-slate-50 py-20">
         <Title
           title="Explore Top Rated Rooms"
-          paragraph="Discover our best-selling destinations with world-class amenities and unbeatable night rates."
+          description="Discover our best-selling destinations with world-class amenities and unbeatable night rates."
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full px-4 py-8 justify-items-center">
           {HotelData.map((room, index) => (
