@@ -61,7 +61,7 @@ const Offers = () => {
               className="group relative h-72 w-full rounded-2xl overflow-hidden bg-cover bg-center border border-gray-800 shadow-[0px_4px_12px_rgba(255,255,255,0.15)] hover:shadow-[0px_6px_20px_rgba(255,255,255,0.25)] transition-all duration-300 cursor-pointer p-5 flex flex-col justify-between"
               style={{ backgroundImage: `url(${item.img})` }}
             >
-              <div className="absolute inset-0 group-hover:bg-black/70 transition-colors duration-300"/>
+              <div className="absolute inset-0 group-hover:bg-black/70 transition-colors duration-300" />
 
               <div className="relative z-10 self-start">
                 <span className="px-3 py-1 text-xs font-semibold bg-white/20 backdrop-blur-md text-white rounded-full border border-white/30 shadow-sm">
@@ -70,19 +70,19 @@ const Offers = () => {
               </div>
 
               <div className="relative z-10 flex flex-col gap-1.5">
-                <h3 className="font-playfair text-lg md:text-xl font-bold text-white tracking-wide">
+                <h3 className="font-playfair text-lg md:text-xl font-bold text-white tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                   {item.title}
                 </h3>
 
-                <p className="text-gray-300 text-xs line-clamp-2 font-light leading-relaxed">
+                <p className="text-gray-300 text-xs line-clamp-2 font-light leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
                   {item.description}
                 </p>
 
-                <span className="text-[11px] text-gray-400 font-medium pt-1">
+                <span className="text-[11px] text-gray-400 font-medium pt-1 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]">
                   Expires {item.expiry || "Aug 31"}
                 </span>
 
-                <div className="pt-2 flex items-center gap-1.5 text-xs font-semibold text-white group-hover:translate-x-1 transition-transform duration-300">
+                <div className="pt-2 flex items-center gap-1.5 text-xs font-semibold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover:translate-x-1 transition-transform duration-300">
                   <span>View Offers</span>
                   <span>&rarr;</span>
                 </div>
