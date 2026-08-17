@@ -8,8 +8,8 @@ const Footer = () => {
         <div className="lg:col-span-2 space-y-4">
           <img src={logo} alt="Company Logo" className="h-8 w-auto" />
           <p className="text-xs md:text-sm text-gray-400 font-light max-w-sm leading-relaxed">
-            Discover the world's most extraordinary places to stay, from
-            boutique hotels to luxury villas and private resorts.
+            Experience world-class hospitality with seamlessly booked luxury
+            accommodations tailored to your ultimate comfort.
           </p>
           <div className="flex items-center gap-4 pt-2 text-gray-400">
             <a href="#" className="hover:text-white transition-colors">
