@@ -22,10 +22,8 @@ const Hero = () => {
             the guaranteed best competitive prices today.
           </p>
 
-          {/* Clean White Responsive Form */}
           <form className="bg-white text-gray-800 rounded-2xl p-4 sm:p-5 mt-8 shadow-2xl w-full border border-gray-100 grid grid-cols-1 sm:grid-cols-2 xl:flex xl:flex-row items-end gap-4">
             
-            {/* Destination Input */}
             <div className="flex-1 w-full min-w-0">
               <div className="flex items-center gap-1.5 mb-1.5">
                 <svg
@@ -71,7 +69,6 @@ const Hero = () => {
               </datalist>
             </div>
 
-            {/* Check in */}
             <div className="flex-1 w-full min-w-0">
               <div className="flex items-center gap-1.5 mb-1.5">
                 <svg
@@ -102,7 +99,6 @@ const Hero = () => {
               />
             </div>
 
-            {/* Check out */}
             <div className="flex-1 w-full min-w-0">
               <div className="flex items-center gap-1.5 mb-1.5">
                 <svg
@@ -133,7 +129,6 @@ const Hero = () => {
               />
             </div>
 
-            {/* Guests */}
             <div className="w-full sm:w-auto xl:w-28 min-w-0">
               <div className="flex items-center gap-1.5 mb-1.5">
                 <svg
@@ -166,7 +161,6 @@ const Hero = () => {
               />
             </div>
 
-            {/* Black Search Button */}
             <button className="col-span-1 sm:col-span-2 xl:col-span-1 w-full xl:w-auto h-[42px] px-6 rounded-lg bg-black hover:bg-gray-800 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-95 shrink-0 mt-2 sm:mt-0">
               <svg
                 className="w-4 h-4 text-white"
