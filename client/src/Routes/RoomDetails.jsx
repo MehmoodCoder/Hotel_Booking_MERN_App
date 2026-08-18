@@ -35,6 +35,7 @@ const roomsData = [
 const RoomDetails = () => {
   const { id } = useParams();
   const [room, setRoom] = useState(null);
+  const [selectedImage, setSelectedImage] = useState("");
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [guests, setGuests] = useState("1 Guest");
@@ -42,6 +43,9 @@ const RoomDetails = () => {
   useEffect(() => {
     const foundRoom = roomsData.find((item) => item._id === id) || roomsData[0];
     setRoom(foundRoom);
+    if (foundRoom?.images?.length > 0) {
+      setSelectedImage(foundRoom.images[0]);
+    }
   }, [id]);
 
   return (
@@ -92,18 +96,27 @@ const RoomDetails = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 rounded-2xl overflow-hidden mb-10 border border-gray-800 shadow-2xl">
             <div className="lg:col-span-2 h-72 sm:h-96 lg:h-[420px] relative">
               <img
-                src={room.images[0]}
+                src={selectedImage || room.images[0]}
                 alt="Main Room"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer"
+                className="w-full h-full object-cover transition-all duration-300"
               />
             </div>
+
             <div className="grid grid-cols-2 gap-3 h-72 sm:h-96 lg:h-[420px]">
-              {room.images.slice(1, 5).map((img, idx) => (
-                <div key={idx} className="relative overflow-hidden">
+              {room.images.slice(0, 4).map((img, idx) => (
+                <div
+                  key={idx}
+                  onClick={() => setSelectedImage(img)}
+                  className={`relative overflow-hidden rounded-lg cursor-pointer border-2 transition-all ${
+                    selectedImage === img
+                      ? "border-[#00F0FF]"
+                      : "border-transparent"
+                  }`}
+                >
                   <img
                     src={img}
-                    alt={`Room ${idx + 2}`}
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500 cursor-pointer"
+                    alt={`Room ${idx + 1}`}
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                   />
                 </div>
               ))}
