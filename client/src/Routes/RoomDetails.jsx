@@ -309,10 +309,10 @@ const RoomDetails = () => {
           </div>
 
           <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-12 border-b border-gray-800 pb-10">
-            Guests will be assigned on the arrival date according to
-            availability. You get a comfortable 1bed/1bathroom apartment. Feel
-            that cozy feeling. This standard room feature one king bed or two
-            double beds depending on availability.
+            Room assignments are finalized upon arrival based on availability.
+            Enjoy a spacious 1-bedroom, 1-bathroom setup designed for ultimate
+            relaxation and warmth. Rooms feature either one king bed or two
+            double beds depending on daily availability.{" "}
           </p>
 
           <div className="mb-12 border-b border-gray-800 pb-10">
