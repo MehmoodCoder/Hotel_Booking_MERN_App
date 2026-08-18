@@ -32,6 +32,65 @@ const roomsData = [
   },
 ];
 
+const highlights = [
+  {
+    id: 1,
+    title: "Spotless & Sanitized",
+    description:
+      "Rigorous cleaning protocols ensure maximum hygiene and comfort.",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M5 13l4 4L19 7"
+      />
+    ),
+  },
+  {
+    id: 2,
+    title: "Enhanced Cleaning",
+    description:
+      "Host follows strict, professional-grade sanitization standards.",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    ),
+  },
+  {
+    id: 3,
+    title: "Prime Location",
+    description:
+      "Highly rated by recent guests for easy access and great surroundings.",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+      />
+    ),
+  },
+  {
+    id: 4,
+    title: "Seamless Check-in",
+    description:
+      "Smooth, hassle-free arrival process praised by previous visitors.",
+    icon: (
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
+      />
+    ),
+  },
+];
+
 const RoomDetails = () => {
   const { id } = useParams();
   const [room, setRoom] = useState(null);
@@ -208,104 +267,26 @@ const RoomDetails = () => {
           </form>
 
           <div className="space-y-5 my-10 border-b border-gray-800 pb-10">
-            <div className="flex items-start gap-4">
-              <div className="p-2.5 bg-gray-900 rounded-xl border border-gray-800 text-[#00F0FF]">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 13l4 4L19 7"
-                  />
-                </svg>
+            {highlights.map((item) => (
+              <div key={item.id} className="flex items-start gap-4">
+                <div className="p-2.5 bg-gray-900 rounded-xl border border-gray-800 text-[#00F0FF] shrink-0">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    {item.icon}
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-white">{item.title}</h4>
+                  <p className="text-xs text-gray-400 mt-0.5">
+                    {item.description}
+                  </p>
+                </div>
               </div>
-              <div>
-                <h4 className="text-sm font-bold text-white">Clean Room</h4>
-                <p className="text-xs text-gray-400 mt-0.5">
-                  Host soft-cleans the entire room for you.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="p-2.5 bg-gray-900 rounded-xl border border-gray-800 text-[#00F0FF]">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-white">Enhanced Clean</h4>
-                <p className="text-xs text-gray-400 mt-0.5">
-                  This host has committed to high cleaning standards.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="p-2.5 bg-gray-900 rounded-xl border border-gray-800 text-[#00F0FF]">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-white">Great Location</h4>
-                <p className="text-xs text-gray-400 mt-0.5">
-                  95% of recent guests gave the location a 5-star rating.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-4">
-              <div className="p-2.5 bg-gray-900 rounded-xl border border-gray-800 text-[#00F0FF]">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"
-                  />
-                </svg>
-              </div>
-              <div>
-                <h4 className="text-sm font-bold text-white">
-                  Great Check-in Experience
-                </h4>
-                <p className="text-xs text-gray-400 mt-0.5">
-                  100% of recent guests gave the check-in process a 5-star
-                  rating.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
 
           <p className="text-xs sm:text-sm text-gray-400 leading-relaxed mb-12 border-b border-gray-800 pb-10">
