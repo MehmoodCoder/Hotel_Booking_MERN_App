@@ -126,7 +126,7 @@ const RoomDetails = () => {
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-8 border-b border-gray-800">
             <div>
               <h2 className="font-playfair text-2xl md:text-3xl font-bold text-white">
-                Experience Luxury Like Never Before
+                Unmatched Comfort, Unforgettable Stays
               </h2>
               <div className="flex flex-wrap gap-2 mt-4">
                 {room.amenities.map((item, idx) => (
