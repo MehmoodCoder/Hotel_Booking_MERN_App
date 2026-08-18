@@ -152,7 +152,6 @@ const RoomDetails = () => {
             onSubmit={(e) => {
               e.preventDefault();
               console.log({ checkIn, checkOut, guests });
-              // Yahan availability check logic ya API call add kar sakte hain
             }}
             className="my-10 bg-[#262626]/90 backdrop-blur-md border border-gray-800 rounded-2xl p-4 md:p-6 shadow-xl"
           >
