@@ -87,6 +87,7 @@ const roomsData = [
 const AllRooms = () => {
   const navigate = useNavigate();
 
+  const [openFilters, setOpenFilters] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [selectedPrice, setSelectedPrice] = useState("all");
   const [sortBy, setSortBy] = useState("popular");
@@ -104,23 +105,52 @@ const AllRooms = () => {
   };
 
   return (
-    <div className="w-full bg-[#1e1e1e] min-h-screen text-gray-200">
+    <div className="w-full bg-[#1e1e1e] min-h-screen text-gray-200 relative">
       <div className="pt-28 md:pt-36 px-4 md:px-16 lg:px-24 xl:px-32 pb-20">
-        <div className="mb-10">
-          <p className="bg-transparent text-[#00F0FF] inline-block border border-[#00F0FF]/80 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide shadow-[0_0_15px_rgba(0,240,255,0.4)] drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)] mb-3">
-            EXPLORE ACCOMMODATIONS
-          </p>
-          <h1 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-extrabold text-white drop-shadow-[0_8px_16px_rgba(0,0,0,0.9)]">
-            Hotel Rooms
-          </h1>
-          <p className="text-gray-400 text-xs md:text-sm max-w-2xl mt-2 leading-relaxed">
-            Take advantage of our limited-time offers and special packages to
-            enhance your stay and create unforgettable memories.
-          </p>
+        {/* Header Section */}
+        <div className="mb-8 md:mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <p className="bg-transparent text-[#00F0FF] inline-block border border-[#00F0FF]/80 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide shadow-[0_0_15px_rgba(0,240,255,0.4)] drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)] mb-3">
+              EXPLORE ACCOMMODATIONS
+            </p>
+            <h1 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-extrabold text-white drop-shadow-[0_8px_16px_rgba(0,0,0,0.9)]">
+              Hotel Rooms
+            </h1>
+            <p className="text-gray-400 text-xs md:text-sm max-w-2xl mt-2 leading-relaxed">
+              Take advantage of our limited-time offers and special packages to
+              enhance your stay and create unforgettable memories.
+            </p>
+          </div>
+
+          {/* Mobile Filter Toggle Button */}
+          <button
+            onClick={() => setOpenFilters(true)}
+            className="lg:hidden self-start flex items-center gap-2 px-5 py-2.5 bg-[#262626] border border-gray-700 hover:border-[#00F0FF] text-white text-xs font-bold rounded-xl transition-all shadow-md cursor-pointer"
+          >
+            <svg
+              className="w-4 h-4 text-[#00F0FF]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+              />
+            </svg>
+            Filters
+            {(selectedTypes.length > 0 || selectedPrice !== "all") && (
+              <span className="w-2 h-2 rounded-full bg-[#00F0FF] animate-pulse"></span>
+            )}
+          </button>
         </div>
 
-        <div className="flex flex-col-reverse lg:flex-row items-start justify-between gap-10">
-          <div className="w-full lg:w-3/4 flex flex-col gap-6">
+        {/* Main Content Layout */}
+        <div className="flex flex-col lg:flex-row items-start justify-between gap-8 relative">
+          {/* Room Listings Column */}
+          <div className="w-full lg:w-[calc(100%-320px)] xl:w-[calc(100%-360px)] flex flex-col gap-6">
             {roomsData.map((room) => (
               <div
                 key={room._id}
@@ -130,7 +160,7 @@ const AllRooms = () => {
                   <img
                     onClick={() => {
                       navigate(`/rooms/${room._id}`);
-                      scrollTo(0, 0);
+                      window.scrollTo(0, 0);
                     }}
                     title="View Details"
                     src={room.image[0]}
@@ -150,7 +180,7 @@ const AllRooms = () => {
                     <h3
                       onClick={() => {
                         navigate(`/rooms/${room._id}`);
-                        scrollTo(0, 0);
+                        window.scrollTo(0, 0);
                       }}
                       className="text-xl md:text-2xl font-bold text-white mt-0.5 cursor-pointer group-hover:text-[#00F0FF] transition-colors"
                     >
@@ -229,17 +259,40 @@ const AllRooms = () => {
             </div>
           </div>
 
-          <div className="w-full lg:w-1/4 bg-[#262626]/90 backdrop-blur-md border border-gray-800 rounded-2xl p-6 sticky top-28 shadow-xl">
+          {/* Overlay Background for Mobile Drawer */}
+          {openFilters && (
+            <div
+              onClick={() => setOpenFilters(false)}
+              className="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 lg:hidden transition-opacity"
+            />
+          )}
+
+          {/* Filters Sidebar: Fixed Sticky on Desktop & Slide-in Drawer on Mobile */}
+          <aside
+            className={`fixed lg:sticky top-0 lg:top-28 right-0 h-full lg:h-auto w-80 max-w-[85vw] lg:w-[290px] xl:w-[320px] bg-[#262626] lg:bg-[#262626]/90 backdrop-blur-md border-l lg:border border-gray-800 lg:rounded-2xl p-6 z-50 lg:z-10 overflow-y-auto lg:overflow-visible transition-transform duration-300 ease-in-out ${
+              openFilters
+                ? "translate-x-0"
+                : "translate-x-full lg:translate-x-0"
+            }`}
+          >
             <div className="flex items-center justify-between pb-4 border-b border-gray-800 mb-6">
-              <h3 className="text-xs font-bold text-white tracking-widest uppercase">
+              <h3 className="text-xs font-bold text-white tracking-widest uppercase flex items-center gap-2">
                 Filters
               </h3>
-              <button
-                onClick={clearFilters}
-                className="text-xs text-[#00F0FF] hover:text-[#52f4ff] font-semibold transition-colors cursor-pointer"
-              >
-                CLEAR ALL
-              </button>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={clearFilters}
+                  className="text-xs text-[#00F0FF] hover:text-[#52f4ff] font-semibold transition-colors cursor-pointer"
+                >
+                  CLEAR ALL
+                </button>
+                <button
+                  onClick={() => setOpenFilters(false)}
+                  className="lg:hidden text-gray-400 hover:text-white p-1"
+                >
+                  ✕
+                </button>
+              </div>
             </div>
 
             <div className="mb-6">
@@ -298,7 +351,7 @@ const AllRooms = () => {
               </div>
             </div>
 
-            <div className="pt-5 border-t border-gray-800">
+            <div className="pt-5 border-t border-gray-800 mb-6 lg:mb-0">
               <h4 className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-3">
                 Sort By
               </h4>
@@ -325,7 +378,15 @@ const AllRooms = () => {
                 ))}
               </div>
             </div>
-          </div>
+
+            {/* Mobile View Apply Button */}
+            <button
+              onClick={() => setOpenFilters(false)}
+              className="lg:hidden w-full mt-6 py-3 text-xs font-bold text-black bg-[#00F0FF] rounded-xl shadow-md active:scale-95 transition-transform"
+            >
+              Apply Filters
+            </button>
+          </aside>
         </div>
       </div>
     </div>
