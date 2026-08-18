@@ -3,14 +3,15 @@ import logo from "../assets/logo.svg";
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-gray-950 text-gray-400 border-t border-gray-800 px-6 md:px-16 lg:px-24 xl:px-32 pt-16 pb-8">
+    <footer className="w-full bg-gray-800 text-gray-400 border-t border-gray-800 px-6 md:px-16 lg:px-24 xl:px-32 pt-16 pb-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12">
         <div className="lg:col-span-2 space-y-4">
-          <img src={logo} alt="Company Logo" className="h-8 w-auto" />
+          <img src={logo} alt="Company Logo" className="h-8 w-auto opacity-80" />
           <p className="text-xs md:text-sm text-gray-400 font-light max-w-sm leading-relaxed">
             Experience world-class hospitality with seamlessly booked luxury
             accommodations tailored to your ultimate comfort.
           </p>
+          {/* Add Offial Links */}
           <div className="flex items-center gap-4 pt-2 text-gray-400">
             <a href="#" className="hover:text-white transition-colors">
               <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
