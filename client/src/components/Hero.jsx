@@ -7,15 +7,15 @@ const Hero = () => {
     <>
       <div className="relative min-h-screen w-full flex flex-col justify-center px-6 md:px-16 lg:px-24 xl:px-32 text-white bg-[url(https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-no-repeat bg-cover bg-center py-12 md:py-20">
         <div className="relative z-10 flex flex-col items-start w-full max-w-7xl">
-          <p className="bg-transparent text-[#00F0FF] mt-20 border border-[#00F0FF] px-4 py-1.5 rounded-full text-xs md:text-sm font-bold tracking-wide shadow-[0_0_15px_rgba(0,240,255,0.8)]">
+          <p className="bg-transparent text-[#00F0FF] mt-20 border border-[#00F0FF]/80 px-4 py-1.5 rounded-full text-xs md:text-sm font-bold tracking-wide shadow-[0_0_15px_rgba(0,240,255,0.6)] drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)] transition-transform duration-300 hover:scale-105">
             Luxury Stay Awaits You
           </p>
 
-          <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-tight font-extrabold max-w-2xl mt-5 drop-shadow-md">
+          <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-tight font-extrabold max-w-2xl mt-5 text-white drop-shadow-[0_10px_20px_rgba(0,0,0,0.95)]">
             Discover Your Perfect Getaway
           </h1>
 
-          <p className="max-w-xl mt-4 text-sm sm:text-base md:text-lg text-slate-100 font-light leading-relaxed drop-shadow-sm">
+          <p className="max-w-xl mt-4 text-sm sm:text-base md:text-lg text-slate-100 font-light leading-relaxed drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
             Book premium hotels, cozy resorts, and exclusive suites worldwide at
             the guaranteed best competitive prices today.
           </p>
