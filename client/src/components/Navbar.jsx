@@ -65,10 +65,7 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isHome]);
-
-  // Dynamic Background Styles:
-  // Home Page: Scrolled -> Transparent | Not Scrolled -> Transparent (or dark overlay if needed)
-  // Other Pages: Always Solid Black
+  
   const getNavBackground = () => {
     if (isHome) {
       return isScrolled
