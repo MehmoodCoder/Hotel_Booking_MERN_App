@@ -32,7 +32,7 @@ const roomsData = [
     image: [
       "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80",
     ],
-    amenities: ["Free Wifi", "Pool Access", "1 King Bed"],
+    amenities: ["Free Wifi", "Free Room Service", "1 King Bed"],
   },
   {
     _id: "3",
@@ -48,7 +48,7 @@ const roomsData = [
     image: [
       "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=800&q=80",
     ],
-    amenities: ["Free Wifi", "Pool Access", "1 King Bed"],
+    amenities: ["Free Wifi", "Free PC for Gaming", "1 King Bed"],
   },
   {
     _id: "4",
@@ -64,7 +64,7 @@ const roomsData = [
     image: [
       "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80",
     ],
-    amenities: ["Free Wifi", "Pool Access", "1 King Bed"],
+    amenities: ["Free Wifi", "Free kitchen", "2 King Beds"],
   },
   {
     _id: "5",
@@ -80,7 +80,7 @@ const roomsData = [
     image: [
       "https://images.unsplash.com/photo-1591088398332-8a7791972843?auto=format&fit=crop&w=800&q=80",
     ],
-    amenities: ["Free Wifi", "Pool Access", "1 King Bed"],
+    amenities: ["Free Wifi", "Free Lunch", "2 Beds"],
   },
 ];
 
