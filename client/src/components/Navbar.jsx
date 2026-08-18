@@ -65,7 +65,7 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isHome]);
-  
+
   const getNavBackground = () => {
     if (isHome) {
       return isScrolled
@@ -96,12 +96,14 @@ const Navbar = () => {
             <div className="bg-white h-0.5 w-0 group-hover:w-full transition-all duration-300" />
           </a>
         ))}
-        {user && (<button
-          onClick={() => navigate("/owner")}
-          className="border border-white/30 px-4 py-1 text-sm font-light rounded-full cursor-pointer text-white hover:bg-white/10 transition-all"
-        >
-          Dashboard
-        </button>)}
+        {user && (
+          <button
+            onClick={() => navigate("/owner")}
+            className="border border-white/30 px-4 py-1 text-sm font-light rounded-full cursor-pointer text-white hover:bg-white/10 transition-all"
+          >
+            Dashboard
+          </button>
+        )}
       </div>
 
       <div className="hidden md:flex items-center gap-4">
