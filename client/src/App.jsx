@@ -14,8 +14,8 @@ function App() {
       <div className="min-h-[70vh]">
         <Routes>
           <Route element={<Home />} path="/" />
-          <Route element={<AllRooms/>} path="/rooms"/>
-          <Route element={<RoomDetails/>} path="/rooms/:id"/>
+          <Route element={<AllRooms />} path="/rooms" />
+          <Route element={<RoomDetails />} path="/rooms/:id" />
         </Routes>
       </div>
       <Footer />
