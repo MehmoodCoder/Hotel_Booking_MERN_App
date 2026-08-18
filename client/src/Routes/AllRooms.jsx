@@ -150,7 +150,7 @@ const AllRooms = () => {
                     <h3
                       onClick={() => {
                         navigate(`/rooms/${room._id}`);
-                        window.scrollTo(0, 0);
+                        scrollTo(0, 0);
                       }}
                       className="text-xl md:text-2xl font-bold text-white mt-0.5 cursor-pointer group-hover:text-[#00F0FF] transition-colors"
                     >
