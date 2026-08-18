@@ -1,13 +1,11 @@
 import React from "react";
 
 const AllRooms = () => {
-    return(
-        <>
-            <div className="">
+  return (
+    <>
+      <div className=""></div>
+    </>
+  );
+};
 
-            </div>
-        </>
-    )
-}
-
-export default AllRooms
+export default AllRooms;
