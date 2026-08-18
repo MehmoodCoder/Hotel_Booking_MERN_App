@@ -148,7 +148,14 @@ const RoomDetails = () => {
             </div>
           </div>
 
-          <div className="my-10 bg-[#262626]/90 backdrop-blur-md border border-gray-800 rounded-2xl p-4 md:p-6 shadow-xl">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              console.log({ checkIn, checkOut, guests });
+              // Yahan availability check logic ya API call add kar sakte hain
+            }}
+            className="my-10 bg-[#262626]/90 backdrop-blur-md border border-gray-800 rounded-2xl p-4 md:p-6 shadow-xl"
+          >
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
               <div className="flex flex-col gap-1">
                 <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
@@ -156,22 +163,26 @@ const RoomDetails = () => {
                 </label>
                 <input
                   type="date"
+                  required
                   value={checkIn}
                   onChange={(e) => setCheckIn(e.target.value)}
                   className="bg-gray-900 text-gray-200 border border-gray-700 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-[#00F0FF]"
                 />
               </div>
+
               <div className="flex flex-col gap-1">
                 <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
                   Check-Out
                 </label>
                 <input
                   type="date"
+                  required
                   value={checkOut}
                   onChange={(e) => setCheckOut(e.target.value)}
                   className="bg-gray-900 text-gray-200 border border-gray-700 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-[#00F0FF]"
                 />
               </div>
+
               <div className="flex flex-col gap-1">
                 <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
                   Guests
@@ -187,11 +198,15 @@ const RoomDetails = () => {
                   <option value="4+ Guests">4+ Guests</option>
                 </select>
               </div>
-              <button className="w-full h-10 mt-auto bg-[#00F0FF] text-black font-bold text-xs rounded-xl hover:bg-[#33f3ff] transition-all shadow-[0_0_15px_rgba(0,240,255,0.4)] hover:shadow-[0_0_22px_rgba(0,240,255,0.7)] cursor-pointer">
+
+              <button
+                type="submit"
+                className="w-full h-10 mt-auto bg-[#00F0FF] text-black font-bold text-xs rounded-xl hover:bg-[#33f3ff] transition-all shadow-[0_0_15px_rgba(0,240,255,0.4)] hover:shadow-[0_0_22px_rgba(0,240,255,0.7)] cursor-pointer"
+              >
                 Check Availability
               </button>
             </div>
-          </div>
+          </form>
 
           <div className="space-y-5 my-10 border-b border-gray-800 pb-10">
             <div className="flex items-start gap-4">
