@@ -1,4 +1,5 @@
 # Hotel_Booking_MERN_App
+
 ✨ Full-stack MERN Hotel Booking Engine! 🏨 Search hotels, pick dates 📅 &amp; book rooms seamlessly. Powered by Node.js, Express, MongoDB Atlas, React &amp; Tailwind CSS. Features JWT auth 🔐, 5 CRUD resources, date-availability logic &amp; admin dashboard! ⚡🚀
 
 ---
@@ -7,7 +8,7 @@
 
 - **Node.js** (v16 or higher)
 - **npm** package manager
-- Basic knowledge of JavaScript
+- Basic knowledge of JavaScript & MongoDB
 
 ---
 
@@ -15,32 +16,33 @@
 
 This documentation provides a step-by-step guide to setting up a production-ready **Frontend Workspace** for a MERN stack application using **React + Vite**. It covers project initialization, dependency configuration, and local setup—preparing the UI layer to seamlessly connect with an Express/Node.js backend.
 
-
 ## 1. Initialize Vite Project
+
 Run the following command in your terminal:
+
 ```bash
 npm init vite
 ```
 
 ### During the prompt configuration, fill out the selections exactly like this:
 
-Proceed? y 
+Proceed? y
 
-Project Name: name 
+Project Name: name
 
-Package Name: name 
+Package Name: name
 
-Select a framework: React 
+Select a framework: React
 
-Select a variant: JavaScript 
+Select a variant: JavaScript
 
-Select oxlintrc? Yes 
+Select oxlintrc? Yes
 
-Install with npm? Yes 
+Install with npm? Yes
 
 ---
 
-### 💻 How to Run the frontend of the MERN Project Locally  
+### 💻 How to Run the frontend of the MERN Project Locally
 
 If you want to pull this project and run it again locally, simply execute these commands:
 
@@ -48,7 +50,7 @@ If you want to pull this project and run it again locally, simply execute these 
 # Navigate to the project folder
 cd Project_dir
 
-# create node_modules folder by running this command  
+# create node_modules folder by running this command
 npm i
 
 # Start the local development server
@@ -58,7 +60,9 @@ npm run dev
 ---
 
 ## 2. Installing Core Dependencies for MERN Stack Backend
+
 Run this command inside your project directory to install npm pakages in pakages.json file:
+
 ```bash
 npm i @clerk/react
 npm i react-router-dom
@@ -101,7 +105,7 @@ npm i @tailwindcss/vite
 }
 ```
 
-**Note:**  Install packages when needed
+**Note:** Install packages when needed
 
 ---
 
@@ -112,15 +116,17 @@ npm install tailwindcss @tailwindcss/vite
 ```
 
 Add plugin to `vite.config.js`:
+
 ```js
-import tailwindcss from '@tailwindcss/vite'
+import tailwindcss from "@tailwindcss/vite";
 
 export default {
   plugins: [tailwindcss()],
-}
+};
 ```
 
 Add to `index.css`:
+
 ```css
 @import "tailwindcss";
 ```
@@ -172,4 +178,4 @@ Contributions are welcome! If you'd like to improve the API, add new features, o
 
 ---
 
-### ***Happy coding without chai ! ☕***
+### **_Happy coding without chai ! ☕_**
