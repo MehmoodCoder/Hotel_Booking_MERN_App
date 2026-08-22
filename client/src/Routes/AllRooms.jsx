@@ -105,9 +105,8 @@ const AllRooms = () => {
   };
 
   return (
-    <div className="w-full bg-[#1e1e1e] min-h-screen text-gray-200 relative">
+    <div className="w-full bg-[#111111] min-h-screen text-gray-200 relative">
       <div className="pt-28 md:pt-36 px-4 md:px-16 lg:px-24 xl:px-32 pb-20">
-        {/* Header Section */}
         <div className="mb-8 md:mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
             <p className="bg-transparent text-[#00F0FF] inline-block border border-[#00F0FF]/80 px-4 py-1.5 rounded-full text-xs font-bold tracking-wide shadow-[0_0_15px_rgba(0,240,255,0.4)] drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)] mb-3">
@@ -122,10 +121,9 @@ const AllRooms = () => {
             </p>
           </div>
 
-          {/* Mobile Filter Toggle Button */}
           <button
             onClick={() => setOpenFilters(true)}
-            className="lg:hidden self-start flex items-center gap-2 px-5 py-2.5 bg-[#262626] border border-gray-700 hover:border-[#00F0FF] text-white text-xs font-bold rounded-xl transition-all shadow-md cursor-pointer"
+            className="lg:hidden self-start flex items-center gap-2 px-5 py-2.5 bg-[#111111] border border-gray-700 hover:border-[#00F0FF] text-white text-xs font-bold rounded-xl transition-all shadow-md cursor-pointer"
           >
             <svg
               className="w-4 h-4 text-[#00F0FF]"
@@ -147,9 +145,7 @@ const AllRooms = () => {
           </button>
         </div>
 
-        {/* Main Content Layout */}
         <div className="flex flex-col lg:flex-row items-start justify-between gap-8 relative">
-          {/* Room Listings Column */}
           <div className="w-full lg:w-[calc(100%-320px)] xl:w-[calc(100%-360px)] flex flex-col gap-6">
             {roomsData.map((room) => (
               <div
@@ -259,7 +255,6 @@ const AllRooms = () => {
             </div>
           </div>
 
-          {/* Overlay Background for Mobile Drawer */}
           {openFilters && (
             <div
               onClick={() => setOpenFilters(false)}
@@ -267,7 +262,6 @@ const AllRooms = () => {
             />
           )}
 
-          {/* Filters Sidebar: Fixed Sticky on Desktop & Slide-in Drawer on Mobile */}
           <aside
             className={`fixed lg:sticky top-0 lg:top-28 right-0 h-full lg:h-auto w-80 max-w-[85vw] lg:w-[290px] xl:w-[320px] bg-[#262626] lg:bg-[#262626]/90 backdrop-blur-md border-l lg:border border-gray-800 lg:rounded-2xl p-6 z-50 lg:z-10 overflow-y-auto lg:overflow-visible transition-transform duration-300 ease-in-out ${
               openFilters
