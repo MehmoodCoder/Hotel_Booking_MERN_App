@@ -35,8 +35,8 @@ const Offers = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center px-6 md:px-16 lg:px-24 xl:px-32 pt-20 pb-30">
-        <div className="flex flex-col md:flex-row items-center justify-between w-full">
+      <div className="flex flex-col items-center px-6 md:px-16 lg:px-24 xl:px-32 pt-20 pb-30 bg-[#111111] text-white border-t border-gray-800/60">
+        <div className="flex flex-col md:flex-row items-center justify-between w-full gap-6">
           <Title
             align="left"
             title="Exclusive Deals & Special Offers"
@@ -46,25 +46,25 @@ const Offers = () => {
           <button
             onClick={() => {
               navigate("/offers");
-              scrollTo(0, 0);
+              window.scrollTo(0, 0);
             }}
-            className="my-14 px-4 py-2 text-sm font-medium border border-white-100 cursor-pointer transition-all bg-gray-900 rounded hover:bg-white-100"
+            className="my-6 md:my-14 px-5 py-2.5 text-sm font-bold border border-[#00F0FF]/40 text-[#00F0FF] bg-[#00F0FF]/10 rounded-xl hover:bg-[#00F0FF] hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(0,240,255,0.2)] hover:shadow-[0_0_20px_rgba(0,240,255,0.6)] cursor-pointer active:scale-95 shrink-0"
           >
             View All Offers
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full mt-8">
           {Data.map((item) => (
             <div
               key={item._id}
-              className="group relative h-72 w-full rounded-2xl overflow-hidden bg-cover bg-center border border-gray-800 shadow-[0px_4px_12px_rgba(255,255,255,0.15)] hover:shadow-[0px_6px_20px_rgba(255,255,255,0.25)] transition-all duration-300 cursor-pointer p-5 flex flex-col justify-between"
+              className="group relative h-72 w-full rounded-2xl overflow-hidden bg-cover bg-center border border-gray-800 shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(0,240,255,0.2)] hover:border-[#00F0FF]/40 transition-all duration-300 cursor-pointer p-5 flex flex-col justify-between"
               style={{ backgroundImage: `url(${item.img})` }}
             >
-              <div className="absolute inset-0 group-hover:bg-black/70 transition-colors duration-300" />
+              <div className="absolute inset-0 bg-black/50 group-hover:bg-black/70 transition-colors duration-300" />
 
               <div className="relative z-10 self-start">
-                <span className="px-3 py-1 text-xs font-semibold bg-white/20 backdrop-blur-md text-white rounded-full border border-white/30 shadow-sm">
+                <span className="px-3 py-1 text-xs font-semibold bg-black/80 backdrop-blur-md text-[#00F0FF] rounded-full border border-[#00F0FF]/30 shadow-md">
                   {item.badge || "25% OFF"}
                 </span>
               </div>
@@ -82,7 +82,7 @@ const Offers = () => {
                   Expires {item.expiry || "Aug 31"}
                 </span>
 
-                <div className="pt-2 flex items-center gap-1.5 text-xs font-semibold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover:translate-x-1 transition-transform duration-300">
+                <div className="pt-2 flex items-center gap-1.5 text-xs font-semibold text-[#00F0FF] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover:translate-x-1 transition-transform duration-300">
                   <span>View Offers</span>
                   <span>&rarr;</span>
                 </div>

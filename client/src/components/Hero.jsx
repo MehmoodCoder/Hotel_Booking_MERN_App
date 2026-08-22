@@ -22,7 +22,7 @@ const Hero = () => {
             the guaranteed best competitive prices today.
           </p>
 
-          <form className="bg-[#1e1e1e]/90 backdrop-blur-md text-white rounded-2xl p-4 sm:p-5 mt-8 shadow-2xl w-full border border-gray-800 grid grid-cols-1 sm:grid-cols-2 xl:flex xl:flex-row items-end gap-4">
+          <form className="bg-[#111111]/90 backdrop-blur-md text-white rounded-2xl p-4 sm:p-5 mt-8 shadow-2xl w-full border border-gray-800 grid grid-cols-1 sm:grid-cols-2 xl:flex xl:flex-row items-end gap-4">
             <div className="flex-1 w-full min-w-0">
               <div className="flex items-center gap-1.5 mb-1.5">
                 <svg

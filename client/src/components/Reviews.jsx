@@ -36,7 +36,7 @@ const testimonialsData = [
 
 const Testimonials = () => {
   return (
-    <div className="flex flex-col items-center w-full px-6 md:px-16 lg:px-24 xl:px-32 py-20 bg-gray-950 text-white">
+    <div className="flex flex-col items-center w-full px-6 md:px-16 lg:px-24 xl:px-32 py-20 bg-[#111111] text-white border-t border-gray-800/60">
       <Title
         title="Guest Reviews & Feedback"
         description="Discover why thousands of happy travelers trust us for their perfect getaway."
@@ -46,14 +46,14 @@ const Testimonials = () => {
         {testimonialsData.map((item) => (
           <div
             key={item._id}
-            className="group relative w-full max-w-[380px] rounded-2xl p-6 bg-gray-900 border border-gray-800 shadow-[0px_4px_12px_rgba(255,255,255,0.08)] hover:shadow-[0px_6px_20px_rgba(255,255,255,0.18)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+            className="group relative w-full max-w-[380px] rounded-2xl p-6 bg-[#111111] border border-gray-800 shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_0_20px_rgba(0,240,255,0.15)] hover:border-[#00F0FF]/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
           >
             <div className="space-y-4">
               <div className="flex items-center gap-3">
                 <img
                   src={item.avatar}
                   alt={item.name}
-                  className="w-12 h-12 rounded-full object-cover border border-gray-700 shadow-sm"
+                  className="w-12 h-12 rounded-full object-cover border border-gray-700/80 shadow-md"
                 />
                 <div>
                   <h4 className="font-playfair text-base font-semibold text-white tracking-wide">
@@ -65,7 +65,7 @@ const Testimonials = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-1 text-amber-400 text-sm">
+              <div className="flex items-center gap-1 text-yellow-400 text-sm">
                 {[...Array(item.rating)].map((_, i) => (
                   <span key={i}>★</span>
                 ))}
