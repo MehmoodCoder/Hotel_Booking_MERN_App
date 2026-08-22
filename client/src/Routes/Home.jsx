@@ -8,11 +8,13 @@ import Newsletter from "../components/Newsletter";
 const Home = () => {
   return (
     <>
-      <Hero />
-      <FeaturedDestination />
-      <Offers />
-      <Reviews />
-      <Newsletter />
+      <div className="bg-[#111111] min-h-screen text-white w-full">
+        <Hero />
+        <FeaturedDestination />
+        <Offers />
+        <Reviews />
+        <Newsletter />
+      </div>
     </>
   );
 };
