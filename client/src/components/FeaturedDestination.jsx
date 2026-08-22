@@ -55,25 +55,28 @@ const HotelData = [
 ];
 
 const FeaturedDestination = () => {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
+
   return (
     <>
-      <div className="flex flex-col items-center justify-center w-full px-6 md:px-13 lg:px-18 bg-slate-50 py-20">
+      <div className="flex flex-col items-center justify-center w-full px-4 sm:px-6 md:px-13 lg:px-18 bg-[#121212] text-white py-16 md:py-20 border-t border-gray-800/60">
         <Title
           title="Explore Top Rated Rooms"
           description="Discover our best-selling destinations with world-class amenities and unbeatable night rates."
         />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full px-4 py-8 justify-items-center">
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl px-2 py-8 justify-items-center">
           {HotelData.map((room, index) => (
             <HotelCard key={room._id} room={room} index={index} />
           ))}
         </div>
+
         <button
           onClick={() => {
-            Navigate("/rooms");
-            scrollTo(0, 0);
+            navigate("/rooms");
+            window.scrollTo(0, 0);
           }}
-          className="my-14 px-4 py-2 text-sm font-medium border border-white-100 cursor-pointer transition-all bg-gray-900 rounded hover:bg-white-100"
+          className="mt-8 mb-4 px-6 py-3 text-sm font-bold border border-[#00F0FF]/40 text-[#00F0FF] bg-[#00F0FF]/10 rounded-xl hover:bg-[#00F0FF] hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(0,240,255,0.2)] hover:shadow-[0_0_20px_rgba(0,240,255,0.6)] cursor-pointer active:scale-95"
         >
           View All Destinations
         </button>
