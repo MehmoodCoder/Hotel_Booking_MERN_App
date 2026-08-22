@@ -212,7 +212,7 @@ const RoomDetails = () => {
               e.preventDefault();
               console.log({ checkIn, checkOut, guests });
             }}
-            className="my-10 bg-[#262626]/90 backdrop-blur-md border border-gray-800 rounded-2xl p-4 md:p-6 shadow-xl"
+            className="my-10 bg-[#111111]/90 backdrop-blur-md border border-gray-800 rounded-2xl p-4 md:p-6 shadow-xl"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
               <div className="flex flex-col gap-1">
@@ -313,7 +313,7 @@ const RoomDetails = () => {
             </div>
           </div>
 
-          <div className="bg-[#262626]/90 backdrop-blur-md border border-gray-800 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-xl">
+          <div className="bg-[#111111]/90 backdrop-blur-md border border-gray-800 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-xl">
             <div className="flex items-center gap-4">
               <img
                 src={room.host.avatar}

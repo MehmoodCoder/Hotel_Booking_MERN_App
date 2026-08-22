@@ -150,7 +150,7 @@ const AllRooms = () => {
             {roomsData.map((room) => (
               <div
                 key={room._id}
-                className="bg-[#262626]/90 backdrop-blur-md border border-gray-800 rounded-2xl p-4 md:p-5 flex flex-col sm:flex-row gap-6 hover:border-[#00F0FF]/60 transition-all duration-300 shadow-xl group hover:shadow-[0_0_25px_rgba(0,240,255,0.18)] hover:-translate-y-0.5"
+                className="bg-[#111111]/90 backdrop-blur-md border border-gray-800 rounded-2xl p-4 md:p-5 flex flex-col sm:flex-row gap-6 hover:border-[#00F0FF]/60 transition-all duration-300 shadow-xl group hover:shadow-[0_0_25px_rgba(0,240,255,0.18)] hover:-translate-y-0.5"
               >
                 <div className="w-full sm:w-64 h-52 sm:h-auto rounded-xl overflow-hidden shrink-0 relative cursor-pointer">
                   <img
@@ -263,7 +263,7 @@ const AllRooms = () => {
           )}
 
           <aside
-            className={`fixed lg:sticky top-0 lg:top-28 right-0 h-full lg:h-auto w-80 max-w-[85vw] lg:w-[290px] xl:w-[320px] bg-[#262626] lg:bg-[#262626]/90 backdrop-blur-md border-l lg:border border-gray-800 lg:rounded-2xl p-6 z-50 lg:z-10 overflow-y-auto lg:overflow-visible transition-transform duration-300 ease-in-out ${
+            className={`fixed lg:sticky top-0 lg:top-28 right-0 h-full lg:h-auto w-80 max-w-[85vw] lg:w-[290px] xl:w-[320px] bg-[#111111] lg:bg-[#111111]/90 backdrop-blur-md border-l lg:border border-gray-800 lg:rounded-2xl p-6 z-50 lg:z-10 overflow-y-auto lg:overflow-visible transition-transform duration-300 ease-in-out ${
               openFilters
                 ? "translate-x-0"
                 : "translate-x-full lg:translate-x-0"
@@ -373,7 +373,6 @@ const AllRooms = () => {
               </div>
             </div>
 
-            {/* Mobile View Apply Button */}
             <button
               onClick={() => setOpenFilters(false)}
               className="lg:hidden w-full mt-6 py-3 text-xs font-bold text-black bg-[#00F0FF] rounded-xl shadow-md active:scale-95 transition-transform"
