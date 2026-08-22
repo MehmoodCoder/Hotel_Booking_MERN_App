@@ -22,9 +22,7 @@ const Hero = () => {
             the guaranteed best competitive prices today.
           </p>
 
-          {/* Updated Dark Glassmorphism Form */}
           <form className="bg-[#1e1e1e]/90 backdrop-blur-md text-white rounded-2xl p-4 sm:p-5 mt-8 shadow-2xl w-full border border-gray-800 grid grid-cols-1 sm:grid-cols-2 xl:flex xl:flex-row items-end gap-4">
-            {/* Destination Input */}
             <div className="flex-1 w-full min-w-0">
               <div className="flex items-center gap-1.5 mb-1.5">
                 <svg
@@ -73,7 +71,6 @@ const Hero = () => {
               </datalist>
             </div>
 
-            {/* Check-In Input */}
             <div className="flex-1 w-full min-w-0">
               <div className="flex items-center gap-1.5 mb-1.5">
                 <svg
@@ -107,7 +104,6 @@ const Hero = () => {
               />
             </div>
 
-            {/* Check-Out Input */}
             <div className="flex-1 w-full min-w-0">
               <div className="flex items-center gap-1.5 mb-1.5">
                 <svg
@@ -141,7 +137,6 @@ const Hero = () => {
               />
             </div>
 
-            {/* Guests Input */}
             <div className="w-full sm:w-auto xl:w-28 min-w-0">
               <div className="flex items-center gap-1.5 mb-1.5">
                 <svg
@@ -177,7 +172,6 @@ const Hero = () => {
               />
             </div>
 
-            {/* Action Button */}
             <button className="col-span-1 sm:col-span-2 xl:col-span-1 w-full xl:w-auto h-[42px] px-6 rounded-lg bg-[#00F0FF] hover:bg-[#00D8E6] text-black font-extrabold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-95 shrink-0 mt-2 sm:mt-0 shadow-[0_0_15px_rgba(0,240,255,0.4)]">
               <svg
                 className="w-4 h-4 text-black"
