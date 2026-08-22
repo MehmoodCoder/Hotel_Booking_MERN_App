@@ -34,7 +34,6 @@ const Dashboard = () => {
         description="Monitor your room listings, track bookings and analyze revenue—all in one place. Stay updated with real-time insights to ensure smooth operations."
       />
 
-      {/* Metrics Cards */}
       <div className="flex flex-wrap gap-6 my-8">
         <div className="flex-1 min-w-[250px] bg-[#1e1e1e] border border-gray-800 p-6 rounded-2xl shadow-lg">
           <div className="flex items-center justify-between">
@@ -77,7 +76,6 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Bookings Table */}
       <div className="bg-[#1e1e1e] border border-gray-800 rounded-2xl p-6 shadow-xl overflow-hidden">
         <h2 className="text-lg font-semibold mb-4 text-white">
           Recent Bookings
