@@ -13,3 +13,8 @@
 .font-playfair {
   font-family: Playfair !important;
 }
+
+body {
+  background-color: #121212 !important;
+  color: #ffffff;
+}
