@@ -4,6 +4,7 @@ import starRating from "../assets/starRatings.svg";
 
 const HotelCard = ({ room, index }) => {
   return (
+    <div>
     <Link
       to={"/room/" + room._id}
       onClick={() => window.scrollTo(0, 0)}
@@ -68,6 +69,7 @@ const HotelCard = ({ room, index }) => {
         </div>
       </div>
     </Link>
+    </div>
   );
 };
 

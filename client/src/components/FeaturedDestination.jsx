@@ -59,7 +59,12 @@ const FeaturedDestination = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-center w-full px-4 sm:px-6 md:px-13 lg:px-18 bg-[#121212] text-white py-16 md:py-20 border-t border-gray-800/60 min-h-screen">
+      <div
+        style={{
+          backgroundColor: "#131212",
+        }}
+        className="bg-dark min-h-screen text-white w-full flex flex-col items-center justify-center w-full px-4 sm:px-6 md:px-13 lg:px-18 text-white py-16 md:py-20 border-t border-gray-800/60 min-h-screen"
+      >
         <Title
           title="Explore Top Rated Rooms"
           description="Discover our best-selling destinations with world-class amenities and unbeatable night rates."

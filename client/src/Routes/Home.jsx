@@ -8,7 +8,7 @@ import Newsletter from "../components/Newsletter";
 const Home = () => {
   return (
     <>
-      <div className="bg-[#111111] min-h-screen text-white w-full">
+      <div>
         <Hero />
         <FeaturedDestination />
         <Offers />
