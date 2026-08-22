@@ -14,7 +14,7 @@ const Sidebar = () => {
       icon: "https://api.iconify.design/lucide:plus-square.svg?color=%2300F0FF",
     },
     {
-      name: "List Room",
+      name: "List Rooms",
       path: "/owner/list-rooms",
       icon: "https://api.iconify.design/lucide:list.svg?color=%2300F0FF",
     },
