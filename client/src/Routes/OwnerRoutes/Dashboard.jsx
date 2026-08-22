@@ -7,7 +7,7 @@ function Dashboard() {
       <Title
         align="left"
         title="Dashboard"
-        subtitle="Manage your hotel rooms. Welcome to your dashboard!"
+        description="Manage your hotel rooms. Welcome to your dashboard! Here you can easily add new rooms, view and manage existing ones, and keep track of your bookings. Stay organized and in control of your hotel operations with our user-friendly dashboard."
       />
     </div>
   );
