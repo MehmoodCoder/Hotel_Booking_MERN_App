@@ -109,7 +109,7 @@ const RoomDetails = () => {
 
   return (
     room && (
-      <div className="w-full bg-[#1e1e1e] min-h-screen text-gray-200">
+      <div className="w-full bg-[#111111] min-h-screen text-gray-200">
         <div className="pt-28 md:pt-36 px-4 md:px-16 lg:px-24 xl:px-32 pb-20 max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
             <div>
