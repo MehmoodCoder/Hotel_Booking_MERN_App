@@ -7,7 +7,7 @@ const Footer = () => {
       <hr />
       <footer
         style={{
-          backgroundColor: "#3f3e3e"
+          backgroundColor: "#131212"
         }}
         className="w-full text-gray-300 border-t border-white px-6 md:px-16 lg:px-24 xl:px-32 pt-16 pb-8"
       >
