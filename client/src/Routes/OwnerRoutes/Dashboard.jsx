@@ -28,25 +28,26 @@ const dashboardData = {
 
 const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-[#121212] text-white">
+    <div className="min-h-screen bg-[#121212] text-white p-3 sm:p-6">
       <Title
         align="left"
         title="Dashboard"
         description="Monitor your room listings, track bookings and analyze revenue—all in one place. Stay updated with real-time insights to ensure smooth operations."
       />
 
-      <div className="flex flex-wrap gap-6 my-8">
-        <div className="flex-1 min-w-[250px] bg-[#1e1e1e] border border-gray-800 p-6 rounded-2xl shadow-lg">
+      {/* Metric Cards Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-8">
+        <div className="bg-[#1e1e1e]/80 backdrop-blur-md border border-gray-800 p-5 sm:p-6 rounded-2xl shadow-xl hover:border-gray-700 transition-all">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs uppercase tracking-wider text-gray-400 font-medium">
+              <p className="text-xs uppercase tracking-wider text-gray-400 font-semibold">
                 Total Bookings
               </p>
-              <h3 className="text-3xl font-bold text-white mt-2">
+              <h3 className="text-3xl font-extrabold text-white mt-2">
                 {dashboardData.totalBookings}
               </h3>
             </div>
-            <div className="p-3 bg-[#262626] rounded-xl border border-gray-700">
+            <div className="p-3 bg-[#00F0FF]/10 rounded-xl border border-[#00F0FF]/20">
               <img
                 src="https://api.iconify.design/lucide:calendar-check.svg?color=%2300F0FF"
                 alt="bookings"
@@ -56,17 +57,17 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="flex-1 min-w-[250px] bg-[#1e1e1e] border border-gray-800 p-6 rounded-2xl shadow-lg">
+        <div className="bg-[#1e1e1e]/80 backdrop-blur-md border border-gray-800 p-5 sm:p-6 rounded-2xl shadow-xl hover:border-gray-700 transition-all">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs uppercase tracking-wider text-gray-400 font-medium">
+              <p className="text-xs uppercase tracking-wider text-gray-400 font-semibold">
                 Total Revenue
               </p>
-              <h3 className="text-3xl font-bold text-white mt-2">
+              <h3 className="text-3xl font-extrabold text-[#00F0FF] mt-2">
                 ${dashboardData.totalRevenue}
               </h3>
             </div>
-            <div className="p-3 bg-[#262626] rounded-xl border border-gray-700">
+            <div className="p-3 bg-[#00F0FF]/10 rounded-xl border border-[#00F0FF]/20">
               <img
                 src="https://api.iconify.design/lucide:dollar-sign.svg?color=%2300F0FF"
                 alt="revenue"
@@ -77,22 +78,67 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="bg-[#1e1e1e] border border-gray-800 rounded-2xl p-6 shadow-xl overflow-hidden">
-        <h2 className="text-lg font-semibold mb-4 text-white">
-          Recent Bookings
-        </h2>
-        <div className="overflow-x-auto">
+      {/* Bookings Section */}
+      <div className="bg-[#1e1e1e] border border-gray-800 rounded-2xl p-4 sm:p-6 shadow-xl">
+        <div className="flex items-center justify-between mb-6 pb-3 border-b border-gray-800">
+          <div>
+            <h2 className="text-lg sm:text-xl font-bold text-white tracking-wide">
+              Recent Bookings
+            </h2>
+            <p className="text-xs text-gray-400 mt-0.5">
+              Latest transactions and reservation activities
+            </p>
+          </div>
+        </div>
+
+        {/* Mobile View: Vertical Cards */}
+        <div className="grid grid-cols-1 gap-4 md:hidden">
+          {dashboardData.bookings.map((item, index) => (
+            <div
+              key={index}
+              className="bg-[#141414] border border-gray-800 rounded-xl p-4 flex flex-col gap-3"
+            >
+              <div className="flex justify-between items-center border-b border-gray-800/80 pb-2">
+                <span className="font-semibold text-white text-base">
+                  {item.user.name}
+                </span>
+                <span
+                  className={`px-3 py-1 rounded-full text-[11px] font-semibold border ${
+                    item.isPaid
+                      ? "text-emerald-400 border-emerald-500/30 bg-emerald-500/10"
+                      : "text-red-400 border-red-500/30 bg-red-500/10"
+                  }`}
+                >
+                  {item.isPaid ? "Completed" : "Pending"}
+                </span>
+              </div>
+
+              <div className="flex justify-between items-center text-sm">
+                <span className="text-gray-400 font-medium">Room</span>
+                <span className="text-gray-200">{item.roomName}</span>
+              </div>
+
+              <div className="flex justify-between items-center text-sm pt-2 border-t border-gray-800/80">
+                <span className="text-gray-400 font-medium">Total Amount</span>
+                <span className="text-[#00F0FF] font-bold text-base">
+                  ${item.totalAmount}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop View: Table */}
+        <div className="hidden md:block overflow-x-auto rounded-xl border border-gray-800/50">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-gray-800 text-gray-400 text-xs uppercase tracking-wider">
-                <th className="py-3 px-4 font-medium">User Name</th>
-                <th className="py-3 px-4 font-medium max-sm:hidden">
-                  Room Name
-                </th>
-                <th className="py-3 px-4 font-medium text-center">
+              <tr className="bg-[#181818] border-b border-gray-800 text-gray-400 text-xs uppercase tracking-wider">
+                <th className="py-4 px-5 font-semibold">User Name</th>
+                <th className="py-4 px-5 font-semibold">Room Name</th>
+                <th className="py-4 px-5 font-semibold text-center">
                   Total Amount
                 </th>
-                <th className="py-3 px-4 font-medium text-center">
+                <th className="py-4 px-5 font-semibold text-center">
                   Payment Status
                 </th>
               </tr>
@@ -101,23 +147,21 @@ const Dashboard = () => {
               {dashboardData.bookings.map((item, index) => (
                 <tr
                   key={index}
-                  className="hover:bg-[#262626]/50 transition-colors"
+                  className="hover:bg-[#252525]/50 transition-colors group"
                 >
-                  <td className="py-4 px-4 font-medium text-white">
+                  <td className="py-4 px-5 font-semibold text-white group-hover:text-[#00F0FF] transition-colors">
                     {item.user.name}
                   </td>
-                  <td className="py-4 px-4 text-gray-300 max-sm:hidden">
-                    {item.roomName}
-                  </td>
-                  <td className="py-4 px-4 text-center font-semibold text-white">
+                  <td className="py-4 px-5 text-gray-300">{item.roomName}</td>
+                  <td className="py-4 px-5 text-center font-bold text-[#00F0FF]">
                     ${item.totalAmount}
                   </td>
-                  <td className="py-4 px-4 text-center">
+                  <td className="py-4 px-5 text-center">
                     <span
-                      className={`inline-block px-4 py-1 rounded-full text-xs font-semibold bg-transparent border ${
+                      className={`inline-block px-3.5 py-1 rounded-full text-xs font-semibold border ${
                         item.isPaid
-                          ? "text-emerald-400 border-emerald-500"
-                          : "text-red-500 border-red-500"
+                          ? "text-emerald-400 border-emerald-500/30 bg-emerald-500/10"
+                          : "text-red-400 border-red-500/30 bg-red-500/10"
                       }`}
                     >
                       {item.isPaid ? "Completed" : "Pending"}
