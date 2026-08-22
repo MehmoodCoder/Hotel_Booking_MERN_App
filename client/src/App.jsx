@@ -2,11 +2,14 @@ import Navbar from "../src/components/Navbar";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Home from "../src/Routes/Home";
 import Footer from "./components/Footer";
-import AllRooms from "./Routes/AllRooms";
 import RoomDetails from "./Routes/RoomDetails";
 import MyBookings from "./Routes/MyBookings";
 import HotelReg from "./components/HotelReg";
 import Layout from "./Routes/OwnerRoutes/Layout";
+import Dashboard from "./Routes/OwnerRoutes/Dashboard";
+import AddRoom from "./Routes/OwnerRoutes/AddRoom";
+import ListRooms from "./Routes/OwnerRoutes/ListRooms";
+import AllRooms from "./Routes/AllRooms";
 
 function App() {
   const isOwnerPath = useLocation().pathname.includes("owner");
@@ -21,7 +24,11 @@ function App() {
           <Route element={<AllRooms />} path="/rooms" />
           <Route element={<RoomDetails />} path="/rooms/:id" />
           <Route element={<MyBookings />} path="/my-bookings" />
-          <Route element={<Layout />} path="/owner" />
+          <Route element={<Layout />} path="/owner">
+            <Route index element={<Dashboard />} />
+            <Route element={<AddRoom />} path="add-room" />
+            <Route element={<ListRooms />} path="list-rooms" />
+          </Route>
         </Routes>
       </div>
       <Footer />
@@ -29,4 +36,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
