@@ -43,8 +43,8 @@ function ListRooms() {
   const toggleAvailability = (id) => {
     setRooms((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, isAvailable: !item.isAvailable } : item,
-      ),
+        item.id === id ? { ...item, isAvailable: !item.isAvailable } : item
+      )
     );
   };
 
@@ -56,10 +56,10 @@ function ListRooms() {
         description="View and manage all available rooms, prices, and amenities."
       />
 
-      <div className="mt-8 bg-[#1e1e1e]/80 backdrop-blur-md border border-gray-800/80 rounded-2xl p-4 sm:p-6 shadow-2xl overflow-hidden">
+      <div className="mt-8 bg-[#1e1e1e] border border-gray-800 rounded-2xl p-4 sm:p-6 shadow-xl">
         <div className="flex items-center justify-between mb-6 pb-3 border-b border-gray-800">
           <div>
-            <h2 className="text-xl font-bold text-white tracking-wide">
+            <h2 className="text-lg sm:text-xl font-bold text-white tracking-wide">
               Rooms Directory
             </h2>
             <p className="text-xs text-gray-400 mt-0.5">
@@ -68,8 +68,65 @@ function ListRooms() {
           </div>
         </div>
 
-        <div className="overflow-x-auto rounded-xl border border-gray-800/50">
-          <table className="w-full text-left border-collapse min-w-[600px]">
+        {/* Mobile View: Vertical Cards (Displays on small screens) */}
+        <div className="grid grid-cols-1 gap-4 md:hidden">
+          {rooms.map((item) => (
+            <div
+              key={item.id}
+              className="bg-[#141414] border border-gray-800 rounded-xl p-4 flex flex-col gap-3"
+            >
+              <div className="flex justify-between items-center border-b border-gray-800/80 pb-2">
+                <span className="font-semibold text-white text-base">
+                  {item.roomType}
+                </span>
+                <span className="text-[#00F0FF] font-bold text-sm bg-[#00F0FF]/10 px-2.5 py-1 rounded-lg border border-[#00F0FF]/20">
+                  ${item.pricePerNight} / night
+                </span>
+              </div>
+
+              <div>
+                <p className="text-xs text-gray-400 mb-1.5 font-medium">Amenities</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {item.amenities.map((amenity, index) => (
+                    <span
+                      key={index}
+                      className="bg-[#1e1e1e] border border-gray-800 text-gray-300 text-[11px] px-2 py-0.5 rounded-md"
+                    >
+                      {amenity}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex justify-between items-center pt-2 border-t border-gray-800/80 mt-1">
+                <span className="text-xs text-gray-400 font-medium">Status</span>
+                <div className="flex items-center gap-2">
+                  <span
+                    className={`text-xs font-semibold ${
+                      item.isAvailable ? "text-emerald-400" : "text-gray-500"
+                    }`}
+                  >
+                    {item.isAvailable ? "Available" : "Occupied"}
+                  </span>
+                  <label className="relative inline-flex items-center cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      className="sr-only peer"
+                      checked={item.isAvailable}
+                      onChange={() => toggleAvailability(item.id)}
+                    />
+                    <div className="w-11 h-6 bg-slate-800 border border-gray-700 rounded-full peer peer-checked:bg-[#00F0FF] peer-checked:border-[#00F0FF] transition-all duration-200"></div>
+                    <span className="dot absolute left-1 top-1 w-4 h-4 bg-white peer-checked:bg-black rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5 shadow-md"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop View: Table (Displays on medium screens and up) */}
+        <div className="hidden md:block overflow-x-auto rounded-xl border border-gray-800/50">
+          <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-[#181818] border-b border-gray-800 text-gray-400 text-xs uppercase tracking-wider">
                 <th className="py-4 px-5 font-semibold">Room Details</th>
@@ -78,7 +135,7 @@ function ListRooms() {
                   Price / Night
                 </th>
                 <th className="py-4 px-5 font-semibold text-center">
-                  Availability
+                  Actions
                 </th>
               </tr>
             </thead>
@@ -96,7 +153,7 @@ function ListRooms() {
                       {item.amenities.map((amenity, index) => (
                         <span
                           key={index}
-                          className="bg-[#141414] border border-gray-800 text-gray-300 text-[11px] px-2.5 py-1 rounded-md font-medium group-hover:border-gray-700 transition-all"
+                          className="bg-[#141414] border border-gray-800 text-gray-300 text-[11px] px-2.5 py-1 rounded-md font-medium"
                         >
                           {amenity}
                         </span>
@@ -109,27 +166,16 @@ function ListRooms() {
                     </span>
                   </td>
                   <td className="py-4 px-5 text-center">
-                    <div className="flex items-center justify-center gap-3">
-                      <label className="relative inline-flex items-center cursor-pointer select-none">
-                        <input
-                          type="checkbox"
-                          className="sr-only peer"
-                          checked={item.isAvailable}
-                          onChange={() => toggleAvailability(item.id)}
-                        />
-                        <div className="w-12 h-7 bg-slate-800 border border-gray-700 rounded-full peer peer-checked:bg-[#00F0FF] peer-checked:border-[#00F0FF] transition-all duration-200"></div>
-                        <span className="dot absolute left-1 top-1 w-5 h-5 bg-white peer-checked:bg-black rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5 shadow-md"></span>
-                      </label>
-                      <span
-                        className={`text-xs font-semibold w-16 text-left hidden sm:inline-block ${
-                          item.isAvailable
-                            ? "text-emerald-400"
-                            : "text-gray-500"
-                        }`}
-                      >
-                        {item.isAvailable ? "Active" : "Hidden"}
-                      </span>
-                    </div>
+                    <label className="relative inline-flex items-center cursor-pointer select-none">
+                      <input
+                        type="checkbox"
+                        className="sr-only peer"
+                        checked={item.isAvailable}
+                        onChange={() => toggleAvailability(item.id)}
+                      />
+                      <div className="w-12 h-7 bg-slate-800 border border-gray-700 rounded-full peer peer-checked:bg-[#00F0FF] peer-checked:border-[#00F0FF] transition-all duration-200"></div>
+                      <span className="dot absolute left-1 top-1 w-5 h-5 bg-white peer-checked:bg-black rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5 shadow-md"></span>
+                    </label>
                   </td>
                 </tr>
               ))}
