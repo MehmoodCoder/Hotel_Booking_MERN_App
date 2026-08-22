@@ -30,6 +30,7 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-[#121212] text-white">
       <Title
+        align="left"
         title="Dashboard"
         description="Monitor your room listings, track bookings and analyze revenue—all in one place. Stay updated with real-time insights to ensure smooth operations."
       />
