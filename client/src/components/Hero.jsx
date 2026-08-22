@@ -6,7 +6,6 @@ const Hero = () => {
   return (
     <>
       <div className="relative min-h-screen w-full flex flex-col justify-center px-6 md:px-16 lg:px-24 xl:px-32 text-white bg-[url(https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-no-repeat bg-cover bg-center py-12 md:py-20">
-        {/* Dark Overlay for proper theme consistency */}
         <div className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
 
         <div className="relative z-10 flex flex-col items-start w-full max-w-7xl">
