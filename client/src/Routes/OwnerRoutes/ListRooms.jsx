@@ -43,8 +43,8 @@ function ListRooms() {
   const toggleAvailability = (id) => {
     setRooms((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, isAvailable: !item.isAvailable } : item
-      )
+        item.id === id ? { ...item, isAvailable: !item.isAvailable } : item,
+      ),
     );
   };
 
@@ -85,7 +85,9 @@ function ListRooms() {
               </div>
 
               <div>
-                <p className="text-xs text-gray-400 mb-1.5 font-medium">Amenities</p>
+                <p className="text-xs text-gray-400 mb-1.5 font-medium">
+                  Amenities
+                </p>
                 <div className="flex flex-wrap gap-1.5">
                   {item.amenities.map((amenity, index) => (
                     <span
@@ -99,7 +101,9 @@ function ListRooms() {
               </div>
 
               <div className="flex justify-between items-center pt-2 border-t border-gray-800/80 mt-1">
-                <span className="text-xs text-gray-400 font-medium">Status</span>
+                <span className="text-xs text-gray-400 font-medium">
+                  Status
+                </span>
                 <div className="flex items-center gap-2">
                   <span
                     className={`text-xs font-semibold ${
@@ -134,9 +138,7 @@ function ListRooms() {
                 <th className="py-4 px-5 font-semibold text-center">
                   Price / Night
                 </th>
-                <th className="py-4 px-5 font-semibold text-center">
-                  Actions
-                </th>
+                <th className="py-4 px-5 font-semibold text-center">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-800/60 text-sm">
