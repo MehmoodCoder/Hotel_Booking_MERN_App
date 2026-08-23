@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Router } from "express";
 import dotenv from "dotenv";
 import connectDB from "./configs/db.js";
 import { clerkMiddleware } from "@clerk/express";
@@ -23,6 +23,7 @@ app.use(clerkMiddleware());
 app.get("/", (req, res) => {
   res.send("API is working");
 });
+app.use('/api/user', Router)
 
 app.use("/api/clerk", clerkWebhooks);
 
