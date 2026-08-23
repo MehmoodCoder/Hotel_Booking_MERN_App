@@ -5,7 +5,7 @@ import { createRoom } from '../controllers/roomController'
 
 const Router = express.Router()
 
-Router.post('/', upload.array('images', 4), protect, createRoom)
+Router.route('/').post( upload.array('images', 4), protect, createRoom).get(getRooms)
 
 
 export default Router
