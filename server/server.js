@@ -2,6 +2,7 @@ import express from "express";
 import dotenv, { config } from "dotenv";
 import connectDB from "./configs/db.js";
 import { clerkMiddleware } from '@clerk/express'
+import clerkWebhooks from "./controllers/clerkWebhooks.js";
 
 config.dotenv();
 
@@ -13,6 +14,8 @@ const PORT = process.env.PORT || "6000";
 app.use(cors());
 app.use(express.json)
 app.use(clerkMiddleware())
+
+app.use('/api/clerk', clerkWebhooks)
 
 app.listen(PORT, () => {
   console.log(`The server is running on PORT : ${PORT}`);
