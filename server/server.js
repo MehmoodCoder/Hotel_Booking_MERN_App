@@ -7,20 +7,30 @@ import cors from "cors";
 
 dotenv.config();
 
-connectDB(process.env.MONGODB_URI);
-
 const app = express();
-const PORT = process.env.PORT || "6000";
 
 app.use(cors());
-app.use(express.json);
+
+app.use(express.json());
+
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
+
 app.use(clerkMiddleware());
 
 app.get("/", (req, res) => {
   res.send("API is working");
 });
+
 app.use("/api/clerk", clerkWebhooks);
 
-app.listen(PORT, () => {
-  console.log(`The server is running on PORT : ${PORT}`);
-});
+if (process.env.NODE_ENV !== "production") {
+  const PORT = process.env.PORT || 6000;
+  app.listen(PORT, () => {
+    console.log(`The server is running on PORT : ${PORT}`);
+  });
+}
+
+export default app;
