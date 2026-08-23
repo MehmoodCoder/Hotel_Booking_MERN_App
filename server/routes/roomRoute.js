@@ -7,6 +7,6 @@ const Router = express.Router()
 
 Router.route('/').post( upload.array('images', 4), protect, createRoom).get(getRooms)
 Router.get('/owner', protect, getOwnerRooms)
-Router.get('/toggle-availability', protect, toggleRoomAvailability)
+Router.post('/toggle-availability', protect, toggleRoomAvailability)
 
 export default Router
