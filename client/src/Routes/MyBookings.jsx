@@ -42,7 +42,7 @@ const bookingsData = [
 
 const MyBookings = () => {
   return (
-    <div className="w-full bg-[#1e1e1e] min-h-screen text-gray-200">
+    <div className="w-full bg-[#111111] min-h-screen text-gray-200">
       <div className="pt-28 md:pt-36 px-4 md:px-16 lg:px-24 xl:px-32 pb-20 max-w-7xl mx-auto">
         <div className="mb-8">
           <Title
@@ -56,7 +56,7 @@ const MyBookings = () => {
           {bookingsData.map((booking) => (
             <div
               key={booking._id}
-              className="bg-[#262626]/90 backdrop-blur-md border border-gray-800 rounded-2xl p-4 sm:p-6 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-gray-700 transition-all"
+              className="bg-[#111111] backdrop-blur-md border border-gray-800 rounded-2xl p-4 sm:p-6 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:border-gray-700 transition-all"
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 w-full md:w-auto">
                 <img
