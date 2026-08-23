@@ -27,7 +27,7 @@ function AddRoom() {
     "https://api.iconify.design/lucide:upload-cloud.svg?color=%2300F0FF";
 
   return (
-    <form className="min-h-screen bg-[#121212] text-white p-2">
+    <form className="min-h-screen bg-[#111111] text-white p-6 md:p-10">
       <Title
         align="left"
         title="Add Room"
@@ -41,7 +41,7 @@ function AddRoom() {
             <label
               htmlFor={`roomImage${key}`}
               key={key}
-              className="w-28 h-28 border-2 border-dashed border-gray-700 hover:border-[#00F0FF] bg-[#1e1e1e] rounded-xl flex flex-col items-center justify-center cursor-pointer transition-all overflow-hidden group"
+              className="w-28 h-28 border-2 border-dashed border-gray-800 hover:border-[#00F0FF] bg-[#111111] rounded-xl flex flex-col items-center justify-center cursor-pointer transition-all overflow-hidden group shadow-md"
             >
               {images[key] ? (
                 <img
@@ -62,7 +62,7 @@ function AddRoom() {
                 </div>
               )}
               <input
-              required
+                required
                 type="file"
                 accept="image/*"
                 id={`roomImage${key}`}
@@ -80,24 +80,24 @@ function AddRoom() {
         <div className="flex-1 flex flex-col gap-2">
           <label className="text-gray-300 font-medium text-sm">Room Type</label>
           <select
-          required
+            required
             value={inputs.roomType}
             onChange={(e) => setInputs({ ...inputs, roomType: e.target.value })}
-            className="bg-[#1e1e1e] border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00F0FF] transition-all cursor-pointer"
+            className="bg-[#111111] border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00F0FF] transition-all cursor-pointer"
           >
-            <option value="" disabled className="bg-[#1e1e1e] text-gray-500">
+            <option value="" disabled className="bg-[#111111] text-gray-500">
               Select Room Type
             </option>
-            <option value="Single Bed" className="bg-[#1e1e1e]">
+            <option value="Single Bed" className="bg-[#111111] text-white">
               Single Bed
             </option>
-            <option value="Double Bed" className="bg-[#1e1e1e]">
+            <option value="Double Bed" className="bg-[#111111] text-white">
               Double Bed
             </option>
-            <option value="Luxury Suite" className="bg-[#1e1e1e]">
+            <option value="Luxury Suite" className="bg-[#111111] text-white">
               Luxury Suite
             </option>
-            <option value="Family Room" className="bg-[#1e1e1e]">
+            <option value="Family Room" className="bg-[#111111] text-white">
               Family Room
             </option>
           </select>
@@ -116,7 +116,7 @@ function AddRoom() {
             }
             required
             placeholder="e.g. 150"
-            className="bg-[#1e1e1e] border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00F0FF] transition-all"
+            className="bg-[#111111] border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00F0FF] transition-all"
           />
         </div>
       </div>
@@ -125,39 +125,58 @@ function AddRoom() {
         <p className="text-gray-300 font-medium text-sm mb-3">Amenities</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-w-2xl">
           {Object.keys(inputs.amenities).map((amenity, index) => (
-            <div
+            <label
               key={index}
-              className="flex items-center gap-3 bg-[#1e1e1e] border border-gray-800 p-3 rounded-xl hover:border-gray-700 transition-all"
+              htmlFor={`amenities${index + 1}`}
+              className="flex items-center gap-3 bg-[#111111] border border-gray-800 p-3 rounded-xl hover:border-gray-700 cursor-pointer select-none transition-all group"
             >
-              <input
-                type="checkbox"
-                id={`amenities${index + 1}`}
-                checked={inputs.amenities[amenity]}
-                onChange={() =>
-                  setInputs({
-                    ...inputs,
-                    amenities: {
-                      ...inputs.amenities,
-                      [amenity]: !inputs.amenities[amenity],
-                    },
-                  })
-                }
-                className="w-4 h-4 accent-[#00F0FF] cursor-pointer rounded"
-              />
-              <label
-                htmlFor={`amenities${index + 1}`}
-                className="text-sm text-gray-300 cursor-pointer select-none"
-              >
+              <div className="relative flex items-center justify-center">
+                <input
+                  type="checkbox"
+                  id={`amenities${index + 1}`}
+                  checked={inputs.amenities[amenity]}
+                  onChange={() =>
+                    setInputs({
+                      ...inputs,
+                      amenities: {
+                        ...inputs.amenities,
+                        [amenity]: !inputs.amenities[amenity],
+                      },
+                    })
+                  }
+                  className="sr-only peer"
+                />
+
+                <div className="w-5 h-5 bg-[#111111] border border-gray-700 rounded-md peer-checked:bg-[#00F0FF] peer-checked:border-[#00F0FF] transition-all duration-200 flex items-center justify-center peer-focus:ring-2 peer-focus:ring-[#00F0FF]/30 group-hover:border-gray-500">
+                  <svg
+                    className={`w-3.5 h-3.5 text-black font-bold transition-opacity duration-200 ${
+                      inputs.amenities[amenity] ? "opacity-100" : "opacity-0"
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    strokeWidth="3.5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
                 {amenity}
-              </label>
-            </div>
+              </span>
+            </label>
           ))}
         </div>
       </div>
 
       <button
         type="submit"
-        className="bg-[#00F0FF] text-black font-semibold px-8 py-3 rounded-xl mt-8 cursor-pointer hover:bg-[#00f0ff]/80 transition-all shadow-lg shadow-[#00F0FF]/10"
+        className="bg-[#00F0FF] text-black font-semibold px-8 py-3 rounded-xl mt-8 cursor-pointer hover:bg-cyan-300 transition-all shadow-lg shadow-[#00F0FF]/10 active:scale-95"
       >
         Add Room
       </button>

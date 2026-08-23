@@ -35,9 +35,8 @@ const Dashboard = () => {
         description="Monitor your room listings, track bookings and analyze revenue—all in one place. Stay updated with real-time insights to ensure smooth operations."
       />
 
-      {/* Metric Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-8">
-        <div className="bg-[#1e1e1e]/80 backdrop-blur-md border border-gray-800 p-5 sm:p-6 rounded-2xl shadow-xl hover:border-gray-700 transition-all">
+        <div className="bg-[#111111]/80 backdrop-blur-md border border-gray-800 p-5 sm:p-6 rounded-2xl shadow-xl hover:border-gray-700 transition-all">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs uppercase tracking-wider text-gray-400 font-semibold">
@@ -47,7 +46,7 @@ const Dashboard = () => {
                 {dashboardData.totalBookings}
               </h3>
             </div>
-            <div className="p-3 bg-[#00F0FF]/10 rounded-xl border border-[#00F0FF]/20">
+            <div className="p-3 bg-transparent rounded-xl border border-[#00F0FF]/20">
               <img
                 src="https://api.iconify.design/lucide:calendar-check.svg?color=%2300F0FF"
                 alt="bookings"
@@ -57,7 +56,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="bg-[#1e1e1e]/80 backdrop-blur-md border border-gray-800 p-5 sm:p-6 rounded-2xl shadow-xl hover:border-gray-700 transition-all">
+        <div className="bg-[#111111]/80 backdrop-blur-md border border-gray-800 p-5 sm:p-6 rounded-2xl shadow-xl hover:border-gray-700 transition-all">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-xs uppercase tracking-wider text-gray-400 font-semibold">
@@ -67,7 +66,7 @@ const Dashboard = () => {
                 ${dashboardData.totalRevenue}
               </h3>
             </div>
-            <div className="p-3 bg-[#00F0FF]/10 rounded-xl border border-[#00F0FF]/20">
+            <div className="p-3 bg-transparent rounded-xl border border-[#00F0FF]/20">
               <img
                 src="https://api.iconify.design/lucide:dollar-sign.svg?color=%2300F0FF"
                 alt="revenue"
@@ -78,8 +77,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Bookings Section */}
-      <div className="bg-[#1e1e1e] border border-gray-800 rounded-2xl p-4 sm:p-6 shadow-xl">
+      <div className="bg-[#111111] border border-gray-800 rounded-2xl p-4 sm:p-6 shadow-xl">
         <div className="flex items-center justify-between mb-6 pb-3 border-b border-gray-800">
           <div>
             <h2 className="text-lg sm:text-xl font-bold text-white tracking-wide">
@@ -91,7 +89,6 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Mobile View: Vertical Cards */}
         <div className="grid grid-cols-1 gap-4 md:hidden">
           {dashboardData.bookings.map((item, index) => (
             <div
@@ -105,8 +102,8 @@ const Dashboard = () => {
                 <span
                   className={`px-3 py-1 rounded-full text-[11px] font-semibold border ${
                     item.isPaid
-                      ? "text-emerald-400 border-emerald-500/30 bg-emerald-500/10"
-                      : "text-red-400 border-red-500/30 bg-red-500/10"
+                      ? "text-emerald-400 border-emerald-500/30 bg-transparent"
+                      : "text-red-400 border-red-500/30 bg-transparent"
                   }`}
                 >
                   {item.isPaid ? "Completed" : "Pending"}
@@ -128,7 +125,6 @@ const Dashboard = () => {
           ))}
         </div>
 
-        {/* Desktop View: Table */}
         <div className="hidden md:block overflow-x-auto rounded-xl border border-gray-800/50">
           <table className="w-full text-left border-collapse">
             <thead>
@@ -160,8 +156,8 @@ const Dashboard = () => {
                     <span
                       className={`inline-block px-3.5 py-1 rounded-full text-xs font-semibold border ${
                         item.isPaid
-                          ? "text-emerald-400 border-emerald-500/30 bg-emerald-500/10"
-                          : "text-red-400 border-red-500/30 bg-red-500/10"
+                          ? "text-emerald-400 border-emerald-500/30 bg-transparent"
+                          : "text-red-400 border-red-500/30 bg-transparent"
                       }`}
                     >
                       {item.isPaid ? "Completed" : "Pending"}
