@@ -23,7 +23,7 @@ app.use(clerkMiddleware());
 app.get("/", (req, res) => {
   res.send("API is working");
 });
-app.use('/api/user', Router)
+app.use("/api/user", Router);
 
 app.use("/api/clerk", clerkWebhooks);
 
