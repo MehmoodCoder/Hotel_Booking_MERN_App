@@ -4,7 +4,7 @@ import connectDB from "./configs/db.js";
 import { clerkMiddleware } from "@clerk/express";
 import clerkWebhooks from "./controllers/clerkWebhooks.js";
 
-config.dotenv();
+dotenv.config();
 
 connectDB(process.env.MONGODB_URI);
 
