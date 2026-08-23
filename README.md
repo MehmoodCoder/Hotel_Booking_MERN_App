@@ -293,6 +293,36 @@ npm i @clerk/express
 
 ---
 
+## 📚 Modern Full-Stack Learning Resources
+
+### ⚛️ Frontend Framework & Build Tools
+- [React Documentation](https://react.dev) — *(Official docs for hooks, state management, and modern component architecture)*
+- [Vite Guide](https://vitejs.dev) — *(Ultra-fast frontend build tool and local development server)*
+- [React Router Documentation](https://reactrouter.com) — *(Client-side routing, page navigation, and dynamic loaders)*
+- [Tailwind CSS Documentation](https://tailwindcss.com) — *(Utility-first CSS framework for rapid UI and responsive styling)*
+
+### 🔑 Authentication & User Management
+- [Clerk Documentation](https://clerk.com/docs) — *(Complete user authentication, webhooks, and session management for React & Express)*
+
+### 🐍 Backend & REST APIs
+- [FastAPI Documentation](https://fastapi.tiangolo.com) — *(Modern, high-performance Python framework for building REST APIs)*
+- [PyJWT Documentation](https://pyjwt.readthedocs.io) — *(JSON Web Tokens for secure backend authentication and authorization)*
+
+### 📁 File Uploads & Cloud Storage
+- [Multer Documentation](https://github.com/expressjs/multer) — *(Node.js middleware for handling `multipart/form-data` and file uploads)*
+- [Cloudinary Node.js SDK](https://cloudinary.com/documentation/node_integration) — *(Cloud media management service for storing, optimizing, and transforming images)*
+
+### 🍃 Database & Package Management
+- [MongoDB Manual](https://www.mongodb.com/docs/) — *(NoSQL document database, aggregation pipelines, and CRUD operations)*
+- [PyMongo Documentation](https://pymongo.readthedocs.io) — *(Official Python driver for MongoDB integration)*
+- [NPM Documentation](https://docs.npmjs.com) — *(Node package manager for installing frontend dependencies)*
+
+### 🌐 References & General Tutorials
+- [W3Schools Tutorials](https://www.w3schools.com) — *(Quick reference guides for JavaScript, Web APIs, and Node.js)*
+- [MDN Web Docs](https://developer.mozilla.org) — *(The gold standard documentation for HTML, CSS, JavaScript, and HTTP standards)*
+
+---
+
 ## 👤 Author
 
 **MehmoodCoder**
