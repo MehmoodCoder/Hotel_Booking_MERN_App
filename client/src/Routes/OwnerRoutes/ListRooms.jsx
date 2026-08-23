@@ -49,14 +49,14 @@ function ListRooms() {
   };
 
   return (
-    <div className="min-h-screen bg-[#121212] text-white p-3 sm:p-6">
+    <div className="min-h-screen bg-[#111111] text-white p-3 sm:p-6">
       <Title
         align="left"
         title="All Rooms"
         description="View and manage all available rooms, prices, and amenities."
       />
 
-      <div className="mt-8 bg-[#1e1e1e] border border-gray-800 rounded-2xl p-4 sm:p-6 shadow-xl">
+      <div className="mt-8 bg-[#111111] border border-gray-800 rounded-2xl p-4 sm:p-6 shadow-xl">
         <div className="flex items-center justify-between mb-6 pb-3 border-b border-gray-800">
           <div>
             <h2 className="text-lg sm:text-xl font-bold text-white tracking-wide">
@@ -68,18 +68,18 @@ function ListRooms() {
           </div>
         </div>
 
-        {/* Mobile View: Vertical Cards (Displays on small screens) */}
+        {/* Mobile View */}
         <div className="grid grid-cols-1 gap-4 md:hidden">
           {rooms.map((item) => (
             <div
               key={item.id}
-              className="bg-[#141414] border border-gray-800 rounded-xl p-4 flex flex-col gap-3"
+              className="bg-[#111111] border border-gray-800 rounded-xl p-4 flex flex-col gap-3"
             >
-              <div className="flex justify-between items-center border-b border-gray-800/80 pb-2">
+              <div className="flex justify-between items-center border-b border-gray-800 pb-2">
                 <span className="font-semibold text-white text-base">
                   {item.roomType}
                 </span>
-                <span className="text-[#00F0FF] font-bold text-sm bg-[#00F0FF]/10 px-2.5 py-1 rounded-lg border border-[#00F0FF]/20">
+                <span className="text-[#00F0FF] font-bold text-sm bg-[#111111] px-2.5 py-1 rounded-lg border border-[#00F0FF]/30">
                   ${item.pricePerNight} / night
                 </span>
               </div>
@@ -92,7 +92,7 @@ function ListRooms() {
                   {item.amenities.map((amenity, index) => (
                     <span
                       key={index}
-                      className="bg-[#1e1e1e] border border-gray-800 text-gray-300 text-[11px] px-2 py-0.5 rounded-md"
+                      className="bg-[#111111] border border-gray-800 text-gray-300 text-[11px] px-2 py-0.5 rounded-md"
                     >
                       {amenity}
                     </span>
@@ -100,11 +100,11 @@ function ListRooms() {
                 </div>
               </div>
 
-              <div className="flex justify-between items-center pt-2 border-t border-gray-800/80 mt-1">
+              <div className="flex justify-between items-center pt-2 border-t border-gray-800 mt-1">
                 <span className="text-xs text-gray-400 font-medium">
                   Status
                 </span>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   <span
                     className={`text-xs font-semibold ${
                       item.isAvailable ? "text-emerald-400" : "text-gray-500"
@@ -119,8 +119,8 @@ function ListRooms() {
                       checked={item.isAvailable}
                       onChange={() => toggleAvailability(item.id)}
                     />
-                    <div className="w-11 h-6 bg-slate-800 border border-gray-700 rounded-full peer peer-checked:bg-[#00F0FF] peer-checked:border-[#00F0FF] transition-all duration-200"></div>
-                    <span className="dot absolute left-1 top-1 w-4 h-4 bg-white peer-checked:bg-black rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5 shadow-md"></span>
+                    <div className="w-11 h-6 bg-[#111111] border border-gray-700 rounded-full peer peer-checked:bg-[#00F0FF] peer-checked:border-[#00F0FF] transition-all duration-200"></div>
+                    <span className="absolute left-1 top-1 w-4 h-4 bg-white peer-checked:bg-black rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5 shadow-md"></span>
                   </label>
                 </div>
               </div>
@@ -128,11 +128,11 @@ function ListRooms() {
           ))}
         </div>
 
-        {/* Desktop View: Table (Displays on medium screens and up) */}
-        <div className="hidden md:block overflow-x-auto rounded-xl border border-gray-800/50">
-          <table className="w-full text-left border-collapse">
+        {/* Desktop Table View */}
+        <div className="hidden md:block overflow-x-auto rounded-xl border border-gray-800">
+          <table className="w-full text-left border-collapse bg-[#111111]">
             <thead>
-              <tr className="bg-[#181818] border-b border-gray-800 text-gray-400 text-xs uppercase tracking-wider">
+              <tr className="bg-[#111111] border-b border-gray-800 text-gray-400 text-xs uppercase tracking-wider">
                 <th className="py-4 px-5 font-semibold">Room Details</th>
                 <th className="py-4 px-5 font-semibold">Amenities</th>
                 <th className="py-4 px-5 font-semibold text-center">
@@ -141,13 +141,13 @@ function ListRooms() {
                 <th className="py-4 px-5 font-semibold text-center">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-800/60 text-sm">
+            <tbody className="divide-y divide-gray-800 text-sm bg-[#111111]">
               {rooms.map((item) => (
                 <tr
                   key={item.id}
-                  className="hover:bg-[#252525]/50 transition-colors group"
+                  className="hover:bg-gray-800/30 transition-colors"
                 >
-                  <td className="py-4 px-5 font-semibold text-white group-hover:text-[#00F0FF] transition-colors">
+                  <td className="py-4 px-5 font-semibold text-white">
                     {item.roomType}
                   </td>
                   <td className="py-4 px-5">
@@ -155,7 +155,7 @@ function ListRooms() {
                       {item.amenities.map((amenity, index) => (
                         <span
                           key={index}
-                          className="bg-[#141414] border border-gray-800 text-gray-300 text-[11px] px-2.5 py-1 rounded-md font-medium"
+                          className="bg-[#111111] border border-gray-800 text-gray-300 text-[11px] px-2.5 py-1 rounded-md font-medium"
                         >
                           {amenity}
                         </span>
@@ -163,21 +163,23 @@ function ListRooms() {
                     </div>
                   </td>
                   <td className="py-4 px-5 text-center">
-                    <span className="text-[#00F0FF] font-bold text-base bg-[#00F0FF]/10 px-3 py-1 rounded-lg border border-[#00F0FF]/20">
+                    <span className="text-[#00F0FF] font-bold text-base bg-[#111111] px-3 py-1 rounded-lg border border-[#00F0FF]/30">
                       ${item.pricePerNight}
                     </span>
                   </td>
                   <td className="py-4 px-5 text-center">
-                    <label className="relative inline-flex items-center cursor-pointer select-none">
-                      <input
-                        type="checkbox"
-                        className="sr-only peer"
-                        checked={item.isAvailable}
-                        onChange={() => toggleAvailability(item.id)}
-                      />
-                      <div className="w-12 h-7 bg-slate-800 border border-gray-700 rounded-full peer peer-checked:bg-[#00F0FF] peer-checked:border-[#00F0FF] transition-all duration-200"></div>
-                      <span className="dot absolute left-1 top-1 w-5 h-5 bg-white peer-checked:bg-black rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5 shadow-md"></span>
-                    </label>
+                    <div className="flex items-center justify-center">
+                      <label className="relative inline-flex items-center cursor-pointer select-none">
+                        <input
+                          type="checkbox"
+                          className="sr-only peer"
+                          checked={item.isAvailable}
+                          onChange={() => toggleAvailability(item.id)}
+                        />
+                        <div className="w-12 h-7 bg-[#111111] border border-gray-700 rounded-full peer peer-checked:bg-[#00F0FF] peer-checked:border-[#00F0FF] transition-all duration-200"></div>
+                        <span className="absolute left-1 top-1 w-5 h-5 bg-white peer-checked:bg-black rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5 shadow-md"></span>
+                      </label>
+                    </div>
                   </td>
                 </tr>
               ))}
