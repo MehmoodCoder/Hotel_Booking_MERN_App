@@ -5,7 +5,7 @@ const connectDB = async (url) => {
     mongoose.connection.on("connected", () => console.log("DB connected"));
     await mongoose.connect(`${url}/hotel-booking`);
   } catch (e) {
-    console.log(e.message);
+    console.log("DB Error:", e.message);
   }
 };
 
