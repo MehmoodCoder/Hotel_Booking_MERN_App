@@ -4,6 +4,8 @@ import connectDB from "./configs/db.js";
 import { clerkMiddleware } from "@clerk/express";
 import clerkWebhooks from "./controllers/clerkWebhooks.js";
 import cors from "cors";
+import UserRouter from './routes/userRouter.js'
+import HotelRouter from './routes/hotelRoutes.js'
 
 dotenv.config();
 
@@ -23,7 +25,8 @@ app.use(clerkMiddleware());
 app.get("/", (req, res) => {
   res.send("API is working");
 });
-app.use("/api/user", Router);
+app.use("/api/user", UserRouter);
+app.use("/api/hotels", HotelRouter);
 
 app.use("/api/clerk", clerkWebhooks);
 
