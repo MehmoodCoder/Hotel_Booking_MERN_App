@@ -153,7 +153,7 @@ const Footer = () => {
               type="email"
               placeholder="Your email"
               required
-              className="w-full px-3 py-2 text-xs bg-gray-900/80 border border-gray-800 rounded-l-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#00F0FF]/50"
+              className="w-full px-3 py-2 text-xs bg-[#111111] border border-gray-800 rounded-l-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#00F0FF]/50"
             />
             <button
               type="submit"
