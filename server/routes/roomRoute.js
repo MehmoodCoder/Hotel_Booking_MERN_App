@@ -1,12 +1,18 @@
-import express from 'express'
-import upload from '../middlewares/uploadMidddleware'
-import { protect } from '../middlewares/authMiddleware'
-import { createRoom, getOwnerRooms, toggleRoomAvailability } from '../controllers/roomController'
+import express from "express";
+import upload from "../middlewares/uploadMidddleware";
+import { protect } from "../middlewares/authMiddleware";
+import {
+  createRoom,
+  getOwnerRooms,
+  toggleRoomAvailability,
+} from "../controllers/roomController";
 
-const Router = express.Router()
+const Router = express.Router();
 
-Router.route('/').post( upload.array('images', 4), protect, createRoom).get(getRooms)
-Router.get('/owner', protect, getOwnerRooms)
-Router.post('/toggle-availability', protect, toggleRoomAvailability)
+Router.route("/")
+  .post(upload.array("images", 4), protect, createRoom)
+  .get(getRooms);
+Router.get("/owner", protect, getOwnerRooms);
+Router.post("/toggle-availability", protect, toggleRoomAvailability);
 
-export default Router
+export default Router;
