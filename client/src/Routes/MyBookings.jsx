@@ -151,8 +151,8 @@ const MyBookings = () => {
                     <span
                       className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase border ${
                         booking.status === "Confirmed"
-                          ? "bg-[#00F0FF]/10 text-[#00F0FF] border-[#00F0FF]/40"
-                          : "bg-gray-800 text-gray-400 border-gray-700"
+                          ? "bg-transparent text-[#00F0FF] border-[#00F0FF]/40"
+                          : "bg-trasparent text-gray-400 border-gray-700"
                       }`}
                     >
                       {booking.status}
