@@ -6,6 +6,7 @@ import clerkWebhooks from "./controllers/clerkWebhooks.js";
 import cors from "cors";
 import UserRouter from './routes/userRouter.js'
 import HotelRouter from './routes/hotelRoutes.js'
+import connectCloudinary from "./configs/cloudinary.js";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(async (req, res, next) => {
   await connectDB();
   next();
 });
+connectCloudinary()
 
 app.use(clerkMiddleware());
 
