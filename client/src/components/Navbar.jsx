@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useClerk, useUser, UserButton } from "@clerk/react";
 import logo from "../assets/logo.svg";
+import { useAppContext } from "../context/AppContext.jsx";
 
 const BookIcon = ({ className = "w-8 h-8" }) => (
   <svg
@@ -45,9 +46,9 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const { openSignIn } = useClerk();
-  const { user } = useUser();
-  const navigate = useNavigate();
   const location = useLocation();
+
+  const {user, navigate, isOwner, setShowHotelReg} = useAppContext()
 
   const isHome = location.pathname === "/";
 
@@ -98,10 +99,10 @@ const Navbar = () => {
         ))}
         {user && (
           <button
-            onClick={() => navigate("/owner")}
+            onClick={() => {isOwner ? navigate("/owner") : setShowHotelReg(true)}}
             className="border border-white/30 px-4 py-1 text-sm font-light rounded-full cursor-pointer text-white hover:bg-white/10 transition-all"
           >
-            Dashboard
+            {isOwner ? "Dashboard": "List Your Hotel"}
           </button>
         )}
       </div>
