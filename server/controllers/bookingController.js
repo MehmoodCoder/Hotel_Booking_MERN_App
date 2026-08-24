@@ -108,7 +108,7 @@ export const getHotelBookings = async (req, res) => {
     const totalBookings = bookings.length;
     const totalRevenue = bookings.reduce(
       (acc, booking) => acc + booking.totalPrice,
-      0
+      0,
     );
 
     res.json({
@@ -119,4 +119,3 @@ export const getHotelBookings = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
-
