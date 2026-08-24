@@ -8,6 +8,7 @@ import UserRouter from './routes/userRouter.js'
 import HotelRouter from './routes/hotelRoutes.js'
 import connectCloudinary from "./configs/cloudinary.js";
 import RoomRouter from './routes/roomRoute.js'
+import BookingsRouter from './routes/bookingRoute.js'
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.get("/", (req, res) => {
 app.use("/api/user", UserRouter);
 app.use("/api/hotels", HotelRouter);
 app.use("/api/rooms", RoomRouter);
+app.use("/api/bookings", BookingsRouter);
 
 app.use("/api/clerk", clerkWebhooks);
 
