@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useClerk, UserButton } from "@clerk/react";
 import logo from "../assets/logo.svg";
-import { useAppContext } from "../context/AppContext.jsx";
+import { useAppContext } from "../context/AppContext";
 
 const BookIcon = ({ className = "w-8 h-8" }) => (
   <svg
