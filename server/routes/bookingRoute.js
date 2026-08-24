@@ -7,5 +7,6 @@ const Router = express.Router()
 Router.post('/check-availability', checkAvailabilityAPI)
 Router.post("/book", protect, CreateBooking)
 Router.get('/user', protect, getUserBookings)
+Router.get('/hotel', protect, getHotelBookings)
 
 export default Router
