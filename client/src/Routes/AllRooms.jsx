@@ -219,7 +219,7 @@ const AllRooms = () => {
                       {room.amenities.map((item, idx) => (
                         <span
                           key={idx}
-                          className="text-[11px] bg-gray-900/90 text-gray-300 px-3 py-1 rounded-md border border-gray-700/60 shadow-sm"
+                          className="text-[11px] bg-gray-[#111111] text-gray-300 px-3 py-1 rounded-md border border-gray-700/60 shadow-sm"
                         >
                           {item}
                         </span>
