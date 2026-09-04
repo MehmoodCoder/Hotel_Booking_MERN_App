@@ -81,7 +81,7 @@ const FeaturedDestination = () => {
             navigate("/rooms");
             window.scrollTo(0, 0);
           }}
-          className="mt-8 mb-4 px-6 py-3 text-sm font-bold border border-[#00F0FF]/40 text-[#00F0FF] bg-[#00F0FF]/10 rounded-xl hover:bg-[#00F0FF] hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(0,240,255,0.2)] hover:shadow-[0_0_20px_rgba(0,240,255,0.6)] cursor-pointer active:scale-95"
+          className="mt-8 mb-4 px-6 py-3 text-sm font-bold border border-[#00F0FF]/40 text-[#00F0FF] bg-[#00F0FF] rounded-xl hover:bg-[#00F0FF] hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(0,240,255,0.2)] hover:shadow-[0_0_20px_rgba(0,240,255,0.6)] cursor-pointer active:scale-95"
         >
           View All Destinations
         </button>
