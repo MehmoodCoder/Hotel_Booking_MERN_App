@@ -39,7 +39,7 @@ const HotelCard = ({ room, index }) => {
                 alt="star icon"
                 className="w-3.5 h-3.5 object-contain"
               />
-              <span className="text-xs font-bold text-yellow-400">4.5</span>
+              <span className="text-xs font-bold text-white">4.5</span>
             </div>
           </div>
 
