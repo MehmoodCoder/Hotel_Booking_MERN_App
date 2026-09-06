@@ -16,13 +16,16 @@ const app = express();
 
 app.use(cors());
 
-app.use(express.json());
-
 app.use(async (req, res, next) => {
   await connectDB();
   next();
 });
+
 connectCloudinary()
+
+app.post("/api/clerk", express.raw({ type: "application/json" }), clerkWebhooks);
+
+app.use(express.json());
 
 app.use(clerkMiddleware());
 
@@ -33,8 +36,6 @@ app.use("/api/user", UserRouter);
 app.use("/api/hotels", HotelRouter);
 app.use("/api/rooms", RoomRouter);
 app.use("/api/bookings", BookingsRouter);
-
-app.use("/api/clerk", clerkWebhooks);
 
 if (process.env.NODE_ENV !== "production") {
   const PORT = process.env.PORT || 6000;
