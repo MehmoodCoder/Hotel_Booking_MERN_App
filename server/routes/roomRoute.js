@@ -4,6 +4,7 @@ import { protect } from "../middlewares/authMiddleware.js";
 import {
   createRoom,
   getOwnerRooms,
+  getRooms,
   toggleRoomAvailability,
 } from "../controllers/roomController.js";
 
