@@ -1,13 +1,11 @@
 import User from "../models/UserModel.js";
 
 export const protect = async (req, res, next) => {
-  const { userId } = req.auth;
-  console.log("Error in middleware");
-  
+  const { userId } = req.auth;  
   if (!userId) {
     return res.json({
       success: false,
-      message: "not Authenticated",
+      message: "Not Authenticated",
     });
   } else {
     const user = User.findById(userId);
