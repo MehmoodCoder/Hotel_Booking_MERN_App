@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { useAppContext } from "../context/AppContext";
+import { toast } from "react-hot-toast";
 
 const hotelRegAssets = {
   regImage: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
 };
 
-const HotelReg = ({ isOpen: externalIsOpen = true, onClose }) => {
-  const [internalVisible, setInternalVisible] = useState(true);
+const HotelReg = () => {
+  const { showHotelReg, setShowHotelReg, axios, getToken, setIsOwner } = useAppContext();
+
   const [formData, setFormData] = useState({
     hotelName: "",
     contactEmail: "",
@@ -15,57 +18,81 @@ const HotelReg = ({ isOpen: externalIsOpen = true, onClose }) => {
   });
 
   const handleClose = () => {
-    setInternalVisible(false);
-    if (onClose) onClose();
+    setShowHotelReg(false);
   };
 
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") handleClose();
     };
-    if (externalIsOpen && internalVisible) {
+
+    if (showHotelReg) {
       document.body.style.overflow = "hidden";
       window.addEventListener("keydown", handleKeyDown);
     }
+
     return () => {
       document.body.style.overflow = "unset";
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [externalIsOpen, internalVisible]);
+  }, [showHotelReg]);
 
-  if (!externalIsOpen || !internalVisible) return null;
+  if (!showHotelReg) return null;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
-    handleClose();
-  };
+    try {
+      const token = await getToken();
 
+      const payload = {
+        name: formData.hotelName,
+        contact: formData.phone,
+        address: formData.address,
+        city: formData.city,
+      };
+
+      const { data } = await axios.post("/api/hotels/", payload, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (data.success) {
+        toast.success("Hotel registered successfully!");
+        setIsOwner(true);
+        handleClose();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+  
   return (
-    <div className="fixed bg-black/20 inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       <div 
         onClick={handleClose}
-        className="fixed inset-0 bg-black/40 backdrop-blur-md cursor-pointer transition-all duration-300"
+        className="fixed inset-0 bg-black/30 backdrop-blur-sm cursor-pointer transition-all duration-300"
       />
 
-      <div className="relative z-10 flex bg-[#262626]/95 border border-gray-700/60 rounded-3xl max-w-4xl w-full overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] backdrop-blur-lg">
+      <div className="relative z-10 flex bg-[#1e1e1e]/80 border border-gray-700/40 rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl backdrop-blur-md">
         <div className="hidden md:block w-1/2 relative">
           <img
             src={hotelRegAssets.regImage}
             alt="Hotel Registration"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-90"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#262626] via-transparent to-transparent opacity-80" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#111111] via-transparent to-transparent opacity-80" />
         </div>
 
         <div className="relative flex flex-col w-full md:w-1/2 p-6 sm:p-8 justify-center">
           <button
             onClick={handleClose}
             type="button"
-            className="absolute top-5 right-5 p-2 rounded-full bg-gray-800/80 text-gray-300 hover:text-white hover:bg-gray-700 transition-all cursor-pointer border border-gray-700/50"
+            className="absolute top-5 right-5 p-2 rounded-full bg-gray-800/50 text-gray-300 hover:text-white hover:bg-gray-700/60 transition-all cursor-pointer border border-gray-700/40"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
@@ -77,7 +104,7 @@ const HotelReg = ({ isOpen: externalIsOpen = true, onClose }) => {
             <p className="text-xs text-gray-400 mt-1">List your property with us and reach thousands of guests.</p>
           </div>
 
-          <form autofill="on" onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-[11px] font-semibold uppercase tracking-wider text-gray-400 mb-1">
                 Hotel Name
@@ -89,7 +116,7 @@ const HotelReg = ({ isOpen: externalIsOpen = true, onClose }) => {
                 onChange={handleChange}
                 placeholder="Grand Luxury Resort"
                 required
-                className="w-full bg-[#1e1e1e] border border-gray-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#00F0FF] transition-colors"
+                className="w-full bg-[#121212]/60 border border-gray-700/50 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#00F0FF] transition-colors"
               />
             </div>
 
@@ -105,7 +132,7 @@ const HotelReg = ({ isOpen: externalIsOpen = true, onClose }) => {
                   onChange={handleChange}
                   placeholder="hotel@domain.com"
                   required
-                  className="w-full bg-[#1e1e1e] border border-gray-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#00F0FF] transition-colors"
+                  className="w-full bg-[#121212]/60 border border-gray-700/50 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#00F0FF] transition-colors"
                 />
               </div>
               <div>
@@ -119,7 +146,7 @@ const HotelReg = ({ isOpen: externalIsOpen = true, onClose }) => {
                   onChange={handleChange}
                   placeholder="+1 234 567 890"
                   required
-                  className="w-full bg-[#1e1e1e] border border-gray-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#00F0FF] transition-colors"
+                  className="w-full bg-[#121212]/60 border border-gray-700/50 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#00F0FF] transition-colors"
                 />
               </div>
             </div>
@@ -135,7 +162,7 @@ const HotelReg = ({ isOpen: externalIsOpen = true, onClose }) => {
                 onChange={handleChange}
                 placeholder="Los Angeles, CA"
                 required
-                className="w-full bg-[#1e1e1e] border border-gray-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#00F0FF] transition-colors"
+                className="w-full bg-[#121212]/60 border border-gray-700/50 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#00F0FF] transition-colors"
               />
             </div>
 
@@ -150,15 +177,15 @@ const HotelReg = ({ isOpen: externalIsOpen = true, onClose }) => {
                 onChange={handleChange}
                 placeholder="123 Sunset Blvd, Suite 100"
                 required
-                className="w-full bg-[#1e1e1e] border border-gray-800 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#00F0FF] transition-colors"
+                className="w-full bg-[#121212]/60 border border-gray-700/50 rounded-xl px-4 py-2.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#00F0FF] transition-colors"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full mt-2 py-3 px-4 bg-[#00F0FF] hover:bg-[#33f3ff] text-black font-bold text-xs rounded-xl transition-all shadow-[0_0_20px_rgba(0,240,255,0.25)] cursor-pointer"
+              className="w-full mt-2 py-3 px-4 bg-[#00F0FF] hover:bg-[#33f3ff] text-black font-bold text-xs rounded-xl transition-all shadow-[0_0_20px_rgba(0,240,255,0.2)] cursor-pointer"
             >
-                Register
+              Register
             </button>
           </form>
         </div>
