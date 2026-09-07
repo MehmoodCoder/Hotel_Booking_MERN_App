@@ -1,18 +1,18 @@
-import React from 'react'
-import Navbar from '../../components/OwnerComponents/Navbar'
-import Sidebar from '../../components/OwnerComponents/Sidebar'
-import { Outlet, Navigate } from 'react-router-dom'
-import { useAppContext } from '../../context/AppContext'
+import React from "react";
+import Navbar from "../../components/OwnerComponents/Navbar";
+import Sidebar from "../../components/OwnerComponents/Sidebar";
+import { Outlet, Navigate } from "react-router-dom";
+import { useAppContext } from "../../context/AppContext";
 
 function Layout() {
-  const { isOwner, user } = useAppContext()
+  const { isOwner, user } = useAppContext();
 
   if (!user || !isOwner) {
-    return <Navigate to='/' replace />
+    return <Navigate to="/" replace />;
   }
 
   return (
-    <div className='flex flex-col min-h-screen bg-[#121212] text-white'>
+    <div className="flex flex-col min-h-screen bg-[#121212] text-white">
       <Navbar />
       <div className="flex flex-1">
         <Sidebar />
@@ -21,7 +21,7 @@ function Layout() {
         </main>
       </div>
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;
