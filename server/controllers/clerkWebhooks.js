@@ -17,27 +17,28 @@ const clerkWebhooks = async (req, res) => {
 
     const userData = {
       _id: data.id,
-      email: data.email_addresses[0].email_address,
-      username: data.first_name + " " + data.last_name,
+      email: data.email_addresses[0]?.email_address || "",
+      username: `${data.first_name || ""} ${data.last_name || ""}`.trim() || "User",
       image: data.image_url,
     };
 
     switch (type) {
-      case "user.create": {
+      case "user.created": {
         await User.create(userData);
         break;
       }
-      case "user.update": {
+      case "user.updated": {
         await User.findByIdAndUpdate(data.id, userData);
         break;
       }
-      case "user.delete": {
+      case "user.deleted": {
         await User.findByIdAndDelete(data.id);
         break;
       }
       default:
         break;
     }
+
     res.json({
       success: true,
       message: "Webhook Recieved",
