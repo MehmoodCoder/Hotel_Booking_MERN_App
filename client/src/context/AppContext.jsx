@@ -19,25 +19,29 @@ export const AppContextProvider = (props) => {
   const [showHotelReg, setShowHotelReg] = useState(false);
   const [searchCities, setSearchCities] = useState([]);
 
-const fetchUser = async () => {
-  try {
-    const token = await getToken();
-    const { data } = await axios.get("/api/user", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+  const fetchUser = async () => {
+    try {
+      const token = await getToken();
+      if (!token) return;
 
-    if (data.success) {
-      setIsOwner(data.role === "hotelOwner");
-      setSearchCities(data.recentSearchedCities);
+      const { data } = await axios.get("/api/user/", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (data.success) {
+        setIsOwner(data.user?.role === "hotelOwner");
+        setSearchCities(data.user?.recentSearchedCities || []);
+      }
+    } catch (e) {
+      toast.error(e.message);
     }
-  } catch (e) {
-    toast.error(e.message);
-  }
-};
+  };
 
   useEffect(() => {
     if (user) {
       fetchUser();
+    } else {
+      setIsOwner(false);
     }
   }, [user]);
 
@@ -54,6 +58,7 @@ const fetchUser = async () => {
     searchCities,
     setSearchCities,
     backendUrl,
+    fetchUser,
   };
 
   return (
