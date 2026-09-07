@@ -14,11 +14,11 @@ const userSchema = new mongoose.Schema(
     recentSearchedCities: [
       {
         type: String,
-        required: true,
+        default: [],
       },
     ],
   },
-  { timestamps: true },
+  { timestamps: true }
 );
 
 const User = mongoose.model("User", userSchema);
