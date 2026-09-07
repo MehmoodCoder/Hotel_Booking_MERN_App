@@ -11,20 +11,23 @@ const clerkWebhooks = async (req, res) => {
       "svix-signature": req.headers["svix-signature"],
     };
 
-    await whook.verify(JSON.stringify(req.body), headers);
+    const payload = req.body.toString("utf8");
+    await whook.verify(payload, headers);
 
-    const { data, type } = req.body;
+    const { data, type } = JSON.parse(payload);
 
     const userData = {
       _id: data.id,
       email: data.email_addresses[0]?.email_address || "",
       username: `${data.first_name || ""} ${data.last_name || ""}`.trim() || "User",
-      image: data.image_url,
+      image: data.image_url || "",
+      recentSearchedCities: [],
     };
 
     switch (type) {
       case "user.created": {
         await User.create(userData);
+        console.log("User successfully saved in MongoDB:", data.id);
         break;
       }
       case "user.updated": {
@@ -44,7 +47,7 @@ const clerkWebhooks = async (req, res) => {
       message: "Webhook Recieved",
     });
   } catch (e) {
-    console.log(e.message);
+    console.log("Webhook Processing Error:", e.message);
     res.json({
       success: false,
       message: e.message,
