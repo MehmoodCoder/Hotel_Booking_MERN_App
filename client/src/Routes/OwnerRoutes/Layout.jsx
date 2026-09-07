@@ -1,9 +1,16 @@
 import React from 'react'
 import Navbar from '../../components/OwnerComponents/Navbar'
 import Sidebar from '../../components/OwnerComponents/Sidebar'
-import { Outlet } from 'react-router-dom'
+import { Outlet, Navigate } from 'react-router-dom'
+import { useAppContext } from '../../context/AppContext'
 
 function Layout() {
+  const { isOwner, user } = useAppContext()
+
+  if (!user || !isOwner) {
+    return <Navigate to='/' replace />
+  }
+
   return (
     <div className='flex flex-col min-h-screen bg-[#121212] text-white'>
       <Navbar />
