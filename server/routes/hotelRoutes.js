@@ -6,5 +6,4 @@ const Router = express.Router()
 
 Router.post('/', protect, RegisterHotel)
 
-
 export default Router
