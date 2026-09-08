@@ -70,7 +70,8 @@ export const getRooms = async (req, res) => {
 
 export const getOwnerRooms = async (req, res) => {
   try {
-    const hotelData = await Hotel.findOne({ owner: req.auth.userId });
+    const hotelData = await Hotel.findOne({ owner: req.user._id });
+    console.log("Hotel Data:", hotelData); 
 
     if (!hotelData) {
       return res.json({ success: false, message: "No Hotel found", rooms: [] });
