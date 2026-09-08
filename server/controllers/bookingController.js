@@ -1,17 +1,22 @@
 import Booking from "../models/bookingModel.js";
 import Room from "../models/roomModel.js";
+import Hotel from "../models/hotelModel.js";
 
 const checkAvailability = async ({ checkInDate, checkOutDate, room }) => {
   try {
     const bookings = await Booking.find({
       room,
-      checkInDate: { $lte: checkInDate },
-      checkOutDate: { $gte: checkOutDate },
+      $or: [
+        {
+          checkInDate: { $lt: new Date(checkOutDate) },
+          checkOutDate: { $gt: new Date(checkInDate) },
+        },
+      ],
     });
-    const isAvailable = bookings.length === 0;
-    return isAvailable;
+    return bookings.length === 0;
   } catch (e) {
     console.error(e.message);
+    return false;
   }
 };
 
@@ -30,7 +35,7 @@ export const checkAvailabilityAPI = async (req, res) => {
   } catch (e) {
     res.json({
       success: false,
-      msg: e.msg,
+      msg: e.message,
     });
   }
 };
@@ -38,7 +43,8 @@ export const checkAvailabilityAPI = async (req, res) => {
 export const CreateBooking = async (req, res) => {
   try {
     const { room, checkInDate, checkOutDate, guest } = req.body;
-    const user = req.body._id;
+    const userId = req.auth.userId || req.user._id;
+
     const isAvailable = await checkAvailability({
       checkInDate,
       checkOutDate,
@@ -46,46 +52,53 @@ export const CreateBooking = async (req, res) => {
     });
 
     if (!isAvailable) {
-      res.json({
+      return res.json({
         success: false,
-        msg: "room is not Available",
-      });
-      const RoomData = await Room.findById(room).populate("hotel");
-      let price = RoomData.pricePerNight;
-
-      const CheckIn = new Date(checkInDate);
-      const CheckOut = new Date(checkOutDate);
-      const timeDif = CheckOut.getTime() - checkInDate.getTime();
-      const nights = Math.ceil(timeDif / (1000 * 3600 * 24));
-
-      totalPrice *= nights;
-
-      const booking = await Booking.create({
-        user,
-        room,
-        hotel: RoomData.hotel._id,
-        guests: +guest,
-        checkInDate,
-        checkOutDate,
-        totalPrice,
+        msg: "Room is not available for selected dates",
       });
     }
+
+    const RoomData = await Room.findById(room).populate("hotel");
+    if (!RoomData) {
+      return res.json({ success: false, msg: "Room not found" });
+    }
+
+    const CheckIn = new Date(checkInDate);
+    const CheckOut = new Date(checkOutDate);
+    const timeDif = CheckOut.getTime() - CheckIn.getTime();
+    const nights = Math.max(1, Math.ceil(timeDif / (1000 * 3600 * 24)));
+
+    const totalPrice = RoomData.pricePerNight * nights;
+
+    const booking = await Booking.create({
+      user: userId,
+      room,
+      hotel: RoomData.hotel._id,
+      guests: String(guest),
+      checkInDate: CheckIn,
+      checkOutDate: CheckOut,
+      price: totalPrice,
+      status: "pending",
+      isPaid: false,
+    });
+
     res.json({
       success: true,
-      msg: "Booking create successfully",
+      msg: "Booking created successfully",
+      booking,
     });
   } catch (e) {
     res.json({
       success: false,
-      msg: e.msg,
+      msg: e.message,
     });
   }
 };
 
 export const getUserBookings = async (req, res) => {
   try {
-    const user = req.user._id;
-    const bookings = await Booking.find({ user })
+    const userId = req.auth.userId || req.user._id;
+    const bookings = await Booking.find({ user: userId })
       .populate("room hotel")
       .sort({ createdAt: -1 });
     res.json({ success: true, bookings });
@@ -96,7 +109,7 @@ export const getUserBookings = async (req, res) => {
 
 export const getHotelBookings = async (req, res) => {
   try {
-    const hotel = await Hotel.findOne({ owner: req.auth.userId });
+    const hotel = await Hotel.findOne({ owner: req.auth._id });
     if (!hotel) {
       return res.json({ success: false, message: "No Hotel found" });
     }
@@ -107,7 +120,7 @@ export const getHotelBookings = async (req, res) => {
 
     const totalBookings = bookings.length;
     const totalRevenue = bookings.reduce(
-      (acc, booking) => acc + booking.totalPrice,
+      (acc, booking) => acc + (booking.price || 0),
       0,
     );
 
