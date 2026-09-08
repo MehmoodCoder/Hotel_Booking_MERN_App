@@ -74,7 +74,7 @@ export const getRooms = async (req, res) => {
 
 export const getOwnerRooms = async (req, res) => {
   try {
-    const userId = req.auth?.userId;
+    const userId = req.auth?._id;
     let hotelData = await Hotel.findOne({ owner: userId });
 
     if (!hotelData && req.user?._id) {
