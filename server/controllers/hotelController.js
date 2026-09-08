@@ -4,7 +4,7 @@ import User from "../models/UserModel.js";
 export const RegisterHotel = async (req, res) => {
   try {
     const { name, address, contact, city } = req.body;
-    const owner = req.user._id;
+    const owner = req.auth?.userId || req.user?._id;
 
     const existingHotel = await Hotel.findOne({ owner });
 
@@ -17,7 +17,11 @@ export const RegisterHotel = async (req, res) => {
 
     await Hotel.create({ name, address, contact, city, owner });
 
-    await User.findByIdAndUpdate(owner, { role: "hotelOwner" });
+    if (req.user?._id) {
+      await User.findByIdAndUpdate(req.user._id, { role: "hotelOwner" });
+    } else {
+      await User.findOneAndUpdate({ _id: owner }, { role: "hotelOwner" });
+    }
 
     res.json({
       success: true,
