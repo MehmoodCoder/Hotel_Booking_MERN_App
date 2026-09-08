@@ -15,7 +15,7 @@ export const createRoom = async (req, res) => {
     if (!hotel) {
       return res.json({
         success: false,
-        message: "No Hotel Found",
+        message: "No Hotel found",
       });
     }
 
