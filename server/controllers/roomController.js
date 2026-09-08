@@ -5,15 +5,15 @@ import Room from "../models/roomModel.js";
 export const createRoom = async (req, res) => {
   try {
     const { roomType, pricePerNight, aminities } = req.body;
+    const owner = req.auth?.userId || req.user?._id;
 
     console.log("Clerk User ID (req.auth.userId):", req.auth?.userId);
     console.log("Type of req.auth.userId:", typeof req.auth?.userId);
 
-    const hotel = await Hotel.findOne({ owner: req.auth.userId });
+    const hotel = await Hotel.findOne({ owner });
     console.log("Found Hotel in DB:", hotel);
 
     if (!hotel) {
-      console.log("No Hotel found for the given owner ID", req.auth.userId);
       return res.json({
         success: false,
         message: "No Hotel found",
