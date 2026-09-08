@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import Title from "../../components/Title";
+import { useAppContext } from "../../context/AppContext";
+import { toast } from "react-hot-toast";
 
 function AddRoom() {
+  const { axios, getToken } = useAppContext();
+  const [loading, setLoading] = useState(false);
+
   const [images, setImages] = useState({
     1: null,
     2: null,
@@ -11,11 +16,11 @@ function AddRoom() {
 
   const [inputs, setInputs] = useState({
     roomType: "",
-    pricePerNight: 0,
-    amenities: {
+    pricePerNight: "",
+    aminities: {
       "Free Wi-Fi": false,
       "Air Conditioning": false,
-      TV: false,
+      "TV": false,
       "Free Room Service": false,
       "Mountain View": false,
       "Free Breakfast": false,
@@ -26,8 +31,72 @@ function AddRoom() {
   const uploadPlaceholder =
     "https://api.iconify.design/lucide:upload-cloud.svg?color=%2300F0FF";
 
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+
+    const hasImage = Object.values(images).some((img) => img !== null);
+    if (!hasImage) {
+      return toast.error("Please upload at least one image");
+    }
+
+    setLoading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append("roomType", inputs.roomType);
+      formData.append("pricePerNight", inputs.pricePerNight);
+
+      const selectedAmenities = Object.keys(inputs.aminities).filter(
+        (key) => inputs.aminities[key]
+      );
+      formData.append("aminities", JSON.stringify(selectedAmenities));
+
+      Object.keys(images).forEach((key) => {
+        if (images[key]) {
+          formData.append("images", images[key]);
+        }
+      });
+
+      const token = await getToken();
+
+      const { data } = await axios.post("/api/rooms", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (data.success) {
+        toast.success(data.message || data.meg || "Room added successfully!");
+        
+        setInputs({
+          roomType: "",
+          pricePerNight: "",
+          aminities: {
+            "Free Wi-Fi": false,
+            "Air Conditioning": false,
+            "TV": false,
+            "Free Room Service": false,
+            "Mountain View": false,
+            "Free Breakfast": false,
+            "Pool Access": false,
+          },
+        });
+        setImages({ 1: null, 2: null, 3: null, 4: null });
+      } else {
+        toast.error(data.message || data.msg || data.meg || "Something went wrong");
+      }
+    } catch (error) {
+      toast.error(error.response?.data?.message || error.response?.data?.meg || error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <form className="min-h-screen bg-[#111111] text-white p-6 md:p-10">
+    <form
+      onSubmit={onSubmitHandler}
+      className="min-h-screen bg-[#111111] text-white p-6 md:p-10"
+    >
       <Title
         align="left"
         title="Add Room"
@@ -62,7 +131,6 @@ function AddRoom() {
                 </div>
               )}
               <input
-                required
                 type="file"
                 accept="image/*"
                 id={`roomImage${key}`}
@@ -82,7 +150,9 @@ function AddRoom() {
           <select
             required
             value={inputs.roomType}
-            onChange={(e) => setInputs({ ...inputs, roomType: e.target.value })}
+            onChange={(e) =>
+              setInputs({ ...inputs, roomType: e.target.value })
+            }
             className="bg-[#111111] border border-gray-800 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#00F0FF] transition-all cursor-pointer"
           >
             <option value="" disabled className="bg-[#111111] text-gray-500">
@@ -112,7 +182,7 @@ function AddRoom() {
             min="0"
             value={inputs.pricePerNight}
             onChange={(e) =>
-              setInputs({ ...inputs, pricePerNight: Number(e.target.value) })
+              setInputs({ ...inputs, pricePerNight: e.target.value })
             }
             required
             placeholder="e.g. 150"
@@ -124,7 +194,7 @@ function AddRoom() {
       <div className="mt-8">
         <p className="text-gray-300 font-medium text-sm mb-3">Amenities</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 max-w-2xl">
-          {Object.keys(inputs.amenities).map((amenity, index) => (
+          {Object.keys(inputs.aminities).map((amenity, index) => (
             <label
               key={index}
               htmlFor={`amenities${index + 1}`}
@@ -134,13 +204,13 @@ function AddRoom() {
                 <input
                   type="checkbox"
                   id={`amenities${index + 1}`}
-                  checked={inputs.amenities[amenity]}
+                  checked={inputs.aminities[amenity]}
                   onChange={() =>
                     setInputs({
                       ...inputs,
-                      amenities: {
-                        ...inputs.amenities,
-                        [amenity]: !inputs.amenities[amenity],
+                      aminities: {
+                        ...inputs.aminities,
+                        [amenity]: !inputs.aminities[amenity],
                       },
                     })
                   }
@@ -150,7 +220,7 @@ function AddRoom() {
                 <div className="w-5 h-5 bg-[#111111] border border-gray-700 rounded-md peer-checked:bg-[#00F0FF] peer-checked:border-[#00F0FF] transition-all duration-200 flex items-center justify-center peer-focus:ring-2 peer-focus:ring-[#00F0FF]/30 group-hover:border-gray-500">
                   <svg
                     className={`w-3.5 h-3.5 text-black font-bold transition-opacity duration-200 ${
-                      inputs.amenities[amenity] ? "opacity-100" : "opacity-0"
+                      inputs.aminities[amenity] ? "opacity-100" : "opacity-0"
                     }`}
                     fill="none"
                     stroke="currentColor"
@@ -176,9 +246,10 @@ function AddRoom() {
 
       <button
         type="submit"
-        className="bg-[#00F0FF] text-black font-semibold px-8 py-3 rounded-xl mt-8 cursor-pointer hover:bg-cyan-300 transition-all shadow-lg shadow-[#00F0FF]/10 active:scale-95"
+        disabled={loading}
+        className="bg-[#00F0FF] text-black font-semibold px-8 py-3 rounded-xl mt-8 cursor-pointer hover:bg-cyan-300 transition-all shadow-lg shadow-[#00F0FF]/10 active:scale-95 disabled:opacity-50"
       >
-        Add Room
+        {loading ? "Adding..." : "Add Room"}
       </button>
     </form>
   );
