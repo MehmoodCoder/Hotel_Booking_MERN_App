@@ -13,6 +13,7 @@ export const createRoom = async (req, res) => {
     console.log("Found Hotel in DB:", hotel);
 
     if (!hotel) {
+      console.log("No Hotel found for the given owner ID", req.auth.userId);
       return res.json({
         success: false,
         message: "No Hotel found",
