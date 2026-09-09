@@ -3,7 +3,7 @@ import Title from "../../components/Title";
 import { useAppContext } from "../../context/AppContext";
 
 const Dashboard = () => {
-  const { currency = "$", user, getToken, axios } = useAppContext();
+  const { currency, user, getToken, axios } = useAppContext();
   const [loading, setLoading] = useState(true);
   const [dashboardData, setDashboardData] = useState({
     totalBookings: 0,
