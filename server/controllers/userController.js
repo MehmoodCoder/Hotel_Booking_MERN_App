@@ -2,7 +2,8 @@ import User from "../models/UserModel.js";
 
 export const getUserData = async (req, res) => {
   try {
-    const user = await User.findById(req.user._id);
+    const userId = req.user?._id || req.auth?.userId;
+    const user = await User.findById(userId);
 
     if (!user) {
       return res.json({
@@ -25,16 +26,35 @@ export const getUserData = async (req, res) => {
 
 export const storeRecentSearchCities = async (req, res) => {
   try {
-    const { recentSearchedCities } = req.body;
-    const user = await req.user;
-    if (user.recentSearchedCities.length < 3) {
-      user.recentSearchedCities.push(recentSearchedCities);
-    } else {
+    const recentSearchCity = req.body.recentSearchCity || req.body.recentSearchedCities;
+    const userId = req.user?._id || req.auth?.userId;
+
+    if (!recentSearchCity) {
+      return res.json({ success: false, message: "City is required" });
+    }
+
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.json({ success: false, message: "User not found" });
+    }
+
+    if (!Array.isArray(user.recentSearchedCities)) {
+      user.recentSearchedCities = [];
+    }
+
+    user.recentSearchedCities = user.recentSearchedCities.filter(
+      (city) => city.toLowerCase() !== recentSearchCity.toLowerCase()
+    );
+
+    user.recentSearchedCities.push(recentSearchCity);
+
+    if (user.recentSearchedCities.length > 3) {
       user.recentSearchedCities.shift();
-      user.recentSearchedCities.push(recentSearchedCities);
     }
 
     await user.save();
+
     res.json({
       success: true,
       message: "City added",
