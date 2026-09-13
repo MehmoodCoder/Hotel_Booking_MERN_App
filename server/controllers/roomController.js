@@ -58,7 +58,7 @@ export const getRooms = async (req, res) => {
         strictPopulate: false,
         populate: {
           path: "owner",
-          select: "image",
+          select: "name username email image",
           strictPopulate: false,
         },
       })
@@ -82,6 +82,11 @@ export const getOwnerRooms = async (req, res) => {
     const rooms = await Room.find({ hotel: hotelData._id }).populate({
       path: "hotel",
       strictPopulate: false,
+      populate: {
+        path: "owner",
+        select: "name username email image",
+        strictPopulate: false,
+      },
     });
 
     res.json({ success: true, rooms });
