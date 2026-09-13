@@ -43,7 +43,6 @@ const Hero = () => {
     "Bangalore",
     "Chennai",
     "Kolkata",
-    "Hyderabad",
     "Pune",
     "Jaipur",
     "Ahmedabad",
@@ -151,22 +150,43 @@ const Hero = () => {
   const [destination, setDestination] = useState("");
   const { navigate, getToken, axios, setSearchCities } = useAppContext();
 
+  const updateSearchCities = (newCity) => {
+    setSearchCities((prevCities = []) => {
+      const filtered = prevCities.filter(
+        (c) => c.toLowerCase() !== newCity.toLowerCase()
+      );
+      const updated = [...filtered, newCity];
+      if (updated.length > 3) updated.shift();
+      return updated;
+    });
+  };
+
   const onSearch = async (e) => {
     e.preventDefault();
-    navigate(`/rooms?destination=${destination}`);
-    await axios.post(
-      "/api/user/store-recent-search",
-      { recentSearchCity: destination },
-      { headers: { Authorization: `Bearer ${await getToken()}` } },
-    );
 
-    setSearchCities((prevCities) => {
-      const updatedCities = [...prevCities, destination];
-      if(updatedCities.length > 3){
-        updatedCities.shift(); 
+    if (!destination.trim()) {
+      toast.error("Please enter a destination");
+      return;
+    }
+
+    try {
+      const token = await getToken();
+
+      if (token) {
+        await axios.post(
+          "/api/user/store-recent-search",
+          { recentSearchCity: destination },
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
       }
-      return updatedCities;
-    });
+
+      updateSearchCities(destination);
+      navigate(`/rooms?destination=${encodeURIComponent(destination)}`);
+    } catch (error) {
+      console.error("Search API Error:", error);
+      updateSearchCities(destination);
+      navigate(`/rooms?destination=${encodeURIComponent(destination)}`);
+    }
   };
 
   return (
@@ -343,7 +363,10 @@ const Hero = () => {
               />
             </div>
 
-            <button className="col-span-1 sm:col-span-2 xl:col-span-1 w-full xl:w-auto h-[42px] px-6 rounded-lg bg-[#00F0FF] hover:bg-[#00D8E6] text-black font-extrabold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-95 shrink-0 mt-2 sm:mt-0 shadow-[0_0_15px_rgba(0,240,255,0.4)]">
+            <button
+              type="submit"
+              className="col-span-1 sm:col-span-2 xl:col-span-1 w-full xl:w-auto h-[42px] px-6 rounded-lg bg-[#00F0FF] hover:bg-[#00D8E6] text-black font-extrabold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer active:scale-95 shrink-0 mt-2 sm:mt-0 shadow-[0_0_15px_rgba(0,240,255,0.4)]"
+            >
               <svg
                 className="w-4 h-4 text-black"
                 aria-hidden="true"
