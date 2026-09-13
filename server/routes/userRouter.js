@@ -8,6 +8,6 @@ import {
 const Router = express.Router();
 
 Router.get("/", protect, getUserData);
-Router.get("/store-recent-search", protect, storeRecentSearchCities);
+Router.post("/store-recent-search", protect, storeRecentSearchCities);
 
 export default Router;
