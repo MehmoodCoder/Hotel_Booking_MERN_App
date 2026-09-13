@@ -1,63 +1,12 @@
 import React from "react";
 import HotelCard from "./HotelCard";
 import Title from "./Title";
-import { useNavigate } from "react-router-dom";
-
-const HotelData = [
-  {
-    _id: "room_1",
-    title: "Grand Palace Resort - Murree",
-    img: [
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80",
-    ],
-    hotel: {
-      name: "Grand Palace Resort",
-      address: "Mall Road, Murree",
-    },
-    price: 150,
-  },
-  {
-    _id: "room_2",
-    title: "Serena Hotel - Islamabad",
-    img: [
-      "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80",
-    ],
-    hotel: {
-      name: "Serena Hotel",
-      address: "Khayaban-e-Suhrawardy, Islamabad",
-    },
-    price: 220,
-  },
-  {
-    _id: "room_3",
-    title: "Pearl Continental - Lahore",
-    img: [
-      "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=800&q=80",
-    ],
-    hotel: {
-      name: "Pearl Continental",
-      address: "Shahrah-e-Quaid-e-Azam, Lahore",
-    },
-    price: 180,
-  },
-  {
-    _id: "room_4",
-    title: "Luxus Hunza Hotel - Hunza",
-    img: [
-      "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=800&q=80",
-    ],
-    hotel: {
-      name: "Luxus Hunza Hotel",
-      address: "Attabad Lake, Hunza Valley",
-    },
-    price: 260,
-  },
-];
+import { useAppContext } from "../context/AppContext";
 
 const FeaturedDestination = () => {
-  const navigate = useNavigate();
+  const { rooms,navigate } = useAppContext();
 
-  return (
+  return rooms.length > 0 && (
     <>
       <div
         style={{
@@ -71,7 +20,7 @@ const FeaturedDestination = () => {
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl px-2 py-8 justify-items-center">
-          {HotelData.map((room, index) => (
+          {rooms.map((room, index) => (
             <HotelCard key={room._id} room={room} index={index} />
           ))}
         </div>
