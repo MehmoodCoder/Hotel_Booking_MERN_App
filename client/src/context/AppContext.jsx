@@ -18,6 +18,20 @@ export const AppContextProvider = (props) => {
   const [isOwner, setIsOwner] = useState(false);
   const [showHotelReg, setShowHotelReg] = useState(false);
   const [searchCities, setSearchCities] = useState([]);
+  const [rooms, setRooms] = useState([]);
+
+  const fetchRooms = async () => {
+    try {
+      const { data } = await axios.get("/api/rooms");
+      if (data.success) {
+        setRooms(data.rooms);
+      } else{
+        toast.error(data.msg || "Failed to fetch rooms");
+      }
+    } catch (e) {
+      toast.error(e.message);
+    }
+  };
 
   const fetchUser = async () => {
     try {
@@ -45,6 +59,10 @@ export const AppContextProvider = (props) => {
     }
   }, [user]);
 
+  useEffect(() => {
+    fetchRooms();
+  }, []);
+
   const value = {
     currency,
     navigate,
@@ -59,6 +77,8 @@ export const AppContextProvider = (props) => {
     setSearchCities,
     backendUrl,
     fetchUser,
+    rooms,
+    setRooms,
   };
 
   return (
