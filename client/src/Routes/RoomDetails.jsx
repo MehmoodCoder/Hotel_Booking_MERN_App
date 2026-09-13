@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const highlights = [
   {
@@ -62,14 +64,14 @@ const highlights = [
 ];
 
 const RoomDetails = () => {
-  const { rooms = [] } = useAppContext();
+  const { rooms = [], getToken, navigate } = useAppContext();
   const { id } = useParams();
 
   const [room, setRoom] = useState(null);
   const [selectedImage, setSelectedImage] = useState("");
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
-  const [guests, setGuests] = useState("1 Guest");
+  const [checkInDate, setCheckInDate] = useState("");
+  const [checkOutDate, setCheckOutDate] = useState("");
+  const [guest, setGuest] = useState(1);
   const [isAvailable, setIsAvailable] = useState(false);
 
   useEffect(() => {
@@ -83,6 +85,70 @@ const RoomDetails = () => {
       }
     }
   }, [rooms, id]);
+
+  const checkAvailability = async () => {
+    try {
+      if (checkInDate >= checkOutDate) {
+        toast.error("Check-In Date should be less than Check-Out Date");
+        return;
+      }
+
+      const { data } = await axios.post("/api/bookings/check-availability", {
+        room: id,
+        checkInDate,
+        checkOutDate,
+      });
+
+      if (data.success) {
+        if (data.isAvailable) {
+          setIsAvailable(true);
+          toast.success("Room is available");
+        } else {
+          setIsAvailable(false);
+          toast.error("Room is not available");
+        }
+      } else {
+        toast.error(data.msg || "Error checking availability");
+      }
+    } catch (error) {
+      toast.error(error.message || "Error checking availability");
+    }
+  };
+
+  const onSubmitHandler = async (e) => {
+    try {
+      e.preventDefault();
+
+      if (!isAvailable) {
+        return checkAvailability();
+      } else {
+        const token = await getToken();
+        const { data } = await axios.post(
+          "/api/bookings/book",
+          {
+            room: id,
+            checkInDate,
+            checkOutDate,
+            guest,
+            paymentMethod: "Pay At Hotel",
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
+        );
+
+        if (data.success) {
+          toast.success(data.msg || "Booking successful");
+          navigate("/my-bookings");
+          window.scrollTo(0, 0);
+        } else {
+          toast.error(data.msg);
+        }
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   if (!room) {
     return (
@@ -121,13 +187,6 @@ const RoomDetails = () => {
     ownerData?.image ||
     room.ownerImage ||
     "https://via.placeholder.com/150/111111/00F0FF?text=Owner";
-
-  const handleCheckAvailability = (e) => {
-    e.preventDefault();
-    if (checkIn && checkOut) {
-      setIsAvailable(room.isAvailable ?? true);
-    }
-  };
 
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating);
@@ -256,20 +315,25 @@ const RoomDetails = () => {
         </div>
 
         <form
-          onSubmit={handleCheckAvailability}
+          onSubmit={onSubmitHandler}
           className="my-10 bg-[#111111] backdrop-blur-md border border-gray-800 rounded-2xl p-4 md:p-6 shadow-xl"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
             <div className="flex flex-col gap-1">
-              <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+              <label
+                htmlFor="checkInDate"
+                className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider"
+              >
                 Check-In
               </label>
               <input
                 type="date"
+                id="checkInDate"
                 required
-                value={checkIn}
+                min={new Date().toISOString().split("T")[0]}
+                value={checkInDate}
                 onChange={(e) => {
-                  setCheckIn(e.target.value);
+                  setCheckInDate(e.target.value);
                   setIsAvailable(false);
                 }}
                 className="bg-[#111111] text-gray-200 border border-gray-700 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-[#00F0FF]"
@@ -277,34 +341,44 @@ const RoomDetails = () => {
             </div>
 
             <div className="flex flex-col gap-1">
-              <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+              <label
+                htmlFor="checkOutDate"
+                className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider"
+              >
                 Check-Out
               </label>
               <input
                 type="date"
+                id="checkOutDate"
                 required
-                value={checkOut}
+                disabled={!checkInDate}
+                min={checkInDate}
+                value={checkOutDate}
                 onChange={(e) => {
-                  setCheckOut(e.target.value);
+                  setCheckOutDate(e.target.value);
                   setIsAvailable(false);
                 }}
-                className="bg-[#111111] text-gray-200 border border-gray-700 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-[#00F0FF]"
+                className="bg-[#111111] text-gray-200 border border-gray-700 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-[#00F0FF] disabled:opacity-40"
               />
             </div>
 
             <div className="flex flex-col gap-1">
-              <label className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+              <label
+                htmlFor="guests"
+                className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider"
+              >
                 Guests
               </label>
               <select
-                value={guests}
-                onChange={(e) => setGuests(e.target.value)}
+                id="guests"
+                value={guest}
+                onChange={(e) => setGuest(Number(e.target.value))}
                 className="bg-[#111111] text-gray-200 border border-gray-700 rounded-xl px-3 py-2 text-xs focus:outline-none focus:border-[#00F0FF]"
               >
-                <option value="1 Guest">1 Guest</option>
-                <option value="2 Guests">2 Guests</option>
-                <option value="3 Guests">3 Guests</option>
-                <option value="4+ Guests">4+ Guests</option>
+                <option value={1}>1 Guest</option>
+                <option value={2}>2 Guests</option>
+                <option value={3}>3 Guests</option>
+                <option value={4}>4+ Guests</option>
               </select>
             </div>
 
