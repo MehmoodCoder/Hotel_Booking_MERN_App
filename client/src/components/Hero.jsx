@@ -1,7 +1,173 @@
-import React from "react";
+import React, { useState } from "react";
+import { useAppContext } from "../context/AppContext";
+import toast from "react-hot-toast";
 
 const Hero = () => {
-  const cities = ["Dubai", "Singapore", "London", "New York"];
+  const cities = [
+    "Singapore",
+    "London",
+    "New York",
+    "Paris",
+    "Tokyo",
+    "Sydney",
+    "Rome",
+    "Barcelona",
+    "Istanbul",
+    "Las Vegas",
+    "Bangkok",
+    "Hong Kong",
+    "Los Angeles",
+    "Miami",
+    "Amsterdam",
+    "Berlin",
+    "Moscow",
+    "Rio de Janeiro",
+    "Cape Town",
+    "Lahore",
+    "Karachi",
+    "Islamabad",
+    "Peshawar",
+    "Quetta",
+    "Multan",
+    "Faisalabad",
+    "Rawalpindi",
+    "Sialkot",
+    "Gujranwala",
+    "Hyderabad",
+    "Sukkur",
+    "Bahawalpur",
+    "Abbottabad",
+    "Murree",
+    "Delhi",
+    "Mumbai",
+    "Bangalore",
+    "Chennai",
+    "Kolkata",
+    "Hyderabad",
+    "Pune",
+    "Jaipur",
+    "Ahmedabad",
+    "Chandigarh",
+    "Lucknow",
+    "Kanpur",
+    "Nagpur",
+    "Indore",
+    "Bhopal",
+    "Patna",
+    "Vadodara",
+    "Surat",
+    "Visakhapatnam",
+    "Coimbatore",
+    "Thiruvananthapuram",
+    "Kochi",
+    "Mysore",
+    "Vijayawada",
+    "Rajkot",
+    "Jodhpur",
+    "Guwahati",
+    "Amritsar",
+    "Nashik",
+    "Aurangabad",
+    "Jabalpur",
+    "Udaipur",
+    "Ranchi",
+    "Dehradun",
+    "Agra",
+    "Durgapur",
+    "Jamshedpur",
+    "Gwalior",
+    "Tiruchirappalli",
+    "Salem",
+    "Warangal",
+    "Shenzhen",
+    "Guangzhou",
+    "Beijing",
+    "Shanghai",
+    "Chengdu",
+    "Hangzhou",
+    "Wuhan",
+    "Xi'an",
+    "Nanjing",
+    "Tianjin",
+    "Shenyang",
+    "Qingdao",
+    "Dalian",
+    "Suzhou",
+    "Zhengzhou",
+    "Changsha",
+    "Kunming",
+    "Fuzhou",
+    "Xiamen",
+    "Ningbo",
+    "Jinan",
+    "Harbin",
+    "Tehran",
+    "Mashhad",
+    "Isfahan",
+    "Shiraz",
+    "Tabriz",
+    "Karaj",
+    "Qom",
+    "Ahvaz",
+    "Kermanshah",
+    "Rasht",
+    "Zahedan",
+    "Kerman",
+    "Yazd",
+    "Arak",
+    "Bandar Abbas",
+    "Sanandaj",
+    "Khorramabad",
+    "Gorgan",
+    "Sari",
+    "Bojnurd",
+    "Zanjan",
+    "Hamedan",
+    "Dubai",
+    "Abu Dhabi",
+    "Doha",
+    "Riyadh",
+    "Jeddah",
+    "Muscat",
+    "Kuwait City",
+    "Manama",
+    "Amman",
+    "Beirut",
+    "Cairo",
+    "Casablanca",
+    "Marrakech",
+    "Tunis",
+    "Algiers",
+    "Tripoli",
+    "Khartoum",
+    "Addis Ababa",
+    "Nairobi",
+    "Lagos",
+    "Accra",
+    "Dakar",
+    "Johannesburg",
+  ];
+
+  const [destination, setDestination] = useState("");
+  const { navigate, getToken, axios, setSearchCities } = useAppContext();
+
+  const onSearch = async (e) => {
+    e.preventDefault();
+    navigate(`/rooms?destination=${destination}`);
+    await axios.post(
+      "/api/user/store-recent-search",
+      { recentSearchCity: destination },
+      { headers: { Authorization: `Bearer ${await getToken()}` } },
+    );
+
+    setSearchCities((prevCities) => {
+      const updatedCities = [...prevCities, destination];
+      if(updatedCities.length > 3){
+        updatedCities.shift(); 
+      }
+      return updatedCities;
+    });
+  };
 
   return (
     <>
@@ -22,7 +188,10 @@ const Hero = () => {
             the guaranteed best competitive prices today.
           </p>
 
-          <form className="bg-[#111111]/90 backdrop-blur-md text-white rounded-2xl p-4 sm:p-5 mt-8 shadow-2xl w-full border border-gray-800 grid grid-cols-1 sm:grid-cols-2 xl:flex xl:flex-row items-end gap-4">
+          <form
+            onSubmit={onSearch}
+            className="bg-[#111111]/90 backdrop-blur-md text-white rounded-2xl p-4 sm:p-5 mt-8 shadow-2xl w-full border border-gray-800 grid grid-cols-1 sm:grid-cols-2 xl:flex xl:flex-row items-end gap-4"
+          >
             <div className="flex-1 w-full min-w-0">
               <div className="flex items-center gap-1.5 mb-1.5">
                 <svg
@@ -57,6 +226,8 @@ const Hero = () => {
                 </label>
               </div>
               <input
+                onChange={(e) => setDestination(e.target.value)}
+                value={destination}
                 list="destinations"
                 id="destinationInput"
                 type="text"
