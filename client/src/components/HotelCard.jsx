@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import starRating from "../assets/starRatings.svg";
+import { useAppContext } from "../context/AppContext";
 
 const HotelCard = ({ room, index }) => {
+  const {currency} = useAppContext();
   return (
     <div>
     <Link
@@ -15,7 +17,7 @@ const HotelCard = ({ room, index }) => {
         className="relative w-full aspect-[4/3] overflow-hidden bg-gray-900"
       >
         <img
-          src={room.img?.[0]}
+          src={room.images?.[0]}
           alt={room.hotel?.name || "Room Image"}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
         />
@@ -58,7 +60,7 @@ const HotelCard = ({ room, index }) => {
         <div className="flex items-center justify-between pt-3 border-t border-gray-800 mt-1">
           <div>
             <span className="text-xl md:text-2xl font-extrabold text-[#00F0FF]">
-              ${room.price}
+              {currency} {room.pricePerNight}
             </span>
             <span className="text-xs text-gray-400 font-light"> / night</span>
           </div>
