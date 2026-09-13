@@ -4,7 +4,7 @@ const BookingSchema = new mongoose.Schema(
   {
     user: { type: String, required: true, ref: "User" },
     room: { type: String, required: true, ref: "Room" },
-    hotel: { type: Number, required: true, ref: "Hotel" },
+    hotel: { type: String, required: true, ref: "Hotel" },
     checkInDate: { type: Date, required: true },
     checkOutDate: { type: Date, required: true },
     price: { type: Number, required: true },
