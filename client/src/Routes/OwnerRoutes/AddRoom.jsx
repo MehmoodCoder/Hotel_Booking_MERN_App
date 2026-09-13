@@ -4,7 +4,7 @@ import { useAppContext } from "../../context/AppContext";
 import { toast } from "react-hot-toast";
 
 function AddRoom() {
-  const { axios, getToken } = useAppContext();
+  const { axios, getToken, currency } = useAppContext();
   const [loading, setLoading] = useState(false);
 
   const [images, setImages] = useState({
@@ -164,18 +164,18 @@ function AddRoom() {
             <option value="Double Bed" className="bg-[#111111] text-white">
               Double Bed
             </option>
-            <option value="Luxury Suite" className="bg-[#111111] text-white">
-              Luxury Suite
+            <option value="Luxury Room" className="bg-[#111111] text-white">
+              Luxury Room
             </option>
-            <option value="Family Room" className="bg-[#111111] text-white">
-              Family Room
+            <option value="Family Suite" className="bg-[#111111] text-white">
+              Family Suite
             </option>
           </select>
         </div>
 
         <div className="flex-1 flex flex-col gap-2">
           <label className="text-gray-300 font-medium text-sm">
-            Price Per Night ($)
+            Price Per Night ({currency} || $)
           </label>
           <input
             type="number"
