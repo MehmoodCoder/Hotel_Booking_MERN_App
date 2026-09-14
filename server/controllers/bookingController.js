@@ -108,7 +108,7 @@ export const CreateBooking = async (req, res) => {
     <p>The HotelHub Team</p>
     <p>Contact us: <a href="mailto:${process.env.SENDER_EMAIL}">${process.env.SENDER_EMAIL}</a></p>
   `
-    }; // add env to vercel
+    };
 
     await transpoter.sendMail(mailOptions);
 
