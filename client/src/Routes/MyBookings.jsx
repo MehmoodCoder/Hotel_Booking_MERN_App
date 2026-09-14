@@ -169,7 +169,6 @@ const MyBookings = () => {
                           }`}
                         >
                           {booking.status}
-                          {console.log("Booking status:", booking.status)}
                         </span>
                         <span
                           className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase bg-transparent border ${
