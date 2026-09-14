@@ -52,6 +52,92 @@
 
 ---
 
+## 📂 Project Directory Structure
+
+
+**Generated:** 9/14/2026, 8:27:28 PM
+**Root Path:** `workspace\Hotel_Booking_MERN_App`
+
+```
+├── 📁 client
+│   ├── 📁 public
+│   │   └── 🖼️ favicon.svg
+│   ├── 📁 src
+│   │   ├── 📁 Routes
+│   │   │   ├── 📁 OwnerRoutes
+│   │   │   │   ├── 📄 AddRoom.jsx
+│   │   │   │   ├── 📄 Dashboard.jsx
+│   │   │   │   ├── 📄 Layout.jsx
+│   │   │   │   └── 📄 ListRooms.jsx
+│   │   │   ├── 📄 AllRooms.jsx
+│   │   │   ├── 📄 Home.jsx
+│   │   │   ├── 📄 MyBookings.jsx
+│   │   │   └── 📄 RoomDetails.jsx
+│   │   ├── 📁 assets
+│   │   │   ├── 🖼️ logo.svg
+│   │   │   └── 🖼️ starRatings.svg
+│   │   ├── 📁 components
+│   │   │   ├── 📁 OwnerComponents
+│   │   │   │   ├── 📄 Navbar.jsx
+│   │   │   │   └── 📄 Sidebar.jsx
+│   │   │   ├── 📄 FeaturedDestination.jsx
+│   │   │   ├── 📄 Footer.jsx
+│   │   │   ├── 📄 Hero.jsx
+│   │   │   ├── 📄 HotelCard.jsx
+│   │   │   ├── 📄 HotelReg.jsx
+│   │   │   ├── 📄 Navbar.jsx
+│   │   │   ├── 📄 Newsletter.jsx
+│   │   │   ├── 📄 Offers.jsx
+│   │   │   ├── 📄 RecommendedHotels.jsx
+│   │   │   ├── 📄 Reviews.jsx
+│   │   │   └── 📄 Title.jsx
+│   │   ├── 📁 context
+│   │   │   └── 📄 AppContext.jsx
+│   │   ├── 📄 App.jsx
+│   │   ├── 🎨 index.css
+│   │   └── 📄 main.jsx
+│   ├── 📝 README.md
+│   ├── 📄 eslint.config.js
+│   ├── 🌐 index.html
+│   ├── ⚙️ package-lock.json
+│   ├── ⚙️ package.json
+│   ├── ⚙️ vercel.json
+│   └── 📄 vite.config.js
+├── 📁 server
+│   ├── 📁 configs
+│   │   ├── 📄 cloudinary.js
+│   │   ├── 📄 db.js
+│   │   └── 📄 nodemailer.js
+│   ├── 📁 controllers
+│   │   ├── 📄 bookingController.js
+│   │   ├── 📄 clerkWebhooks.js
+│   │   ├── 📄 hotelController.js
+│   │   ├── 📄 roomController.js
+│   │   └── 📄 userController.js
+│   ├── 📁 middlewares
+│   │   ├── 📄 authMiddleware.js
+│   │   └── 📄 uploadMidddleware.js
+│   ├── 📁 models
+│   │   ├── 📄 UserModel.js
+│   │   ├── 📄 bookingModel.js
+│   │   ├── 📄 hotelModel.js
+│   │   └── 📄 roomModel.js
+│   ├── 📁 routes
+│   │   ├── 📄 bookingRoute.js
+│   │   ├── 📄 hotelRoutes.js
+│   │   ├── 📄 roomRoute.js
+│   │   └── 📄 userRouter.js
+│   ├── ⚙️ package-lock.json
+│   ├── ⚙️ package.json
+│   ├── 📄 server.js
+│   └── ⚙️ vercel.json
+├── ⚙️ .gitignore
+├── 📄 LICENSE
+└── 📝 README.md
+```
+
+---
+
 # 📦 MERN Stack: Frontend Architecture Setup Guide
 
 This documentation provides a step-by-step guide to setting up a production-ready **Frontend Workspace** for a MERN stack application using **React + Vite**. It covers project initialization, dependency configuration, and local setup—preparing the UI layer to seamlessly connect with an Express/Node.js backend.
