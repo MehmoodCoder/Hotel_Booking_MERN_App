@@ -67,6 +67,8 @@ Run this command inside your project directory to install npm pakages in pakages
 npm i @clerk/react
 npm i react-router-dom
 npm i @tailwindcss/vite
+npm i react-hot-toast
+npm i axios
 ```
 
 **It automatically Create package.json if not exists. Like**
@@ -86,8 +88,10 @@ npm i @tailwindcss/vite
   "dependencies": {
     "@clerk/react": "^6.14.3",
     "@tailwindcss/vite": "^4.3.3",
+    "axios": "^1.19.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
+    "react-hot-toast": "^2.6.0",
     "react-router-dom": "^7.18.2",
     "tailwindcss": "^4.3.3"
   },
@@ -103,6 +107,7 @@ npm i @tailwindcss/vite
     "vite": "^8.2.0"
   }
 }
+
 ```
 
 **Note:** Install packages when needed
@@ -257,6 +262,8 @@ npm i cloudinary
 npm i svix
 npm i multer
 npm i @clerk/express
+npm i stripe
+bpm i nodemailer
 ```
 
 **It automatically Create package.json if not exists. Like**
@@ -282,7 +289,9 @@ npm i @clerk/express
     "express": "^5.2.1",
     "mongoose": "^9.9.3",
     "multer": "^2.2.0",
+    "nodemailer": "^10.0.9",
     "nodemon": "^3.1.14",
+    "stripe": "^22.6.2",
     "svix": "^2.0.0"
   }
 }
