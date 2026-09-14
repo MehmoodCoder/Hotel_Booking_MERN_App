@@ -73,6 +73,8 @@ export const CreateBooking = async (req, res) => {
 
     const hotelId = RoomData.hotel?._id || RoomData.hotel;
 
+    const hotelData = await Hotel.findById(hotelId);
+
     const booking = await Booking.create({
       user: userId,
       room,
@@ -87,16 +89,16 @@ export const CreateBooking = async (req, res) => {
 
     const mailOptions = {
       from: process.env.SENDER_EMAIL,
-      to: req.user.email,
+      to: req.user?.email,
       subject: "HotelHub Booking Confirmation",
       html: `
     <h2>Your Booking Details</h2>
-    <p>Dear ${req.user.username},</p>
+    <p>Dear ${req.user?.username || "Guest"},</p>
     <p>Thank you for your booking! Here are your reservation details:</p>
     <ul>
       <li><strong>Booking ID:</strong> ${booking._id}</li>
-      <li><strong>Hotel:</strong> ${hotel.name}</li>
-      <li><strong>Room Type:</strong> ${room.roomType}</li>
+      <li><strong>Hotel:</strong> ${hotelData?.name || "N/A"}</li>
+      <li><strong>Room Type:</strong> ${RoomData.roomType}</li>
       <li><strong>Check-In Date:</strong> ${new Date(booking.checkInDate).toDateString()}</li>
       <li><strong>Check-Out Date:</strong> ${new Date(booking.checkOutDate).toDateString()}</li>
       <li><strong>Guests:</strong> ${booking.guests}</li>
@@ -107,7 +109,7 @@ export const CreateBooking = async (req, res) => {
     <p>Best regards,</p>
     <p>The HotelHub Team</p>
     <p>Contact us: <a href="mailto:${process.env.SENDER_EMAIL}">${process.env.SENDER_EMAIL}</a></p>
-  `
+  `,
     };
 
     await transpoter.sendMail(mailOptions);
