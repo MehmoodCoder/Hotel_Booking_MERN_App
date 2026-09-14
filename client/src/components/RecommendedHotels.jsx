@@ -50,7 +50,7 @@ const RecommendedHotels = () => {
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl px-2 py-8 justify-items-center">
-          {recommended.map((room, index) => (
+          {recommended.slice(0, 4).map((room, index) => (
             <HotelCard
               key={room._id || index}
               room={room}
