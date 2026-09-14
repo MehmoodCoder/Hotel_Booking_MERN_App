@@ -48,7 +48,7 @@ const Offers = () => {
               navigate("/offers");
               window.scrollTo(0, 0);
             }}
-            className="my-6 md:my-14 px-5 py-2.5 text-sm font-bold border border-[#00F0FF]/40 text-[#00F0FF] bg-[#00F0FF]/10 rounded-xl hover:bg-[#00F0FF] hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(0,240,255,0.2)] hover:shadow-[0_0_20px_rgba(0,240,255,0.6)] cursor-pointer active:scale-95 shrink-0"
+            className="my-6 md:my-14 px-5 py-2.5 text-sm font-bold border border-[#00F0FF]/40 rounded-xl bg-[#00F0FF] text-black transition-all duration-300 shadow-[0_0_15px_rgba(0,240,255,0.2)] hover:shadow-[0_0_20px_rgba(0,240,255,0.6)] cursor-pointer active:scale-95 shrink-0"
           >
             View All Offers
           </button>
