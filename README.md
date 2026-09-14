@@ -485,4 +485,19 @@ Contributions are welcome! If you'd like to improve the API, add new features, o
 
 ---
 
+## 📝 Changelog
+
+### v1.0.0 (Initial Release)
+- ✨ **Full-Stack MERN Integration:** Connected React 19 frontend with Express 5/Node.js backend and MongoDB Atlas using Mongoose ODM.
+- 🔐 **Clerk Authentication Engine:** Integrated Clerk authentication across frontend and backend for user session handling and role-based access.
+- 📅 **Real-Time Reservation Logic:** Implemented availability checking and dynamic multi-night cost calculation algorithms for room bookings.
+- 📧 **Automated Nodemailer Workflows:** Integrated SMTP mailer to automatically dispatch detailed HTML reservation confirmation emails upon booking.
+- 🖼️ **Cloudinary Image Pipeline:** Implemented multi-file upload middleware using Multer and Cloudinary for hotel room image management.
+- 📊 **Hotel Analytics Dashboard:** Built owner dashboard tracking real-time metrics, total booking counts, and total revenue aggregation.
+- ⚡ **Axios API Integration:** Configured structured API requests using Axios with bearer token authentication headers for all server communication.
+- 🎨 **Responsive Dark UI:** Designed a modern, fully responsive dark-themed interface built with Tailwind CSS v4 and instant feedback alerts via React Hot Toast.
+- 🛠️ **Serverless Deployment Setup:** Configured environment configurations and modular controllers optimized for Vercel serverless functions deployment.
+
+---
+
 ### **_Happy coding without chai ! ☕_**
