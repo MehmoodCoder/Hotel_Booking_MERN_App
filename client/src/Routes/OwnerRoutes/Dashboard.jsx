@@ -111,12 +111,12 @@ const Dashboard = () => {
               key={item._id || index}
               className="bg-[#141414] border border-gray-800 rounded-xl p-4 flex flex-col gap-3"
             >
-              <div className="flex justify-between items-center border-b border-gray-800/80 pb-2">
-                <span className="font-semibold text-white text-base">
+              <div className="flex justify-between items-center border-b border-gray-800/80 pb-2 gap-2">
+                <span className="font-semibold text-white text-base truncate min-w-0 flex-1">
                   {item.user?.name || item.user?.email || "Guest"}
                 </span>
                 <span
-                  className={`px-3 py-1 rounded-full text-[11px] font-semibold border ${
+                  className={`px-3 py-1 rounded-full text-[11px] font-semibold border shrink-0 ${
                     item.isPaid
                       ? "text-emerald-400 border-emerald-500/30 bg-transparent"
                       : "text-red-400 border-red-500/30 bg-transparent"
