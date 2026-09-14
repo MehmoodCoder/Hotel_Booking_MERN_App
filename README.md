@@ -16,6 +16,17 @@
 
 ---
 
+## 🛠️ Tech Stack
+
+* **Frontend:** React 19, Vite, React Router DOM, Tailwind CSS v4, Axios, React Hot Toast, Clerk React
+* **Backend:** Node.js, Express.js (v5), Mongoose ODM, Nodemailer, Cloudinary, Multer, Svix, Stripe SDK, CORS, Dotenv, Nodemon, Stripe
+* **Database:** MongoDB Atlas
+* **Authentication:** Clerk Express & Clerk React
+* **Version Control:** Git, GitHub
+* **DevOps:** Vercel
+
+---
+
 ## Prerequisites
 
 - **Node.js** (v16 or higher)
