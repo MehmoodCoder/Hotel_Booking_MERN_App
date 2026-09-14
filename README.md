@@ -27,6 +27,23 @@
 
 ---
 
+## ✨ Features
+
+- 🏗️ **Full-Stack MERN Architecture** – Seamless integration connecting a React 19 client to a Node.js & Express 5 REST API server.
+- ⚡ **Axios API Integration** – Clean client-side HTTP requests utilizing structured controllers for real-time frontend-backend communication.
+- 🔐 **Authentication & Access Control** – Secure session management and role-based access handling powered by Clerk.
+- 📅 **Real-Time Booking & Availability** – Automated room availability checking for custom dates with multi-night price calculation.
+- 📧 **Automated Email Confirmation** – Dynamic HTML reservation receipts dispatched instantly via Nodemailer SMTP.
+- 🖼️ **Cloud Media Pipeline** – Seamless multi-image room uploads and asset delivery powered by Cloudinary and Multer.
+- 📊 **Hotel Owner Analytics Dashboard** – Centralized metrics overview tracking total bookings, occupancy, and cumulative revenue.
+- 🗄️ **MongoDB & Mongoose Validation** – Structured database schemas, data validation, and persistent cloud storage using MongoDB Atlas.
+- 🌐 **Dynamic Client-Side Routing** – Multi-view navigation managed via React Router DOM for explore, room details, and dashboard views.
+- 🎨 **Responsive Dark-Themed UI** – Modern interface designed with Tailwind CSS v4 and interactive notification alerts via React Hot Toast.
+- ⚙️ **Centralized Environment Vault** – Secure management of sensitive configurations (`MONGODB_URI`, `CLERK_SECRET_KEY`, Cloudinary, and Nodemailer) via `.env` integration.
+- ⚡ **Developer Workflow** – Accelerated development loop using Vite on the frontend and hot-reloading tooling on the backend.
+
+---
+
 ## Prerequisites
 
 - **Node.js** (v16 or higher)
