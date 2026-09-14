@@ -1,6 +1,7 @@
 import Booking from "../models/bookingModel.js";
 import Room from "../models/roomModel.js";
 import Hotel from "../models/hotelModel.js";
+import transpoter from "../configs/nodemailer.js";
 
 const checkAvailability = async ({ checkInDate, checkOutDate, room }) => {
   try {
@@ -83,6 +84,33 @@ export const CreateBooking = async (req, res) => {
       status: "pending",
       isPaid: false,
     });
+
+    const mailOptions = {
+      from: process.env.SENDER_EMAIL,
+      to: req.user.email,
+      subject: "HotelHub Booking Confirmation",
+      html: `
+    <h2>Your Booking Details</h2>
+    <p>Dear ${req.user.username},</p>
+    <p>Thank you for your booking! Here are your reservation details:</p>
+    <ul>
+      <li><strong>Booking ID:</strong> ${booking._id}</li>
+      <li><strong>Hotel:</strong> ${hotel.name}</li>
+      <li><strong>Room Type:</strong> ${room.roomType}</li>
+      <li><strong>Check-In Date:</strong> ${new Date(booking.checkInDate).toDateString()}</li>
+      <li><strong>Check-Out Date:</strong> ${new Date(booking.checkOutDate).toDateString()}</li>
+      <li><strong>Guests:</strong> ${booking.guests}</li>
+      <li><strong>Total Price:</strong> $${booking.price}</li>
+      <li><strong>Payment Status:</strong> ${booking.isPaid ? "Paid" : "Pay at Hotel"}</li>
+    </ul>
+    <p>We look forward to hosting you!</p>
+    <p>Best regards,</p>
+    <p>The HotelHub Team</p>
+    <p>Contact us: <a href="mailto:${process.env.SENDER_EMAIL}">${process.env.SENDER_EMAIL}</a></p>
+  `
+    }; // add env to vercel
+
+    await transpoter.sendMail(mailOptions);
 
     res.json({
       success: true,
