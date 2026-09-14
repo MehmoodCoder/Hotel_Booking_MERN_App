@@ -21,7 +21,7 @@ const FeaturedDestination = () => {
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl px-2 py-8 justify-items-center">
-            {rooms.map((room, index) => (
+            {rooms.slice(0, 4).map((room, index) => (
               <HotelCard key={room._id} room={room} index={index} />
             ))}
           </div>
