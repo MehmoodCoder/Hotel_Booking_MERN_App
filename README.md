@@ -4,6 +4,18 @@
 
 ---
 
+## 🚀 Features
+
+* **Authentication & User Management:** Secure sign-up, login, and session persistence powered by Clerk.
+* **Room Search & Availability:** Real-time room availability verification based on selected check-in and check-out dates.
+* **Smart Booking Engine:** Automated multi-night pricing calculation and guest management system.
+* **Automated Email Confirmations:** Instant HTML email receipts sent to users upon successful reservation via Nodemailer SMTP.
+* **Media Cloud Management:** Seamless image upload, handling, and fast distribution using Cloudinary and Multer.
+* **Hotel Owner Dashboard:** Centralized management panel for tracking total revenue, reservation metrics, and active bookings.
+* **Responsive Dark UI:** Fully responsive interface built with Tailwind CSS v4 and interactive notification alerts using React Hot Toast.
+
+---
+
 ## Prerequisites
 
 - **Node.js** (v16 or higher)
