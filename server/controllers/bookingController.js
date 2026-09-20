@@ -169,13 +169,27 @@ export const getHotelBookings = async (req, res) => {
 
 export const stripePayment = async (req, res) => {
   try {
-    const { bookingId } = req.body; 
-    const booking = await Booking.findById(bookingId)
+    const { bookingId } = req.body;
+    const booking = await Booking.findById(bookingId);
+
+    if (!booking) {
+      return res.json({ success: false, message: "Booking not found" });
+    }
+
     const roomData = await Room.findById(booking.room).populate("hotel");
+    if (!roomData) {
+      return res.json({ success: false, message: "Room details not found" });
+    }
+
     const totalPrice = booking.price;
-    const {origin} = req.headers;
+    const { origin } = req.headers;
 
     const stripeInstance = new stripe(process.env.STRIPE_SECRET_KEY);
+
+    // Guaranteed fallback values taake undefined pass na ho
+    const productName =
+      roomData.roomType || roomData.name || "Hotel Room Booking";
+    const hotelName = roomData.hotel?.name || "HotelHub Reservation";
 
     const lineItems = [
       {
@@ -183,31 +197,27 @@ export const stripePayment = async (req, res) => {
           currency: "usd",
           unit_amount: Math.round(totalPrice * 100),
           product_data: {
-            name: roomData.name,
-            description: roomData.description,
+            name: `${hotelName} - ${productName}`,
+            description: `Booking ID: ${booking._id} | Guests: ${booking.guests}`,
           },
         },
         quantity: 1,
       },
     ];
-    
+
     const session = await stripeInstance.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: `${origin}/success`,
+      success_url: `${origin}/loader/my-bookings`,
       cancel_url: `${origin}/my-bookings`,
       metadata: {
         bookingId,
       },
     });
 
-    res.json({ success: true, url: session.url }); 
-
-    // later and CRUD on add room
-
-  }
-  catch (error) {
+    res.json({ success: true, url: session.url });
+  } catch (error) {
     res.json({ success: false, message: error.message });
   }
-}
+};
