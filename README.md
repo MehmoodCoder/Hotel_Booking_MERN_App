@@ -112,6 +112,7 @@
 │   ├── 📁 controllers
 │   │   ├── 📄 bookingController.js
 │   │   ├── 📄 clerkWebhooks.js
+│   │   ├── 📄 stripeWebhooks.js
 │   │   ├── 📄 hotelController.js
 │   │   ├── 📄 roomController.js
 │   │   └── 📄 userController.js
