@@ -2,7 +2,7 @@ import Booking from "../models/bookingModel.js";
 import Room from "../models/roomModel.js";
 import Hotel from "../models/hotelModel.js";
 import transpoter from "../configs/nodemailer.js";
-import Stripe from "stripe";
+import stripe from "stripe";
 
 const checkAvailability = async ({ checkInDate, checkOutDate, room }) => {
   try {
