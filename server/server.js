@@ -9,6 +9,7 @@ import HotelRouter from "./routes/hotelRoutes.js";
 import connectCloudinary from "./configs/cloudinary.js";
 import RoomRouter from "./routes/roomRoute.js";
 import BookingsRouter from "./routes/bookingRoute.js";
+import { stripeWebhook } from "./controllers/stripeWebhooks.js";
 
 dotenv.config();
 
@@ -24,6 +25,8 @@ app.use(async (req, res, next) => {
 });
 
 app.post("/api/clerk", express.raw({ type: "application/json" }), clerkWebhooks);
+
+app.post("/api/stripe", express.raw({ type: "application/json" }), stripeWebhook);
 
 app.use(express.json());
 
