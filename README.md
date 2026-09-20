@@ -85,6 +85,7 @@
 │   │   │   ├── 📄 Hero.jsx
 │   │   │   ├── 📄 HotelCard.jsx
 │   │   │   ├── 📄 HotelReg.jsx
+│   │   │   ├── 📄 Loader.jsx
 │   │   │   ├── 📄 Navbar.jsx
 │   │   │   ├── 📄 Newsletter.jsx
 │   │   │   ├── 📄 Offers.jsx
