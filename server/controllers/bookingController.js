@@ -204,7 +204,7 @@ export const stripePayment = async (req, res) => {
 
     res.json({ success: true, url: session.url }); 
 
-    // later and CRUD on add room  and add env stripes on vercel
+    // later and CRUD on add room
 
   }
   catch (error) {
