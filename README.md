@@ -200,9 +200,8 @@ Set up your environment variables in Vercel before or after deployment:
 
 ```bash
 Project_Folder/
-├── backend/
-├── frontend/
-└── vercel.json
+├── client/
+├── server/ vercel.json
 ```
 
 ---
