@@ -52,6 +52,28 @@
 
 ---
 
+### 💳 Payment Gateway Testing (Stripe Test Cards)
+
+This project integrates Stripe Checkout (Test Mode). Use the credentials below to test different payment workflows:
+
+#### 1. Successful Transaction (Default Card)
+* **Card Number:** `4242 4242 4242 4242`
+* **Expiry Date (MM / YY):** Any future date (e.g., `12 / 28`)
+* **CVC:** `123`
+* **Postal / ZIP Code:** `54000` (or any 5-digit postal code)
+
+#### 2. Payment Edge Cases & Failure Testing
+You can use the following dedicated card numbers to test error handling and status responses:
+
+| Test Scenario | Card Number | Expected Behavior |
+| :--- | :--- | :--- |
+| **Generic Card Decline** | `4000 0000 0000 0002` | Triggers a standard card decline error |
+| **Insufficient Funds** | `4000 0000 0000 0010` | Triggers an insufficient funds alert |
+| **Expired Card** | `4000 0000 0000 0069` | Triggers a card expiration validation error |
+| **Incorrect CVC** | `4000 0000 0000 0127` | Triggers a CVC verification failure |
+
+---
+
 ## 📂 Project Directory Structure
 
 
