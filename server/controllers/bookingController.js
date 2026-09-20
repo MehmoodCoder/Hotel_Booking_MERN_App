@@ -2,6 +2,7 @@ import Booking from "../models/bookingModel.js";
 import Room from "../models/roomModel.js";
 import Hotel from "../models/hotelModel.js";
 import transpoter from "../configs/nodemailer.js";
+import Stripe from "stripe";
 
 const checkAvailability = async ({ checkInDate, checkOutDate, room }) => {
   try {
@@ -165,3 +166,48 @@ export const getHotelBookings = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+export const stripePayment = async (req, res) => {
+  try {
+    const { bookingId } = req.body; 
+    const booking = await Booking.findById(bookingId)
+    const roomData = await Room.findById(booking.room).populate("hotel");
+    const totalPrice = booking.price;
+    const {origin} = req.headers;
+
+    const stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY);
+
+    const lineItems = [
+      {
+        price_data: {
+          currency: "usd",
+          unit_amount: Math.round(totalPrice * 100),
+          product_data: {
+            name: roomData.name,
+            description: roomData.description,
+          },
+        },
+        quantity: 1,
+      },
+    ];
+    
+    const session = await stripeInstance.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: lineItems,
+      mode: "payment",
+      success_url: `${origin}/success`,
+      cancel_url: `${origin}/my-bookings`,
+      metadata: {
+        bookingId,
+      },
+    });
+
+    res.json({ success: true, url: session.url }); 
+
+    // will complete it later and CRUD on add room  and add env stripes on vercel
+
+  }
+  catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+}
