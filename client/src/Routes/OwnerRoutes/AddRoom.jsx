@@ -175,7 +175,7 @@ function AddRoom() {
 
         <div className="flex-1 flex flex-col gap-2">
           <label className="text-gray-300 font-medium text-sm">
-            Price Per Night ({currency} || $)
+            Price Per Night {currency}
           </label>
           <input
             type="number"
