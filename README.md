@@ -568,4 +568,4 @@ Contributions are welcome! If you'd like to improve the API, add new features, o
 
 ---
 
-### **_Happy coding without chai ! ☕_**
+### ** 🤷‍♂️ Happy coding without chai ! ☕ **
