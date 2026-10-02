@@ -3,7 +3,7 @@
 ## 1. The Project
 * **Project Name**: HotelHub
 * **Live URL**: https://mh56-hotel-hub.vercel.app
-* **GitHub Repository**: https://github.com/MehmoodHassan56/mh56-hotel-hub
+* **GitHub Repository**: https://github.com/MehmoodCoder/Hotel_Booking_MERN_App
 * **Description**: A full-stack MERN web application designed for seamless hotel room searching, date selection, automated booking calculations, secure Clerk authentication, Stripe payments, and an intuitive owner analytics dashboard.
 * **Target Audience**: Travelers looking to discover and book luxury rooms online, and hotel owners/administrators managing properties, room listings, and revenue metrics.
 * **Why It Matters**: Bridges the gap between users seeking hassle-free room reservations and property managers needing a centralized digital management platform.
